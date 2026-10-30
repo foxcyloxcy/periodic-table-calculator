@@ -2,7 +2,7 @@
 
 A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The application includes a **clickable, searchable 118-element periodic table** with element details and a separate deterministic molar-mass calculation engine. It does **not** predict chemical reactions.
 
-> **Status:** Source code and a reproducible lockfile are committed. The initial calculator passed CI; the new 118-element feature has its own pending validation. Element metadata is sourced from a pinned secondary snapshot and has not completed an independent field-by-field scientific audit. See [Project Status](docs/PROJECT_STATUS.md).
+> **Status:** Source code and a reproducible lockfile are committed. The initial calculator passed CI; the new 118-element feature passed GitHub Actions validation (npm ci, typecheck, lint, tests and build) in [run 41143805722](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41143805722). Element metadata is sourced from a pinned secondary snapshot and has not completed an independent field-by-field scientific audit. See [Project Status](docs/PROJECT_STATUS.md).
 
 ## Local development
 

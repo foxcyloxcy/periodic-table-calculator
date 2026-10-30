@@ -1,0 +1,57 @@
+'use client';
+
+import { useMemo, useState } from 'react';
+import { elementCategories, periodicElements, searchElements, type PeriodicElement, PERIODIC_TABLE_SOURCE, STANDARD_WEIGHT_REFERENCE } from '@/lib/chemistry/periodic-table';
+
+const categoryClass = (category: string) => {
+  if(category.includes('alkali metal') && !category.includes('earth')) return 'alkali';
+  if(category.includes('alkaline earth')) return 'alkaline';
+  if(category.includes('noble gas')) return 'noble';
+  if(category.includes('halogen')) return 'halogen';
+  if(category.includes('lanthanide')) return 'lanthanide';
+  if(category.includes('actinide')) return 'actinide';
+  if(category.includes('transition metal')) return 'transition';
+  if(category.includes('metalloid')) return 'metalloid';
+  if(category.includes('nonmetal')) return 'nonmetal';
+  return 'other';
+};
+
+export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symbol: string) => void}) {
+  const [query,setQuery]=useState('');
+  const [category,setCategory]=useState('all');
+  const [selected,setSelected]=useState<PeriodicElement>(periodicElements[0]);
+  const matches=useMemo(()=>new Set(searchElements(query,category).map(e=>e.atomicNumber)),[query,category]);
+  return <section className="periodic-section" aria-label="Interactive periodic table">
+    <div className="section-heading"><div><p className="eyebrow">ALL 118 RECOGNIZED ELEMENTS</p><h2>Explore the periodic table</h2><p>Select any element to inspect its properties. Selecting does not predict chemical reactions.</p></div></div>
+    <div className="table-controls">
+      <label className="control"><span>Find an element</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search name, symbol or number..." aria-label="Search elements" /></label>
+      <label className="control"><span>Element family</span><select value={category} onChange={e=>setCategory(e.target.value)}><option value="all">All families</option>{elementCategories.map(c=><option key={c} value={c}>{c}</option>)}</select></label>
+    </div>
+    <p className="hint">{matches.size} of 118 elements match. Scroll horizontally on small screens.</p>
+    <div className="periodic-scroll" tabIndex={0} role="region" aria-label="Scrollable periodic table">
+      <div className="periodic-grid">
+        {periodicElements.map(e=><button key={e.atomicNumber} className={`element-tile ${categoryClass(e.category)} ${matches.has(e.atomicNumber)?'':'dimmed'} ${selected.atomicNumber===e.atomicNumber?'selected':''}`} type="button" style={{gridColumn:e.x,gridRow:e.y}} onClick={()=>setSelected(e)} aria-label={`${e.name}, atomic number ${e.atomicNumber}`} aria-pressed={selected.atomicNumber===e.atomicNumber}>
+          <span className="tile-number">{e.atomicNumber}</span><strong className="tile-symbol">{e.symbol}</strong><span className="tile-name">{e.name}</span>
+        </button>)}
+        <div className="series-label" style={{gridColumn:'3 / span 15',gridRow:8}}>Lanthanides and actinides shown below</div>
+      </div>
+    </div>
+    <article className="element-detail" aria-live="polite">
+      <div className={`selected-element ${categoryClass(selected.category)}`}><span>{selected.atomicNumber}</span><strong>{selected.symbol}</strong><span>{selected.name}</span></div>
+      <div className="element-info">
+        <h3>{selected.name} <small>({selected.symbol})</small></h3>
+        <p>{selected.category} · Period {selected.period} · {selected.group===null?'f-block / unassigned group':`Group ${selected.group}`}</p>
+        <dl>
+          <div><dt>Atomic number</dt><dd>{selected.atomicNumber}</dd></div>
+          <div><dt>Electron configuration</dt><dd>{selected.electronConfiguration ?? 'Not available'}</dd></div>
+          <div><dt>Electronegativity (Pauling)</dt><dd>{selected.electronegativity ?? 'Not available'}</dd></div>
+          <div><dt>Phase (source label)</dt><dd>{selected.phase ?? 'Unknown'}</dd></div>
+          <div><dt>Atomic weight</dt><dd>{selected.approximateAtomicWeight===null?'No standard atomic weight':`≈ ${selected.approximateAtomicWeight} (secondary reference)`}</dd></div>
+        </dl>
+        <p className="hint">Display values are educational, sourced from a secondary snapshot and not yet fully audited against CIAAW. Mass numbers of radioactive isotopes are intentionally not substituted for missing standard atomic weights.</p>
+        <button type="button" onClick={()=>onAppendSymbol(selected.symbol)}>Add {selected.symbol} to formula input</button>
+      </div>
+    </article>
+    <p className="hint">Sources: <a href={PERIODIC_TABLE_SOURCE} target="_blank" rel="noreferrer">element metadata snapshot</a> · <a href={STANDARD_WEIGHT_REFERENCE} target="_blank" rel="noreferrer">CIAAW standard atomic weights</a>. The calculator uses its separately identified educational mass dataset; an unsupported element may not be calculable yet.</p>
+  </section>;
+}

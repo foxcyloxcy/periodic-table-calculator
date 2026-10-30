@@ -112,7 +112,7 @@ These documents **specify** references and algorithms, but do not mean those cal
 
 ## GitHub Pages deployment
 
-The project is configured for static export and a GitHub Pages Actions workflow. See [deployment guide](docs/GITHUB_PAGES_DEPLOYMENT.md) for activation, URL, limitations and deployment verification. Pages publishing requires merging into `main` and selecting GitHub Actions under Settings → Pages. Feature branches do not automatically publish.
+The project is configured for static export and a GitHub Pages Actions workflow. See [deployment guide](docs/GITHUB_PAGES_DEPLOYMENT.md) for activation, URL, limitations and deployment verification. All prerequisite PRs are merged into `main`. Pages publishing is **blocked until the repository owner enables GitHub Pages**: Settings → Pages → Source: GitHub Actions, then Actions → Deploy GitHub Pages → Run workflow. The static build and 33 tests passed but site creation was denied (`Resource not accessible by integration`); see the deployment guide. Do not assume the public URL is live.
 
 ## Scientific references
 

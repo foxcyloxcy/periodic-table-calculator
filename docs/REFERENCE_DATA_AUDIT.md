@@ -30,3 +30,6 @@ The calculator uses conventional rounded numbers, not propagated source uncertai
 - Build 118-element metadata without inventing conventional atomic weights for radioactive/synthetic elements for which none is specified.
 - Add independent external fixture review and higher precision/uncertainty policy before production scientific claims.
 - Ensure API response provenance identifies dataset citation and uncertainty limitations rather than claiming experimental-grade precision.
+
+## 2026-10-31 CIAAW full/abridged import
+The original 28-element runtime table is superseded in the feature branch by `src/lib/chemistry/ciaaw-2024.json`, parsed from both official CIAAW 2024 pages. The import preserves standard availability, scalar/interval classification, abridged numeric value/uncertainty, source edition and notes. Integrity tests cover 118 identities, 84 eligible/34 unavailable, and representative revised 2024 values. **Automated structural verification does not equal an independent manual field-by-field audit or confirmed redistribution license.** Exact SI molar mass interpretation, interval propagation and significant-figure policy remain future improvements. See `docs/GITHUB_PAGES_DEPLOYMENT.md`.

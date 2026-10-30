@@ -23,3 +23,6 @@ Unrestricted reaction synthesis, laboratory safety recommendations, AI as sole c
 
 ## PR acceptance
 Small vertical changes, architecture contract preserved, relevant benchmark evidence, updated documentation, CI pass, security review, clearly stated unsupported cases.
+
+## Detailed scientific calculation execution plan
+See [SCIENTIFIC_REFERENCES.md](SCIENTIFIC_REFERENCES.md), [COMPUTATION_METHODS.md](COMPUTATION_METHODS.md), and [IMPLEMENTATION_SEQUENCE.md](IMPLEMENTATION_SEQUENCE.md). In particular, scientific-data field review and source licensing are **gates**, not follow-up paperwork. The 118-element display milestone is not equivalent to a certified all-elements molar-mass engine.

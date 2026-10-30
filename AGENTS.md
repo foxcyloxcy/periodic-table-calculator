@@ -21,3 +21,6 @@ For each change, record design rationale, files, tests executed/results, blocker
 
 ## Mandatory computation reference governance
 Use `docs/reference-sources.json` as the machine-readable index and `docs/SCIENTIFIC_REFERENCES.md` for scope and licensing review. Implement scientific algorithms only against the contract in `docs/COMPUTATION_METHODS.md`; follow acceptance gates in `docs/IMPLEMENTATION_SEQUENCE.md`. Every calculation module must identify source IDs, dataset/method version, assumptions and scientific benchmark results. A source marked `approvedForRuntime: false` is not approval to import its values into authoritative calculation paths. Never copy external page output as canned backend result.
+
+## Compound names
+Read `docs/COMPOUND_NAMING.md` before changing compound identity or formula-to-name resolution. A formula does not uniquely determine chemical identity. Names must be sourced and return a verified/unresolved status; never guess names using atomic composition alone. Compound identification is independent of mass calculation and must not affect numeric results. Do not infer aqueous acid naming from an anhydrous formula or treat hydrates as their anhydrous counterparts.

@@ -49,3 +49,9 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Further manual per-element independent audit and redistribution/attribution review remain open. Other display properties are not scientifically certified; uncertainty is displayed but not propagated into final molar mass.
 - Not deployed yet: Settings → Pages must use GitHub Actions and dependent PRs must merge to main.
 - Read `docs/GITHUB_PAGES_DEPLOYMENT.md`; CI validation is pending.
+
+## GitHub Pages deployment attempt — 2026-10-31
+- PRs #1–#5 merged to `main`. GitHub Pages Actions run 41146278069 passed npm ci, typecheck, lint, 33 Vitest tests and static Next.js export, then failed at configure-pages because no Pages site exists.
+- Second run 41146380803 repeated a successful build, but `enablement: true` failed to create the Pages site with `Resource not accessible by integration`. The attempted auto-enable option was reverted.
+- **Site is NOT live**. Owner action required: Settings → Pages → Build and deployment → Source → GitHub Actions. Then use Actions → Deploy GitHub Pages → Run workflow and verify URL.
+- The code and CIAAW 2024 source snapshot are committed to `main`; 118 records, 84 abridged standard atomic weights, 34 without standard weights. Independent per-field audit and licensing review still pending; UI secondary properties remain informational.

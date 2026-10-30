@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "registryVersion": "2026-10-31-v1",
+  "status": "references-researched-imports-not-approved",
+  "sources": [
+    {
+      "id": "CIAAW-SAW-2024",
+      "type": "standard-atomic-weights",
+      "authority": "CIAAW",
+      "version": "2024",
+      "url": "https://www.ciaaw.org/atomic-weights.htm",
+      "usage": "atomic weight scalar interval uncertainty availability",
+      "approvedForRuntime": false,
+      "licenseStatus": "review-required"
+    },
+    {
+      "id": "CIAAW-ABRIDGED-2024",
+      "type": "educational-atomic-weights",
+      "authority": "CIAAW",
+      "version": "2024",
+      "url": "https://www.ciaaw.org/abridged-atomic-weights.htm",
+      "usage": "rounded conventional educational values",
+      "approvedForRuntime": false,
+      "licenseStatus": "review-required"
+    },
+    {
+      "id": "IUPAC-GOLD-MOLAR-MASS",
+      "type": "definition",
+      "authority": "IUPAC",
+      "version": "2025-online-v5",
+      "url": "https://goldbook.iupac.org/terms/view/12214/html",
+      "usage": "molar mass terminology",
+      "approvedForRuntime": false,
+      "licenseStatus": "terms-CC-BY-SA-4.0-collection-reuse-review"
+    },
+    {
+      "id": "IUPAC-GOLD-STOICH",
+      "type": "definition",
+      "authority": "IUPAC",
+      "version": "2025-online-v5",
+      "url": "https://goldbook.iupac.org/terms/view/S06026",
+      "usage": "stoichiometry terminology",
+      "approvedForRuntime": false,
+      "licenseStatus": "terms-CC-BY-SA-4.0-collection-reuse-review"
+    },
+    {
+      "id": "BIPM-MOLE",
+      "type": "SI-defining-constant",
+      "authority": "BIPM",
+      "version": "2019-redefinition",
+      "url": "https://www.bipm.org/en/si-base-units/mole",
+      "usage": "N_A exact 6.02214076e23 per mol",
+      "approvedForRuntime": false,
+      "licenseStatus": "review-required"
+    },
+    {
+      "id": "BIPM-SI-2026",
+      "type": "units",
+      "authority": "BIPM",
+      "version": "9th-edition-updated-2026",
+      "url": "https://www.bipm.org/en/publications/si-brochure",
+      "usage": "SI unit conventions",
+      "approvedForRuntime": false,
+      "licenseStatus": "CC-BY-4.0"
+    },
+    {
+      "id": "OPENSTAX-BALANCE",
+      "type": "textbook-benchmark",
+      "authority": "OpenStax",
+      "version": "Chemistry-2e",
+      "url": "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations",
+      "usage": "worked examples conservation",
+      "approvedForRuntime": false,
+      "licenseStatus": "review-required"
+    },
+    {
+      "id": "OPENSTAX-STOICH",
+      "type": "textbook-benchmark",
+      "authority": "OpenStax",
+      "version": "Chemistry-2e",
+      "url": "https://openstax.org/books/chemistry-2e/pages/4-summary",
+      "usage": "reaction mole ratios and yields",
+      "approvedForRuntime": false,
+      "licenseStatus": "review-required"
+    },
+    {
+      "id": "PUBCHEM-PUG-REST",
+      "type": "compound-cross-check",
+      "authority": "NIH NLM PubChem",
+      "version": "docs-2026-09-15",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest",
+      "usage": "compound identities properties",
+      "approvedForRuntime": false,
+      "licenseStatus": "API-policy-review-required"
+    },
+    {
+      "id": "NIST-WEBBOOK-SRD69",
+      "type": "thermochemistry-reference",
+      "authority": "NIST",
+      "version": "SRD-69",
+      "url": "https://webbook.nist.gov/chemistry/guide/",
+      "usage": "phase specific thermochemistry",
+      "approvedForRuntime": false,
+      "licenseStatus": "data-reuse-review-required"
+    },
+    {
+      "id": "PERIODIC-DISPLAY-SNAPSHOT",
+      "type": "secondary-display-metadata",
+      "authority": "Bowserinator/Periodic-Table-JSON",
+      "version": "snapshot-2026-10-31-source-sha-not-pinned",
+      "url": "https://github.com/Bowserinator/Periodic-Table-JSON",
+      "usage": "existing 118-element UI snapshot only; never computational authority",
+      "approvedForRuntime": false,
+      "licenseStatus": "upstream-and-per-field-review-required"
+    }
+  ],
+  "methodSources": {
+    "CHEM-001": [
+      "OPENSTAX-BALANCE"
+    ],
+    "CHEM-002": [
+      "CIAAW-SAW-2024",
+      "CIAAW-ABRIDGED-2024",
+      "IUPAC-GOLD-MOLAR-MASS"
+    ],
+    "CHEM-003": [
+      "CIAAW-SAW-2024"
+    ],
+    "CHEM-004": [
+      "OPENSTAX-BALANCE"
+    ],
+    "CHEM-005": [
+      "OPENSTAX-BALANCE",
+      "IUPAC-GOLD-STOICH"
+    ],
+    "CHEM-006": [
+      "BIPM-MOLE",
+      "BIPM-SI-2026"
+    ],
+    "CHEM-007": [
+      "IUPAC-GOLD-STOICH",
+      "OPENSTAX-STOICH"
+    ],
+    "CHEM-008": [
+      "NIST-WEBBOOK-SRD69"
+    ]
+  }
+}

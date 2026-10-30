@@ -81,6 +81,6 @@ export function calculateMolarMass(formula: string): MolarMassResult {
     status:'computed', formula:normalized, composition, value, unit:'g/mol', steps,
     equation:steps.map(t=>`${t.count} × ${t.atomicWeight}`).join(' + '),
     datasetVersion:DATASET_VERSION, dataSource:DATASET_SOURCE,
-    assumptions:['Natural isotopic abundance; rounded educational atomic weights', 'Formula represents a neutral, non-isotopically-labeled composition', 'Result is a molar mass, not a predicted chemical reaction'],
+    assumptions:['CIAAW 2024 abridged standard atomic weights for normal materials; a single rounded value is used and uncertainty is not propagated', 'Formula represents a neutral, non-isotopically-labeled composition', 'Result is a molar mass, not a predicted chemical reaction'],
   };
 }

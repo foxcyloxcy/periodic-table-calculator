@@ -37,3 +37,6 @@ Documentation branch PR #1; implementation PR #2. CI evidence: https://github.co
 - Verified official online reference pages for CIAAW 2024 standard and abridged weights, IUPAC Gold Book molar mass and stoichiometry, BIPM SI mole definition, OpenStax balancing/stoichiometry, PubChem API documentation and NIST WebBook reference scope.
 - This PR is **documentation and implementation planning only**. It does not expand the runtime 28-element mass dataset, implement ionic/hydrate/balance/stoichiometry, complete third-party licensing checks, or independently certify all 118 element properties.
 - Next action: implement Gate A from IMPLEMENTATION_SEQUENCE.md with a human-reviewed CIAAW weight import, explicit intervals/uncertainties, independently checked complete-source metadata, and scientific audit tests; only then Gate B computation expansion.
+
+## Computation reference documentation CI verification
+GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41144205343 completed successfully: npm ci, typecheck, ESLint, Vitest and Next.js production build. This only validates software integration for the documentation branch, not scientific data completeness or licensing approval.

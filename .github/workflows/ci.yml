@@ -3,36 +3,18 @@ on:
   push:
   pull_request:
 permissions:
-  contents: write
+  contents: read
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci --no-audit --no-fund
-          else
-            npm install --no-audit --no-fund
-          fi
+          cache: npm
+      - run: npm ci --no-audit --no-fund
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
       - run: npm run build
-      - name: Commit initial dependency lockfile after checks pass
-        if: github.event_name == 'pull_request' && github.head_ref == 'feat/m1-formula-mass-calculator' && github.event.pull_request.head.repo.full_name == github.repository
-        run: |
-          if [ -f package-lock.json ] && ! git ls-files --error-unmatch package-lock.json >/dev/null 2>&1; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add package-lock.json
-            git commit -m 'build: lock validated npm dependency graph'
-            git push origin HEAD:feat/m1-formula-mass-calculator
-          fi

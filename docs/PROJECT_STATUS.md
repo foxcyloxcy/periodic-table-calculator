@@ -55,3 +55,11 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Second run 41146380803 repeated a successful build, but `enablement: true` failed to create the Pages site with `Resource not accessible by integration`. The attempted auto-enable option was reverted.
 - **Site is NOT live**. Owner action required: Settings → Pages → Build and deployment → Source → GitHub Actions. Then use Actions → Deploy GitHub Pages → Run workflow and verify URL.
 - The code and CIAAW 2024 source snapshot are committed to `main`; 118 records, 84 abridged standard atomic weights, 34 without standard weights. Independent per-field audit and licensing review still pending; UI secondary properties remain informational.
+
+## 2026-10-31 — Verified compound naming milestone
+- Added a separate PubChem-backed chemical name resolver with systematic/common names and source citations for five curated formula spellings: FeSO4, Fe2(SO4)3, H2O, CaCO3, Na2CO3.
+- `calculateMolarMass()` now returns a verified or unresolved compound identity annotation without allowing the naming registry to affect numerical mass computation.
+- UI shows preferred name, common names, PubChem citation and limitations, or clearly states that the name is not verified.
+- Added naming tests for Fe(II)/Fe(III), unresolved isomers/unsupported hydrate syntax, and independent numerical calculation behavior.
+- Naming all possible chemicals requires an independently reviewed compound identity dataset with charge/hydrate/isomer distinctions; no guessed names or oxidation states.
+- Feature branch pending CI and merge/deploy verification. See `docs/COMPOUND_NAMING.md`.

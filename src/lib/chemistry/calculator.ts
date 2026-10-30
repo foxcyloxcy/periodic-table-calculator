@@ -1,5 +1,5 @@
 import { atomicWeights, DATASET_SOURCE, DATASET_VERSION } from './elements';
-import { resolveCompoundName, type CompoundNameResult } from './compound-names';
+import { normalizeKnownCompoundFormula, resolveCompoundName, type CompoundNameResult } from './compound-names';
 
 export class FormulaError extends Error {
   constructor(message: string) { super(message); this.name = 'FormulaError'; }
@@ -71,7 +71,7 @@ export function parseFormula(formula: string): Composition {
   return Object.fromEntries(Object.entries(composition).sort(([a],[b]) => a.localeCompare(b)));
 }
 export function calculateMolarMass(formula: string): MolarMassResult {
-  const normalized = formula.trim();
+  const normalized = normalizeKnownCompoundFormula(formula);
   const composition = parseFormula(normalized);
   const steps = Object.entries(composition).map(([element,count]) => ({
     element, count, atomicWeight: atomicWeights[element],

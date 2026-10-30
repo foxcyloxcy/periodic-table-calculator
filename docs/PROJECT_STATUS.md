@@ -13,7 +13,7 @@ Interactive periodic table â†’ select an element or enter a chemical substance â
 ## New milestone: interactive 118-element explorer (PR #3)
 - Implemented pinned 118-element secondary metadata snapshot, normalized table coordinates, searchable/filterable UI, selectable property panels, and append-to-formula action.
 - 34 elements without a standard atomic weight are explicitly null, not a radioactive isotope mass number. Display metadata is not used by the separate 28-element molar-mass calculator.
-- Integrity, positioning, missing-standard-weight, and search tests added; CI run https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41143805722 is underway at initial documentation update. Record final pass/fail before merging.
+- Integrity, positioning, missing-standard-weight, and search tests added; CI run https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41143805722 **passed** npm ci, typecheck, ESLint, Vitest and Next.js production build. No browser E2E or live deployment verified.
 - Full field-by-field CIAAW and PubChem/NIST data audit is NOT complete. See docs/PERIODIC_TABLE_DATA.md. UI browser/accessibility verification and deployment are pending.
 
 ## Decisions

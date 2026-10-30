@@ -2,7 +2,7 @@
 
 A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The first implemented vertical slice **parses supported neutral chemical formulas and calculates molar mass dynamically**, with elemental contributions and the formula used. It does **not** predict reactions or currently provide a clickable 118-element table.
 
-> **Status:** MVP source code is committed; CI/build verification and complete scientific reference-data coverage are still in progress. See [Project Status](docs/PROJECT_STATUS.md).
+> **Status:** MVP source code and lockfile are committed; GitHub Actions has passed installation, type checking, lint, unit tests and build. The complete scientific dataset and production validation remain pending. See [Project Status](docs/PROJECT_STATUS.md).
 
 ## Local development
 
@@ -29,13 +29,13 @@ git switch feat/m1-formula-mass-calculator
 Install and start the development server:
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 Visit **http://localhost:3000** in your browser. No API key or database is required for the current calculation route.
 
-After a `package-lock.json` is committed and validated, prefer `npm ci` instead of `npm install` for reproducible installs.
+The committed `package-lock.json` pins dependency versions. Use `npm ci` for reproducible installation; use `npm install` only when intentionally updating dependencies, and commit the updated lockfile.
 
 ### Run checks
 
@@ -96,6 +96,10 @@ AGENTS.md                             Developer / coding-agent instructions
 ```
 
 The calculation kernel is intentionally independent of the UI and database so it can be reused by APIs or additional applications, profiled, and scaled later.
+
+## Validation evidence
+
+GitHub Actions run [41142432367](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142432367) passed install, typecheck, lint, tests and build. The workflow generated and committed `package-lock.json`. Reproducible `npm ci` CI validation is being checked separately; don't treat it as passed until its workflow succeeds.
 
 ## Scientific references
 

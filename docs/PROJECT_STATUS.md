@@ -6,8 +6,8 @@ Interactive periodic table â†’ select an element or enter a chemical substance â
 
 ## Verified from repository inspection
 - main contained a planning README at review time.
-- No package.json or AGENTS.md was found on main; the six docs referenced by README were missing.
-- This branch adds planning/engineering contracts only. No backend, frontend, production deployment, scientific ingestion, benchmark execution or tests are implemented/verified by these documents.
+- No package.json or AGENTS.md was found on main at the initial inspection; the six docs referenced by README were missing. They were added on the documentation branch.
+- This implementation branch adds a Next.js UI, typed calculator API, chemical formula parser, 28-element rounded reference dataset, benchmark/negative unit tests and a GitHub Actions CI workflow. These are committed source files; execution and deployment have NOT been verified.
 - Reference architecture was compared against foxcyloxcy/Commercial-affiliation (AGENTS.md, docs/PROJECT_STATUS.md, docs/DOMAIN.md, local engineering-quality skill) and foxcyloxcy/document-data-extractor (README). No employer repositories are used as architectural sources.
 
 ## Decisions
@@ -18,10 +18,10 @@ Interactive periodic table â†’ select an element or enter a chemical substance â
 - No AI in numerical authority path.
 
 ## Not built
-Frontend, engine, parser, persistence, APIs, CI, tests, datasets, licensing verification, deployment and monitoring.
+118-element periodic table, robust source-backed all-elements dataset, scientific licensing review, advanced parser (hydrates/ions/isotopes), equation balancing, persistence, rate limiting, monitoring and deployment. CI configuration and tests exist but have not yet been run.
 
 ## Next task
-Implement a tested vertical slice: typed element dataset with versioned provenance, robust chemical formula parser, molar-mass calculator and explanatory derivation. Establish typecheck, test and build CI. Verify atomic-weight policy and benchmark known compounds before adding reaction balancing.
+Run npm install, typecheck, lint, Vitest and production build; commit generated package-lock and move CI to npm ci. Fix any failures. Independently verify atomic-weight source/license and expand to 118-element metadata before any production-science claims. Then extend grammar for hydrates/isotopes/ions and equation balancing.
 
 ## Completion evidence to add later
 Date, PR and SHA; actual command logs; test/reference fixture count; validated sources/license; environment and deployment URLs; production rollout status; blockers.

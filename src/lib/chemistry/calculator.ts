@@ -1,4 +1,5 @@
 import { atomicWeights, DATASET_SOURCE, DATASET_VERSION } from './elements';
+import { resolveCompoundName, type CompoundNameResult } from './compound-names';
 
 export class FormulaError extends Error {
   constructor(message: string) { super(message); this.name = 'FormulaError'; }
@@ -11,6 +12,7 @@ export interface MolarMassResult {
   composition: Composition;
   value: number;
   unit: 'g/mol';
+  compoundName: CompoundNameResult;
   steps: MassTerm[];
   equation: string;
   datasetVersion: string;
@@ -78,7 +80,7 @@ export function calculateMolarMass(formula: string): MolarMassResult {
   const value = steps.reduce((sum, term) => sum + term.contribution, 0);
   if (!Number.isFinite(value)) throw new FormulaError('Result exceeds numeric limits.');
   return {
-    status:'computed', formula:normalized, composition, value, unit:'g/mol', steps,
+    status:'computed', formula:normalized, composition, value, unit:'g/mol', compoundName:resolveCompoundName(normalized), steps,
     equation:steps.map(t=>`${t.count} × ${t.atomicWeight}`).join(' + '),
     datasetVersion:DATASET_VERSION, dataSource:DATASET_SOURCE,
     assumptions:['CIAAW 2024 abridged standard atomic weights for normal materials; a single rounded value is used and uncertainty is not propagated', 'Formula represents a neutral, non-isotopically-labeled composition', 'Result is a molar mass, not a predicted chemical reaction'],

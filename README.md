@@ -1,6 +1,6 @@
 # Periodic Table Calculator
 
-A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The application includes a **clickable, searchable 118-element periodic table** with element details and a deterministic client-side molar-mass calculation engine. It does **not** predict chemical reactions.
+A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The application includes a **clickable, searchable 118-element periodic table** with element details and a deterministic client-side molar-mass calculation engine. When a formula has a verified compound record, the results show a preferred name, common names, and its PubChem source. Unverified or ambiguous names are explicitly marked. It does **not** predict chemical reactions.
 
 > **Status:** Source code and a reproducible lockfile are committed. The initial calculator passed CI; the new 118-element feature passed GitHub Actions validation (npm ci, typecheck, lint, tests and build) in [run 41143805722](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41143805722). Chemical atomic weights now come from an official CIAAW 2024 full/abridged snapshot (84 eligible values and 34 unavailable); other element metadata remain secondary and are not fully audited. See [Project Status](docs/PROJECT_STATUS.md).
 
@@ -52,6 +52,12 @@ Production mode (after a successful build):
 npm run start
 ```
 
+### Verified compound names
+
+Enter `FeSO4`: the calculator dynamically computes its molar mass and displays **iron(II) sulfate** (commonly **ferrous sulfate**), linked to [PubChem CID 24393](https://pubchem.ncbi.nlm.nih.gov/compound/24393). `Fe2(SO4)3` shows **iron(III) sulfate**, also called **ferric sulfate**. Other curated records include `H2O`, `CaCO3`, and `Na2CO3`.
+
+The formula parser and mass calculator remain independent of naming. Since a chemical formula may correspond to multiple substances, the app does **not** invent a compound name for every valid formula. For example, `C2H6O` is deliberately shown as **name not verified**; its molar mass still calculates. See [compound naming design and sources](docs/COMPOUND_NAMING.md).
+
 ### Example calculation
 
 Click an element to inspect it, search by element name, symbol or number, filter by family, or add its symbol to the formula input. A selected symbol does not imply any chemical reaction. Enter `Ca(OH)2`, select **Calculate**, and the result is computed from the element counts and rounded atomic weights:
@@ -73,6 +79,7 @@ The browser calls `calculateMolarMass(formula)` from `src/lib/chemistry/calculat
 - The periodic table shows all **118 elements**. It uses a versioned secondary metadata snapshot; details are educational and not independently field-audited.
 - The calculator now uses **84 eligible CIAAW 2024 abridged standard atomic weights** and rejects 34 elements without a standard atomic weight.
 - Supports nested parentheses; rejects hydration dots, ionic charges, isotope notation and reaction equations.
+- Chemical names are verified only for reviewed formulas; naming all possible compounds is not possible from elemental counts alone.
 - Reaction prediction/balancing, stoichiometry, thermodynamics, user accounts and deployment are not implemented.
 - A formula does not prove a reaction will occur.
 - No server-side rate limiter or scientific accuracy certification yet; do not publish as a production chemistry authority.

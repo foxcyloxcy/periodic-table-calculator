@@ -40,3 +40,12 @@ Documentation branch PR #1; implementation PR #2. CI evidence: https://github.co
 
 ## Computation reference documentation CI verification
 GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41144205343 completed successfully: npm ci, typecheck, ESLint, Vitest and Next.js production build. This only validates software integration for the documentation branch, not scientific data completeness or licensing approval.
+
+## 2026-10-31 — CIAAW Gate A implementation and GitHub Pages preparation
+- Official CIAAW full and abridged 2024 HTML tables imported into `src/lib/chemistry/ciaaw-2024.json`: 118 records, 84 numeric abridged standard weights with uncertainty and 34 unavailable. Full-table scalar vs interval retained. Official source links and retrieval date embedded.
+- `elements.ts` now uses the CIAAW reference dataset; molar-mass calculation availability expands from 28 to 84 elements. Formula parser continues to reject unsupported/unknown elements.
+- Periodic table weight display uses official CIAAW abridged values rather than the secondary display snapshot.
+- GitHub Pages static export enabled and GitHub Actions deployment workflow created. Browser now executes the same pure calculator directly; the POST API route was removed because Pages cannot host it.
+- Further manual per-element independent audit and redistribution/attribution review remain open. Other display properties are not scientifically certified; uncertainty is displayed but not propagated into final molar mass.
+- Not deployed yet: Settings → Pages must use GitHub Actions and dependent PRs must merge to main.
+- Read `docs/GITHUB_PAGES_DEPLOYMENT.md`; CI validation is pending.

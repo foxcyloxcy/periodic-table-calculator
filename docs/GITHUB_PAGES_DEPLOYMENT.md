@@ -43,3 +43,8 @@ The official CIAAW full and abridged standard atomic weight HTML tables were ind
 
 ## API migration
 The previous `POST /api/v1/calculate` route was removed to make the site exportable. If an API is needed later, keep the core pure and deploy a thin validated HTTP adapter separately, with a different service URL and explicit versioning.
+
+## Verified blocker from deployment logs (2026-10-31)
+- https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41146278069: 33 tests and `npm run build` passed, `actions/configure-pages` failed `Get Pages site ... Not Found`.
+- https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41146380803: automatic site creation failed `Resource not accessible by integration`. The repo owner's Settings → Pages activation is therefore required.
+- After enabling Pages with GitHub Actions as the source, rerun `Deploy GitHub Pages` manually. Do not mark the site published until the deployment job and public URL succeed.

@@ -99,7 +99,7 @@ The calculation kernel is intentionally independent of the UI and database so it
 
 ## Validation evidence
 
-GitHub Actions run [41142432367](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142432367) passed install, typecheck, lint, tests and build. The workflow generated and committed `package-lock.json`. Reproducible `npm ci` CI validation is being checked separately; don't treat it as passed until its workflow succeeds.
+GitHub Actions run [41142432367](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142432367) passed install, typecheck, lint, tests and build. The workflow generated and committed `package-lock.json`. A subsequent [reproducible-install run 41142580534](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142580534) passed `npm ci`, typecheck, lint, unit tests and production build with read-only workflow permissions.
 
 ## Scientific references
 

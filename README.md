@@ -19,11 +19,11 @@ git clone https://github.com/foxcyloxcy/periodic-table-calculator.git
 cd periodic-table-calculator
 ```
 
-The implementation currently lives on the **feature branch**, not `main`. Until the pull requests are merged:
+The latest documented implementation lives on feature branches, not `main`. To review the scientific computation plan and current application together, until dependent pull requests are merged:
 
 ```bash
 git fetch origin
-git switch feat/m1-formula-mass-calculator
+git switch docs/computation-reference-registry-20261031
 ```
 
 Install and start the development server:
@@ -76,7 +76,8 @@ Response contains status, formula, composition, numeric mass, units, per-element
 
 ## Current limits
 
-- The periodic table shows all **118 elements**. It uses a versioned secondary metadata snapshot; details are educational and not independently field-audited.\n- Only a separate **abridged 28-element** atomic-weight dataset is currently enabled for molar-mass calculations.
+- The periodic table shows all **118 elements**. It uses a versioned secondary metadata snapshot; details are educational and not independently field-audited.
+- Only a separate **abridged 28-element** atomic-weight dataset is currently enabled for molar-mass calculations.
 - Supports nested parentheses; rejects hydration dots, ionic charges, isotope notation and reaction equations.
 - Reaction prediction/balancing, stoichiometry, thermodynamics, user accounts and deployment are not implemented.
 - A formula does not prove a reaction will occur.
@@ -85,7 +86,10 @@ Response contains status, formula, composition, numeric mass, units, per-element
 ## Project architecture
 
 ```text
-src/app/                             Next.js UI\nsrc/components/PeriodicTable.tsx      Clickable responsive 118-element explorer\nsrc/lib/chemistry/periodic-table.json Pinned 118-element educational metadata\nsrc/lib/chemistry/periodic-table.ts   Search and lookup functions
+src/app/                             Next.js UI
+src/components/PeriodicTable.tsx      Clickable responsive 118-element explorer
+src/lib/chemistry/periodic-table.json Pinned 118-element educational metadata
+src/lib/chemistry/periodic-table.ts   Search and lookup functions
 src/app/api/v1/calculate/route.ts     Validated HTTP boundary
 src/lib/chemistry/calculator.ts       Pure chemistry computation
 src/lib/chemistry/elements.ts         Version-tagged abridged atomic weights
@@ -101,7 +105,17 @@ The calculation kernel is intentionally independent of the UI and database so it
 
 GitHub Actions run [41142432367](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142432367) passed install, typecheck, lint, tests and build. The workflow generated and committed `package-lock.json`. A subsequent [reproducible-install run 41142580534](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142580534) passed `npm ci`, typecheck, lint, unit tests and production build with read-only workflow permissions.
 
-## Periodic-table dataset provenance\n\nThe 118-element display snapshot was normalized from [Bowserinator/Periodic-Table-JSON](https://github.com/Bowserinator/Periodic-Table-JSON) on 2026-10-31. The upstream file includes an unrecognized proposed 119th element; our ingestion deliberately **filters to officially recognized atomic numbers 1–118**. Group and position coordinates were retained from source. Radioactive/synthetic isotope mass numbers are **not** shown as standard atomic weights. Values present in the display snapshot remain labeled secondary/approximate. See [periodic table provenance](docs/PERIODIC_TABLE_DATA.md).\n\n## Scientific references
+## Periodic-table dataset provenance
+
+The 118-element display snapshot was normalized from [Bowserinator/Periodic-Table-JSON](https://github.com/Bowserinator/Periodic-Table-JSON) on 2026-10-31. The upstream file includes an unrecognized proposed 119th element; our ingestion deliberately **filters to officially recognized atomic numbers 1–118**. Group and position coordinates were retained from source. Radioactive/synthetic isotope mass numbers are **not** shown as standard atomic weights. Values present in the display snapshot remain labeled secondary/approximate. See [periodic table provenance](docs/PERIODIC_TABLE_DATA.md).
+
+## Scientific computation references and implementation plan
+
+The project's canonical source registry is [docs/SCIENTIFIC_REFERENCES.md](docs/SCIENTIFIC_REFERENCES.md) with a machine-readable companion [docs/reference-sources.json](docs/reference-sources.json). All planned formulas, prerequisites, failure conditions, and independent scientific tests are specified in [docs/COMPUTATION_METHODS.md](docs/COMPUTATION_METHODS.md). The implementation order and acceptance gates are in [docs/IMPLEMENTATION_SEQUENCE.md](docs/IMPLEMENTATION_SEQUENCE.md).
+
+These documents **specify** references and algorithms, but do not mean those calculation engines or scientific datasets have been imported or certified yet. Reference records marked `approvedForRuntime: false` cannot be silently used as production computation inputs.
+
+## Scientific references
 
 - [CIAAW abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm)
 - [CIAAW full standard atomic weights](https://www.ciaaw.org/atomic-weights.htm)

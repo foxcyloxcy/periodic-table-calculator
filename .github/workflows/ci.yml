@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           persist-credentials: true
       - uses: actions/setup-node@v4
         with:
@@ -25,13 +26,13 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
-      - name: Commit initial lockfile to implementation branch after passing checks
-        if: github.event_name == 'push' && github.ref == 'refs/heads/feat/m1-formula-mass-calculator'
+      - name: Commit initial dependency lockfile after checks pass
+        if: github.event_name == 'pull_request' && github.head_ref == 'feat/m1-formula-mass-calculator' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
           if [ -f package-lock.json ] && ! git ls-files --error-unmatch package-lock.json >/dev/null 2>&1; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add package-lock.json
             git commit -m 'build: lock validated npm dependency graph'
-            git push
+            git push origin HEAD:feat/m1-formula-mass-calculator
           fi

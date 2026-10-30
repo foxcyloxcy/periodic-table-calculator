@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolveCompoundName } from './compound-names';
+import { normalizeKnownCompoundFormula, resolveCompoundName } from './compound-names';
 import { calculateMolarMass } from './calculator';
 
 describe('evidence-backed names for an explicit formula', () => {
@@ -29,6 +29,13 @@ describe('evidence-backed names for an explicit formula', () => {
       expect(resolveCompoundName(formula)).toMatchObject({status:'unresolved'});
     }
   );
+  it('accepts lowercase only for unambiguous verified entries', () => {
+    expect(normalizeKnownCompoundFormula('feso4')).toBe('FeSO4');
+    expect(calculateMolarMass('feso4').formula).toBe('FeSO4');
+    expect(calculateMolarMass('feso4').compoundName).toMatchObject({status:'verified', preferredName:'Iron(II) sulfate'});
+    expect(normalizeKnownCompoundFormula('co')).toBe('co');
+    expect(() => calculateMolarMass('co')).toThrow();
+  });
   it('naming never controls the numeric computation', () => {
     const named = calculateMolarMass('FeSO4');
     const unverified = calculateMolarMass('CuSO4');

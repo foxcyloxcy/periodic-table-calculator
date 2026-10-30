@@ -31,3 +31,9 @@ Independently audit the remaining atomic-weight source values/licensing/uncertai
 
 ## Completion evidence to add later
 Documentation branch PR #1; implementation PR #2. CI evidence: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142432367 (successful verification of install/typecheck/lint/tests/build; GitHub bot committed package-lock.json). `docs/REFERENCE_DATA_AUDIT.md` records a partial CIAAW benchmark audit; full provenance/licensing/uncertainty still pending. Not deployed.
+
+## 2026-10-31 — Reference planning milestone
+- Committed `docs/SCIENTIFIC_REFERENCES.md`, `docs/reference-sources.json`, `docs/COMPUTATION_METHODS.md`, `docs/IMPLEMENTATION_SEQUENCE.md`; linked them from developer entry points.
+- Verified official online reference pages for CIAAW 2024 standard and abridged weights, IUPAC Gold Book molar mass and stoichiometry, BIPM SI mole definition, OpenStax balancing/stoichiometry, PubChem API documentation and NIST WebBook reference scope.
+- This PR is **documentation and implementation planning only**. It does not expand the runtime 28-element mass dataset, implement ionic/hydrate/balance/stoichiometry, complete third-party licensing checks, or independently certify all 118 element properties.
+- Next action: implement Gate A from IMPLEMENTATION_SEQUENCE.md with a human-reviewed CIAAW weight import, explicit intervals/uncertainties, independently checked complete-source metadata, and scientific audit tests; only then Gate B computation expansion.

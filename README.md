@@ -1,8 +1,8 @@
 # Periodic Table Calculator
 
-A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The first implemented vertical slice **parses supported neutral chemical formulas and calculates molar mass dynamically**, with elemental contributions and the formula used. It does **not** predict reactions or currently provide a clickable 118-element table.
+A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The application includes a **clickable, searchable 118-element periodic table** with element details and a separate deterministic molar-mass calculation engine. It does **not** predict chemical reactions.
 
-> **Status:** MVP source code and lockfile are committed; GitHub Actions has passed installation, type checking, lint, unit tests and build. The complete scientific dataset and production validation remain pending. See [Project Status](docs/PROJECT_STATUS.md).
+> **Status:** Source code and a reproducible lockfile are committed. The initial calculator passed CI; the new 118-element feature has its own pending validation. Element metadata is sourced from a pinned secondary snapshot and has not completed an independent field-by-field scientific audit. See [Project Status](docs/PROJECT_STATUS.md).
 
 ## Local development
 
@@ -54,7 +54,7 @@ npm run start
 
 ### Example calculation
 
-Enter `Ca(OH)2`, select **Calculate**, and the result is computed from the element counts and rounded atomic weights:
+Click an element to inspect it, search by element name, symbol or number, filter by family, or add its symbol to the formula input. A selected symbol does not imply any chemical reaction. Enter `Ca(OH)2`, select **Calculate**, and the result is computed from the element counts and rounded atomic weights:
 
 ```text
 Ca(OH)2 = Ca × 1 + O × 2 + H × 2
@@ -76,16 +76,16 @@ Response contains status, formula, composition, numeric mass, units, per-element
 
 ## Current limits
 
-- Only a small **abridged 28-element** atomic-weight dataset is bundled.
+- The periodic table shows all **118 elements**. It uses a versioned secondary metadata snapshot; details are educational and not independently field-audited.\n- Only a separate **abridged 28-element** atomic-weight dataset is currently enabled for molar-mass calculations.
 - Supports nested parentheses; rejects hydration dots, ionic charges, isotope notation and reaction equations.
-- Clickable full periodic table, reaction prediction/balancing, stoichiometry, thermodynamics, user accounts and deployment are not implemented.
+- Reaction prediction/balancing, stoichiometry, thermodynamics, user accounts and deployment are not implemented.
 - A formula does not prove a reaction will occur.
 - No server-side rate limiter or scientific accuracy certification yet; do not publish as a production chemistry authority.
 
 ## Project architecture
 
 ```text
-src/app/                             Next.js UI
+src/app/                             Next.js UI\nsrc/components/PeriodicTable.tsx      Clickable responsive 118-element explorer\nsrc/lib/chemistry/periodic-table.json Pinned 118-element educational metadata\nsrc/lib/chemistry/periodic-table.ts   Search and lookup functions
 src/app/api/v1/calculate/route.ts     Validated HTTP boundary
 src/lib/chemistry/calculator.ts       Pure chemistry computation
 src/lib/chemistry/elements.ts         Version-tagged abridged atomic weights
@@ -101,7 +101,7 @@ The calculation kernel is intentionally independent of the UI and database so it
 
 GitHub Actions run [41142432367](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142432367) passed install, typecheck, lint, tests and build. The workflow generated and committed `package-lock.json`. A subsequent [reproducible-install run 41142580534](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41142580534) passed `npm ci`, typecheck, lint, unit tests and production build with read-only workflow permissions.
 
-## Scientific references
+## Periodic-table dataset provenance\n\nThe 118-element display snapshot was normalized from [Bowserinator/Periodic-Table-JSON](https://github.com/Bowserinator/Periodic-Table-JSON) on 2026-10-31. The upstream file includes an unrecognized proposed 119th element; our ingestion deliberately **filters to officially recognized atomic numbers 1–118**. Group and position coordinates were retained from source. Radioactive/synthetic isotope mass numbers are **not** shown as standard atomic weights. Values present in the display snapshot remain labeled secondary/approximate. See [periodic table provenance](docs/PERIODIC_TABLE_DATA.md).\n\n## Scientific references
 
 - [CIAAW abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm)
 - [CIAAW full standard atomic weights](https://www.ciaaw.org/atomic-weights.htm)

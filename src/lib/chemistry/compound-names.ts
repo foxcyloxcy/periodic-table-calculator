@@ -61,6 +61,18 @@ const NAMES: Readonly<Record<string, CompoundNameRecord>> = Object.freeze({
   },
 });
 
+/**
+ * User-friendly correction only for exact verified catalog entries.
+ * Never broadly case-fold chemical formulas: "CO" and "Co" are different.
+ * Reject any case-insensitive key that would correspond to multiple records.
+ */
+export function normalizeKnownCompoundFormula(input: string): string {
+  const trimmed = input.trim();
+  if (Object.hasOwn(NAMES, trimmed)) return trimmed;
+  const matches = Object.keys(NAMES).filter(key => key.toLowerCase() === trimmed.toLowerCase());
+  return matches.length === 1 ? matches[0] : trimmed;
+}
+
 const UNKNOWN_NOTE = 'No verified compound name is available for this exact formula. A molecular formula can represent more than one substance or structural isomer. Calculation of molar mass does not establish chemical identity.';
 
 export function resolveCompoundName(formula: string): CompoundNameResult {

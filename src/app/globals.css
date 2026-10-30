@@ -15,3 +15,5 @@
 .selected-element strong{font-size:42px;line-height:1}.selected-element span{font-size:.78rem}.element-info{flex:1;min-width:0}.element-info h3{font-size:1.5rem;margin:0}.element-info h3 small{font-size:.9rem;color:#a6b3cc}.element-info p{margin:8px 0}
 .element-info dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.element-info dt{font-size:.76rem;color:#9caac3}.element-info dd{margin:2px 0 0;overflow-wrap:anywhere;font-weight:600}
 .periodic-section a{color:#7de4ef}@media(max-width:600px){.element-detail{flex-direction:column}.selected-element{height:110px}.element-info dl{grid-template-columns:1fr}}
+
+.compound-identification{margin:18px 0;padding:16px;border:1px solid #376777;background:#112737;border-radius:12px}.compound-identification h3{font-size:1.4rem;margin:2px 0 8px;color:#e9fbff}.compound-identification p{margin:8px 0}.compound-identification a{color:#75deee;text-decoration:underline}.compound-identification.unresolved{background:#20263a;border-color:#54617e}.compound-identification.unresolved .eyebrow{color:#bfcbdf}

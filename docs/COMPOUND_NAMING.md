@@ -19,7 +19,7 @@ When a user calculates `FeSO4`, show the **preferred name iron(II) sulfate** and
 | CaCO3 | Calcium carbonate | — | https://pubchem.ncbi.nlm.nih.gov/compound/10112 |
 | Na2CO3 | Sodium carbonate | Soda ash | https://pubchem.ncbi.nlm.nih.gov/compound/10340 |
 
-Only exact normalized input-formula spellings are recognized. Names are not deduced from elemental composition, and equivalents with different ordering require future structural identity normalization; `FeO4S` remains unresolved intentionally. PubChem is used for names, **not** for calculating our molar masses.
+Exact normalized spellings are recognized. For user convenience, unique verified catalog entries such as `feso4` are normalized to `FeSO4` before parsing. Other formulas remain strictly case-sensitive; `co` cannot safely be treated as `CO` or `Co`. Names are not deduced from elemental composition, and equivalents with different ordering require future structural identity normalization; `FeO4S` remains unresolved intentionally. PubChem is used for names, **not** for calculating our molar masses.
 
 ## Implementation interface
 `resolveCompoundName(formula)` returns `{status:'verified',preferredName,commonNames,source,sourceId,sourceUrl,note}` or `{status:'unresolved',note}`.

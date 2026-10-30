@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { atomicWeightBySymbol } from '@/lib/chemistry/elements';
 import { elementCategories, periodicElements, searchElements, type PeriodicElement, PERIODIC_TABLE_SOURCE, STANDARD_WEIGHT_REFERENCE } from '@/lib/chemistry/periodic-table';
 
 const categoryClass = (category: string) => {
@@ -46,9 +47,9 @@ export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symb
           <div><dt>Electron configuration</dt><dd>{selected.electronConfiguration ?? 'Not available'}</dd></div>
           <div><dt>Electronegativity (Pauling)</dt><dd>{selected.electronegativity ?? 'Not available'}</dd></div>
           <div><dt>Phase (source label)</dt><dd>{selected.phase ?? 'Unknown'}</dd></div>
-          <div><dt>Atomic weight</dt><dd>{selected.approximateAtomicWeight===null?'No standard atomic weight':`≈ ${selected.approximateAtomicWeight} (secondary reference)`}</dd></div>
+          <div><dt>Atomic weight</dt><dd>{atomicWeightBySymbol.get(selected.symbol)?.abridged ? `${atomicWeightBySymbol.get(selected.symbol)!.abridged!.value} ± ${atomicWeightBySymbol.get(selected.symbol)!.abridged!.uncertainty} (CIAAW 2024 abridged)` : 'No standard atomic weight (CIAAW 2024)'}</dd></div>
         </dl>
-        <p className="hint">Display values are educational, sourced from a secondary snapshot and not yet fully audited against CIAAW. Mass numbers of radioactive isotopes are intentionally not substituted for missing standard atomic weights.</p>
+        <p className="hint">Atomic weights are sourced from CIAAW 2024 and display the abridged central value and reported uncertainty. Other element properties remain secondary educational metadata pending field-by-field review. Isotope mass numbers are not substituted for missing standard atomic weights.</p>
         <button type="button" onClick={()=>onAppendSymbol(selected.symbol)}>Add {selected.symbol} to formula input</button>
       </div>
     </article>

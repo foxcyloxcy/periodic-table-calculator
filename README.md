@@ -1,8 +1,8 @@
 # Periodic Table Calculator
 
-A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The application includes a **clickable, searchable 118-element periodic table** with element details and a separate deterministic molar-mass calculation engine. It does **not** predict chemical reactions.
+A personal, explainable chemistry calculator built with Next.js 15 and TypeScript. The application includes a **clickable, searchable 118-element periodic table** with element details and a deterministic client-side molar-mass calculation engine. It does **not** predict chemical reactions.
 
-> **Status:** Source code and a reproducible lockfile are committed. The initial calculator passed CI; the new 118-element feature passed GitHub Actions validation (npm ci, typecheck, lint, tests and build) in [run 41143805722](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41143805722). Element metadata is sourced from a pinned secondary snapshot and has not completed an independent field-by-field scientific audit. See [Project Status](docs/PROJECT_STATUS.md).
+> **Status:** Source code and a reproducible lockfile are committed. The initial calculator passed CI; the new 118-element feature passed GitHub Actions validation (npm ci, typecheck, lint, tests and build) in [run 41143805722](https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41143805722). Chemical atomic weights now come from an official CIAAW 2024 full/abridged snapshot (84 eligible values and 34 unavailable); other element metadata remain secondary and are not fully audited. See [Project Status](docs/PROJECT_STATUS.md).
 
 ## Local development
 
@@ -23,7 +23,7 @@ The latest documented implementation lives on feature branches, not `main`. To r
 
 ```bash
 git fetch origin
-git switch docs/computation-reference-registry-20261031
+git switch feat/ciaaw-weights-github-pages
 ```
 
 Install and start the development server:
@@ -33,7 +33,7 @@ npm ci
 npm run dev
 ```
 
-Visit **http://localhost:3000** in your browser. No API key or database is required for the current calculation route.
+Visit **http://localhost:3000/periodic-table-calculator/** in your browser. No API key or database is required for the current calculation route.
 
 The committed `package-lock.json` pins dependency versions. Use `npm ci` for reproducible installation; use `npm install` only when intentionally updating dependencies, and commit the updated lockfile.
 
@@ -64,20 +64,14 @@ Ca(OH)2 = Ca × 1 + O × 2 + H × 2
 
 Results are illustrative educational calculations using an abridged reference dataset. Precision, uncertainty, isotopic variation and dataset licensing require further verification before scientific/production claims.
 
-### API
+### Static-browser calculations
 
-```bash
-curl -s -X POST http://localhost:3000/api/v1/calculate \
-  -H 'Content-Type: application/json' \
-  -d '{"operation":"molar_mass","formula":"H2O"}'
-```
-
-Response contains status, formula, composition, numeric mass, units, per-element calculation steps, dataset version, source description, and assumptions. Invalid input returns HTTP 400; unsupported formula or elements return HTTP 422.
+The browser calls `calculateMolarMass(formula)` from `src/lib/chemistry/calculator.ts`, producing computed values and explanation steps without a server. There is no POST API on GitHub Pages.
 
 ## Current limits
 
 - The periodic table shows all **118 elements**. It uses a versioned secondary metadata snapshot; details are educational and not independently field-audited.
-- Only a separate **abridged 28-element** atomic-weight dataset is currently enabled for molar-mass calculations.
+- The calculator now uses **84 eligible CIAAW 2024 abridged standard atomic weights** and rejects 34 elements without a standard atomic weight.
 - Supports nested parentheses; rejects hydration dots, ionic charges, isotope notation and reaction equations.
 - Reaction prediction/balancing, stoichiometry, thermodynamics, user accounts and deployment are not implemented.
 - A formula does not prove a reaction will occur.
@@ -90,10 +84,11 @@ src/app/                             Next.js UI
 src/components/PeriodicTable.tsx      Clickable responsive 118-element explorer
 src/lib/chemistry/periodic-table.json Pinned 118-element educational metadata
 src/lib/chemistry/periodic-table.ts   Search and lookup functions
-src/app/api/v1/calculate/route.ts     Validated HTTP boundary
 src/lib/chemistry/calculator.ts       Pure chemistry computation
-src/lib/chemistry/elements.ts         Version-tagged abridged atomic weights
+src/lib/chemistry/elements.ts         CIAAW-sourced reference weight interface
 src/lib/chemistry/calculator.test.ts  Parser and calculation tests
+src/lib/chemistry/ciaaw-2024.json       Official CIAAW 2024 reference snapshot
+src/lib/chemistry/ciaaw-2024.test.ts    118-element and 84-weight integrity tests
 .github/workflows/ci.yml             Validation workflow
 docs/                                 Contracts, roadmap, implementation status
 AGENTS.md                             Developer / coding-agent instructions
@@ -114,6 +109,10 @@ The 118-element display snapshot was normalized from [Bowserinator/Periodic-Tabl
 The project's canonical source registry is [docs/SCIENTIFIC_REFERENCES.md](docs/SCIENTIFIC_REFERENCES.md) with a machine-readable companion [docs/reference-sources.json](docs/reference-sources.json). All planned formulas, prerequisites, failure conditions, and independent scientific tests are specified in [docs/COMPUTATION_METHODS.md](docs/COMPUTATION_METHODS.md). The implementation order and acceptance gates are in [docs/IMPLEMENTATION_SEQUENCE.md](docs/IMPLEMENTATION_SEQUENCE.md).
 
 These documents **specify** references and algorithms, but do not mean those calculation engines or scientific datasets have been imported or certified yet. Reference records marked `approvedForRuntime: false` cannot be silently used as production computation inputs.
+
+## GitHub Pages deployment
+
+The project is configured for static export and a GitHub Pages Actions workflow. See [deployment guide](docs/GITHUB_PAGES_DEPLOYMENT.md) for activation, URL, limitations and deployment verification. Pages publishing requires merging into `main` and selecting GitHub Actions under Settings → Pages. Feature branches do not automatically publish.
 
 ## Scientific references
 

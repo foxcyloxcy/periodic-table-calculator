@@ -19,11 +19,11 @@ git clone https://github.com/foxcyloxcy/periodic-table-calculator.git
 cd periodic-table-calculator
 ```
 
-The latest documented implementation lives on feature branches, not `main`. To review the scientific computation plan and current application together, until dependent pull requests are merged:
+All implementation milestones are now merged into `main`. The default branch is the recommended local starting point:
 
 ```bash
-git fetch origin
-git switch feat/ciaaw-weights-github-pages
+git switch main
+git pull --ff-only
 ```
 
 Install and start the development server:

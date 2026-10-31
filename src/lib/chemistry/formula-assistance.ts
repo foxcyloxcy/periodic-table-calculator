@@ -1,4 +1,5 @@
 import { atomicWeightBySymbol, atomicWeights } from './elements';
+import { parseFormula } from './calculator';
 import { reviewedCompoundFormulas, resolveCompoundName, normalizeKnownCompoundFormula } from './compound-names';
 
 export interface FormulaSuggestion {
@@ -102,7 +103,7 @@ export function suggestFormulaAlternatives(raw:string,limit=5):FormulaSuggestion
         const candidate=before+symbol+after;
         // Preserve only valid formula grammar; unsupported charge/isotope
         // syntax and other errors should not become plausible suggestions.
-        if(!/^(?:[A-Z][a-z]?\d*|\(|\))+$/u.test(candidate))continue;
+        try { parseFormula(candidate); } catch { continue; }
         add(candidate,'possible_element_symbol',
           'Possible element-symbol spelling. This may be a different composition; verify the formula before calculating.',true);
         if(out.length>=limit)break;

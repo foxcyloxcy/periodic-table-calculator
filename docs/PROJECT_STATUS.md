@@ -85,3 +85,10 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Results distinguish source-backed compounds from alloy/mixture/broad-material categories. Steel via Q11427 → Q907347 → Q37756 is an alloy, with **no universal chemical formula or fixed elemental proportions**. Milk is treated as a variable food/material class.
 - Added bounded requests, explicit unclassified/partial-source results, independently calculated CIAAW molar mass and elemental percentages for eligible pure compounds, and source links.
 - Tests and docs/UNIFIED_MATERIAL_SEARCH.md added. CI and GitHub Pages publish must be verified before claiming the release is live.
+
+### Unified search release verification (2026-10-31)
+- PR #10 merged to `main` at commit `c904c1e33510fee160211ed9af769208aeb1afc7`.
+- CI passed with reproducible install, TypeScript, ESLint, Vitest and production static build: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41196746215
+- GitHub Pages deployment succeeded: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41196813490
+- Published HTML inspected at https://foxcyloxcy.github.io/periodic-table-calculator/ and unified search UI was present. Live mobile/browser-to-PubChem/Wikidata form interactions were not separately automated; client CORS and provider availability remain operational risks.
+- Not yet implemented: exhaustive materials coverage, grade-specific percentage composition for mixtures/alloys, full material properties and validated experimental conditions.

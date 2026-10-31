@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { atomicWeightBySymbol } from '@/lib/chemistry/elements';
+import {auditElement,auditOverview,type PropertyEvidence} from '@/lib/chemistry/element-audit';
 import { elementCategories, periodicElements, searchElements, type PeriodicElement, PERIODIC_TABLE_SOURCE, STANDARD_WEIGHT_REFERENCE } from '@/lib/chemistry/periodic-table';
 
 const categoryClass = (category: string) => {
@@ -21,6 +22,8 @@ export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symb
   const [query,setQuery]=useState('');
   const [category,setCategory]=useState('all');
   const [selected,setSelected]=useState<PeriodicElement>(periodicElements[0]);
+  const evidence=useMemo(()=>auditElement(selected),[selected]);
+  const overview=useMemo(()=>auditOverview(),[]);
   const matches=useMemo(()=>new Set(searchElements(query,category).map(e=>e.atomicNumber)),[query,category]);
   return <section className="periodic-section" aria-label="Interactive periodic table">
     <div className="section-heading"><div><p className="eyebrow">ALL 118 RECOGNIZED ELEMENTS</p><h2>Explore the periodic table</h2><p>Select any element to inspect its properties. Selecting does not predict chemical reactions.</p></div></div>
@@ -50,6 +53,19 @@ export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symb
           <div><dt>Atomic weight</dt><dd>{atomicWeightBySymbol.get(selected.symbol)?.abridged ? `${atomicWeightBySymbol.get(selected.symbol)!.abridged!.value} ± ${atomicWeightBySymbol.get(selected.symbol)!.abridged!.uncertainty} (CIAAW 2024 abridged)` : 'No standard atomic weight (CIAAW 2024)'}</dd></div>
         </dl>
         <p className="hint">Atomic weights are sourced from CIAAW 2024 and display the abridged central value and reported uncertainty. Other element properties remain secondary educational metadata pending field-by-field review. Isotope mass numbers are not substituted for missing standard atomic weights.</p>
+        <section className="element-evidence" aria-label="Scientific property evidence">
+          <h4>Scientific evidence and data quality</h4>
+          <p className="hint">Last official-source review: {overview.checkedDate}. Scientific identity is recognized; individual display properties retain separate verification status.</p>
+          <dl>
+            {[evidence.identity,...evidence.properties].map((property:PropertyEvidence)=><div key={property.field} className="audit-property">
+              <dt>{property.label}</dt>
+              <dd><strong>{property.level.replaceAll('_',' ')}</strong> · {property.reviewStatus.replaceAll('_',' ')}</dd>
+              <dd>{property.caveat}</dd>
+              <dd className="hint">Reference: <a href={property.sourceUrl} target="_blank" rel="noreferrer">{property.sourceName}</a> · {property.sourceEdition}</dd>
+            </div>)}
+          </dl>
+          <p className="hint">Audit status: {overview.recognizedElements} recognized elements; {overview.authoritativeWeightEntries} CIAAW standard-weight entries; {overview.missingStandardWeights} unavailable; {overview.phasePredictionsFlagged} superheavy phase labels flagged for caution. All secondary properties remain subject to independent primary-source review.</p>
+        </section>
         <button type="button" onClick={()=>onAppendSymbol(selected.symbol)}>Add {selected.symbol} to formula input</button>
       </div>
     </article>

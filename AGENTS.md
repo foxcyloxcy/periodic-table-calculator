@@ -39,3 +39,6 @@ Read docs/MATERIAL_PROFILES.md. Properties MUST identify whether computed or mea
 
 ## Expanded grade-property verification
 Read docs/EXPANDED_GRADE_PROPERTIES.md. Source values must retain grade/product scope, units, reference temperature/phase, and reported/typical/minimum semantics. Do not interpolate between 100 and 500 °C or claim a generic melting range. Run deterministic Playwright browser tests and report live-provider smoke separately.
+
+## Element scientific-audit change control
+Read docs/ELEMENT_PROPERTY_AUDIT.md. Do not present secondary metadata, especially superheavy phase labels, as verified measurements. All 118 identity records remain unchanged in this milestone. Never automatically update atomic numbers, atomic weights or calculation sources from monitoring output. A changed upstream page fingerprint triggers human scientific review, not an automatic scientific conclusion.

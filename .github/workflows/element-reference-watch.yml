@@ -1,0 +1,24 @@
+name: Official element reference review monitor
+on:
+  schedule:
+    - cron: '17 4 1 * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reference-watch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch bounded official source fingerprints
+        run: python scripts/element-reference-watch.py
+      - name: Upload evidence for scientific review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-element-source-review
+          path: artifacts/official-element-sources.json
+          if-no-files-found: warn

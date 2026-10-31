@@ -27,3 +27,6 @@ Read `docs/COMPOUND_NAMING.md` before changing compound identity or formula-to-n
 
 ## Material identification searches
 Before modifying external material-name lookup, read docs/MATERIAL_LOOKUP.md. PubChem returns candidate identity, name and formula only; calculations must remain pure and use CIAAW values. Never assume a food/mixture has one molecular formula, silently select a search candidate, fabricate a remote record or rely on PubChem's stored molecular weight for the authoritative result. Respect query limits, failures and provenance.
+
+## Formula identity and capitalization safety
+Read docs/FORMULA_ISOMERS_AND_CASE.md. Molecular formulas do not uniquely determine compounds. Show source-backed isomer candidates from PubChem, never select one by fiat. Do not uppercase all chemical symbols or treat Co and CO as equivalent. Case-insensitive user input must be resolved only into valid formula spellings, with user choice when ambiguous.

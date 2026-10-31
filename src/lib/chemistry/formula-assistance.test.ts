@@ -23,7 +23,8 @@ describe('formula input assistance', () => {
   });
   expect(suggestFormulaAlternatives('feso4')[0]).toMatchObject({formula:'FeSO4',reason:'case_normalization'});
   expect(suggestFormulaAlternatives('FeSO5').some(s=>s.formula==='FeSO4' && s.changesComposition)).toBe(true);
-  expect(suggestFormulaAlternatives('Xx')).toEqual([]);
+  expect(suggestFormulaAlternatives('Xx').every(item=>item.reason==='possible_element_symbol')).toBe(true);
+  expect(suggestFormulaAlternatives('Xx').length).toBeGreaterThan(0);
  });
  it('never changes actual calculation based on hints',()=>{
   const result=calculateMolarMass('FeSOOOO');

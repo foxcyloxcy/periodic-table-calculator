@@ -1,5 +1,6 @@
 import { lookupMaterial, type PubChemCandidate } from './material-lookup';
 import { findElement, type PeriodicElement } from './periodic-table';
+import {gradeProfile,wikidataDensity,type ProfileProperty,type GradeProfile} from './material-profiles';
 
 export type MaterialKind = 'element' | 'compound' | 'alloy' | 'mixture' | 'material_class' | 'unclassified';
 export interface MaterialRecord {
@@ -11,12 +12,14 @@ export interface MaterialRecord {
   sourceUrl: string;
   classificationBasis: string;
   compositionNote: string;
+  properties: ProfileProperty[];
 }
 export interface UnifiedSearchResult {
   query: string;
   element: PeriodicElement | null;
   compounds: PubChemCandidate[];
   materials: MaterialRecord[];
+  grade: GradeProfile | null;
   notices: string[];
 }
 
@@ -99,6 +102,7 @@ function classify(entry:WikidataSearchEntry,entities:Map<string,WikidataEntity>)
     kind:best?.kind??'unclassified',sourceId:entry.id,
     sourceUrl:'https://www.wikidata.org/wiki/'+entry.id,
     classificationBasis:basis,
+    properties:wikidataDensity(starting?.claims as unknown as Record<string,unknown>|undefined,'https://www.wikidata.org/wiki/'+entry.id),
     compositionNote:best?.kind==='alloy' || best?.kind==='mixture'
       ? 'Composition varies by grade, formulation or sample. No universal molecular formula or mass fractions are asserted.'
       : 'A single fixed composition is not established for this material. Additional verified sample or grade data would be required.',
@@ -123,6 +127,7 @@ export async function unifiedSearch(query:string,request:Requester=fetch,signal?
   const term=query.trim();
   if(term.length<2 || term.length>80)throw new Error('Enter a search term of 2–80 characters.');
   const element=findElement(term)??null;
+  const grade=gradeProfile(term);
   const [chemical,materials]=await Promise.allSettled([
     lookupMaterial(term,request,signal),
     lookupMaterialClasses(term,request,signal),
@@ -137,6 +142,6 @@ export async function unifiedSearch(query:string,request:Requester=fetch,signal?
   let materialRecords:MaterialRecord[]=[];
   if(materials.status==='fulfilled')materialRecords=materials.value;
   else notices.push('Wikidata classification unavailable.');
-  if(!element && !compounds.length && !materialRecords.length)notices.push('No verified identity found in the available sources. This does not mean the material does not exist.');
-  return {query:term,element,compounds,materials:materialRecords,notices};
+  if(!element && !grade && !compounds.length && !materialRecords.length)notices.push('No verified identity found in the available sources. This does not mean the material does not exist.');
+  return {query:term,element,compounds,materials:materialRecords,grade,notices};
 }

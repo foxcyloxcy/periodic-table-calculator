@@ -146,3 +146,11 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Recorded RSC **Hg electronegativity 1.9 versus current 2.0** without overwriting. Prior Au discrepancy remains documented.
 - Added source links and scientific comparison statuses to the periodic-table interface and browser/unit regression coverage. Existing 118-element identities, CIAAW atomic weights, calculator and material functionality unchanged.
 - Scientific scope and remaining primary data work documented in docs/NIST_NEUTRAL_AND_PHASE_REVIEW.md. CI and production release evidence to be recorded following verification.
+
+### NIST/RSC systematic review release evidence — 2026-10-31
+- PR #15 merged to `main` at commit `d8bd6ed73b5662722119b176093cf821668a9b4e`.
+- Standard validation succeeded: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41213055241 (TypeScript, lint, unit tests, production static build).
+- Chromium end-to-end browser workflow succeeded: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41213055232 (new gold/mercury/oganesson source-review UI checks, pre-existing material tests, live PubChem/Wikidata smoke).
+- GitHub Pages deployment passed: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41213249631.
+- Public HTML at https://foxcyloxcy.github.io/periodic-table-calculator/ contains new systematic review and all 118 element tiles.
+- **Scientific coverage**: NIST compiled neutral configurations Z1–92 (92/92 agreeing with existing stored notation), not a direct ASD 5.12 per-spectrum export; RSC reference-state comparisons for 39 elements at 20 °C (pressure not documented). The remaining 26 configurations and 79 phase records are NOT independently validated by these sources. RSC Hg Pauling 1.9 vs existing 2.0 disagreement flagged; previously documented Au disagreement retained. No original source datasets or numeric calculations altered.

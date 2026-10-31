@@ -54,7 +54,7 @@ export function appendElementToFormula(value:string,symbol:string):string {
   if(run && /^(?:[A-Z][a-z]?)+$/.test(text)) {
     return text.slice(0,run.index)+symbol+(run[0].length/symbol.length+1);
   }
-  const terminal = /([A-Z][a-z]?)(\\d*)$/.exec(text);
+  const terminal = /([A-Z][a-z]?)([0-9]*)$/.exec(text);
   if(terminal?.[1]===symbol) {
     const n=terminal[2]?Number(terminal[2]):1;
     if(Number.isSafeInteger(n)&&n>=1&&n<100000) return text.slice(0,-terminal[0].length)+symbol+(n+1);

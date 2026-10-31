@@ -66,3 +66,8 @@
 .element-evidence .audit-property dt{font-weight:700;margin-bottom:3px}
 .element-evidence .audit-property dd{margin:3px 0;line-height:1.5;overflow-wrap:anywhere}
 .element-evidence .audit-property a{color:#8bdaef;text-decoration:underline}
+
+.element-crosscheck{margin:16px 0;padding:14px;border:1px solid rgba(127,157,183,.4);border-radius:10px}
+.element-crosscheck h5{margin:0 0 8px}.review-list{display:grid;gap:10px;margin:10px 0}
+.review-row{padding:12px;border-radius:8px;border:1px solid rgba(112,155,181,.3)}
+.review-row p{margin:5px 0}.review-row a{color:#86ddef;text-decoration:underline}

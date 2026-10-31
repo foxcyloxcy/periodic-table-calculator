@@ -60,6 +60,10 @@ Search **304L stainless steel**, **316 stainless steel** or **316L stainless ste
 
 Compound search results can load PubChem structural descriptors (e.g. XLogP, topological polar surface area and hydrogen-bond counts), clearly labeled **computed, not measured**. Wikidata material density statements display supported quantities and any reference temperature, pressure and phase qualifiers (missing conditions are explicitly identified). A curated **304 stainless steel (UNS S30400, long-products)** profile shows supplier-published chromium/nickel percentage ranges and maximum impurity levels, with the specific source row linked. Generic steel and mixtures never inherit grade-specific mass percentages. See [Material Profiles](docs/MATERIAL_PROFILES.md).
 
+### Independent secondary-property cross-check
+
+The element evidence panel now shows six published-source cross-checks for **H, C, O, Fe, Au and Og**, explicitly including phase at the source's 20 °C reference condition and electron configurations. Gold's Pauling electronegativity differs across sources (2.54 in our snapshot and PubChem versus 2.4 in RSC), so it is flagged rather than overwritten. All other elements remain pending independent field review. See [independent-property review](docs/INDEPENDENT_ELEMENT_PROPERTY_REVIEW.md).
+
 ### Scientific evidence for every element
 
 Each of our 118 periodic-table entries now displays field-specific source, confidence and scientific review status for element identity, CIAAW atomic weight, phase, electron configuration, electronegativity and category. Superheavy phase labels are flagged as theoretical/uncertain rather than presented as confirmed experimental measurements. The molar-mass engine and original data remain unchanged. A read-only monthly IUPAC/CIAAW source fingerprint monitor helps identify upstream changes requiring scientific review. See [Element Property Audit](docs/ELEMENT_PROPERTY_AUDIT.md).

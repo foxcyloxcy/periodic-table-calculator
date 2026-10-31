@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { atomicWeightBySymbol } from '@/lib/chemistry/elements';
 import {auditElement,auditOverview,type PropertyEvidence} from '@/lib/chemistry/element-audit';
+import {independentReview,reviewProgress} from '@/lib/chemistry/independent-property-review';
 import { elementCategories, periodicElements, searchElements, type PeriodicElement, PERIODIC_TABLE_SOURCE, STANDARD_WEIGHT_REFERENCE } from '@/lib/chemistry/periodic-table';
 
 const categoryClass = (category: string) => {
@@ -24,6 +25,8 @@ export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symb
   const [selected,setSelected]=useState<PeriodicElement>(periodicElements[0]);
   const evidence=useMemo(()=>auditElement(selected),[selected]);
   const overview=useMemo(()=>auditOverview(),[]);
+  const review=useMemo(()=>independentReview(selected.symbol),[selected]);
+  const progress=useMemo(()=>reviewProgress(),[]);
   const matches=useMemo(()=>new Set(searchElements(query,category).map(e=>e.atomicNumber)),[query,category]);
   return <section className="periodic-section" aria-label="Interactive periodic table">
     <div className="section-heading"><div><p className="eyebrow">ALL 118 RECOGNIZED ELEMENTS</p><h2>Explore the periodic table</h2><p>Select any element to inspect its properties. Selecting does not predict chemical reactions.</p></div></div>
@@ -64,6 +67,18 @@ export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symb
               <dd className="hint">Reference: <a href={property.sourceUrl} target="_blank" rel="noreferrer">{property.sourceName}</a> · {property.sourceEdition}</dd>
             </div>)}
           </dl>
+          <section className="element-crosscheck" aria-label="Independent property comparison">
+            <h5>Independent published-source comparison</h5>
+            <p className="hint">{progress.reviewedElements} of {progress.totalElements} elements sampled for secondary-property comparison; {progress.conflicts} documented discrepancies. This is NOT complete primary experimental certification.</p>
+            {review ? <div className="review-list">{review.comparisons.map(item=><div className="review-row" key={item.field}>
+              <strong>{item.field.replaceAll(/([A-Z])/g,' $1')}: {item.status.replaceAll('_',' ')}</strong>
+              <p>Our display: {item.displayValue??'Not available'} · Published reference: {item.referenceValue??'Not available'}</p>
+              <p className="hint">{item.referenceCondition}. {item.note}</p>
+              <p className="hint"><a href={item.sourceUrl} target="_blank" rel="noreferrer">{item.source}</a> · checked {item.sourceRetrievedOn}</p>
+            </div>)}</div>
+            : <p className="hint">Not yet independently cross-checked. Existing secondary-source display values must not be treated as field-verified.</p>}
+            <p className="hint">For independently evaluated atomic ground-state/spectroscopic reference data, see <a href="https://www.nist.gov/pml/atomic-spectra-database" target="_blank" rel="noreferrer">NIST Atomic Spectra Database (ASD 5.12)</a>. Source-to-source comparisons do not replace primary measurement verification.</p>
+          </section>
           <p className="hint">Audit status: {overview.recognizedElements} recognized elements; {overview.authoritativeWeightEntries} CIAAW standard-weight entries; {overview.missingStandardWeights} unavailable; {overview.phasePredictionsFlagged} superheavy phase labels flagged for caution. All secondary properties remain subject to independent primary-source review.</p>
         </section>
         <button type="button" onClick={()=>onAppendSymbol(selected.symbol)}>Add {selected.symbol} to formula input</button>

@@ -42,3 +42,6 @@ Read docs/EXPANDED_GRADE_PROPERTIES.md. Source values must retain grade/product 
 
 ## Element scientific-audit change control
 Read docs/ELEMENT_PROPERTY_AUDIT.md. Do not present secondary metadata, especially superheavy phase labels, as verified measurements. All 118 identity records remain unchanged in this milestone. Never automatically update atomic numbers, atomic weights or calculation sources from monitoring output. A changed upstream page fingerprint triggers human scientific review, not an automatic scientific conclusion.
+
+## Independent element property comparisons
+Read docs/INDEPENDENT_ELEMENT_PROPERTY_REVIEW.md. Only six RSC-based source comparisons currently exist, not full 118-element scientific certification. Do not suppress Au Pauling-scale source disagreement, do not treat an RSC agreement as primary laboratory verification, and never assert Og phase experimentally measured. Keep comparisons additive until cited scientific validation approves a source change.

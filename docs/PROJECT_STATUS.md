@@ -63,3 +63,8 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Added naming tests for Fe(II)/Fe(III), unresolved isomers/unsupported hydrate syntax, and independent numerical calculation behavior.
 - Naming all possible chemicals requires an independently reviewed compound identity dataset with charge/hydrate/isomer distinctions; no guessed names or oxidation states.
 - Feature branch pending CI and merge/deploy verification. See `docs/COMPOUND_NAMING.md`.
+
+## 2026-10-31 — Formula entry assistance
+- Added repeated-click subscript editor, reviewed formula suggestions and explicit user confirmation for repeated raw symbols (FeSOOOO → FeSO4).
+- Similar known formulas are presented as alternatives, not automatic corrections. Valid but unnamed formulas still compute; unknown symbols cannot produce mass results.
+- Added Vitest tests and docs/FORMULA_ASSISTANCE.md. CI/deploy must be verified before calling this release live.

@@ -139,3 +139,10 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - GitHub Pages deployment successful: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41211991840
 - Published site https://foxcyloxcy.github.io/periodic-table-calculator/ renders the independent comparison section and all 118 recognized elements. Full per-property browser clickthrough for this new section was not separately tested in the existing E2E suite.
 - Scientific limitation: six RSC published-source cross-checks, NOT full independent primary experiment validation. NIST ASD per-neutral-atom ground-state verification remains future work. Gold electronegativity disagreement is explicitly recorded.
+
+## 2026-10-31 — NIST neutral-configuration and condition-aware phase review
+- Extracted and independently aligned NIST's published **92-row neutral ground-state configuration table, Z 1–92**, with the existing elements; all 92 matching after whitespace/annotation normalization. The compiled reference is **not a direct NIST ASD 5.12 row-level download**.
+- Recorded 39 RSC element phase/Pauling checks, preserving explicit **20 °C** state reference condition and recording **pressure unspecified**. All 39 phase snapshot labels agree; Og remains theoretical, not experimentally solid.
+- Recorded RSC **Hg electronegativity 1.9 versus current 2.0** without overwriting. Prior Au discrepancy remains documented.
+- Added source links and scientific comparison statuses to the periodic-table interface and browser/unit regression coverage. Existing 118-element identities, CIAAW atomic weights, calculator and material functionality unchanged.
+- Scientific scope and remaining primary data work documented in docs/NIST_NEUTRAL_AND_PHASE_REVIEW.md. CI and production release evidence to be recorded following verification.

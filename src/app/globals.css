@@ -25,3 +25,18 @@
 .formula-suggestions .suggestion-note{display:block;color:#b9c6dd;font-size:.8rem;line-height:1.4;margin-top:4px}
 .formula-suggestions .secondary-action{background:#303c55;color:#ecf4ff;border:1px solid #788ca9}
 @media(max-width:540px){.formula-suggestions li{align-items:stretch;flex-direction:column}.formula-suggestions li button{width:100%}}
+
+.material-lookup{margin:28px 0;padding:22px;background:#14223a;border:1px solid #38526c;border-radius:16px}
+.material-lookup h2{margin:5px 0;font-size:1.6rem}
+.material-lookup form{margin:16px 0;background:transparent;border:0;padding:0}
+.material-lookup .material-results{margin-top:18px}
+.material-notice{padding:11px 13px;border-left:3px solid #75deee;background:#1b3243;border-radius:4px}
+.material-candidates{display:grid;gap:12px;margin:12px 0}
+.material-candidate{padding:18px;border:1px solid #4e6882;border-radius:12px;background:#1c2a43}
+.material-candidate h4{margin:0;font-size:1.3rem}
+.material-candidate p{margin:8px 0}
+.material-candidate a{color:#83ddea;text-decoration:underline}
+.composition-table{width:100%;border-collapse:collapse;margin:14px 0}
+.composition-table caption{caption-side:top;text-align:left;color:#b6c5dd;padding-bottom:8px}
+.composition-table th,.composition-table td{padding:7px 10px;text-align:left;border-bottom:1px solid #415170}
+.composition-table th{color:#cee2ee}

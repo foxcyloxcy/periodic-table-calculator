@@ -68,3 +68,9 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Added repeated-click subscript editor, reviewed formula suggestions and explicit user confirmation for repeated raw symbols (FeSOOOO → FeSO4).
 - Similar known formulas are presented as alternatives, not automatic corrections. Valid but unnamed formulas still compute; unknown symbols cannot produce mass results.
 - Added Vitest tests and docs/FORMULA_ASSISTANCE.md. CI/deploy must be verified before calling this release live.
+
+## 2026-10-31 — PubChem material-name search milestone
+- Added live browser-based PubChem PUG REST search with a bounded, user-submitted name→CID→formula flow. All candidate records show PubChem sources, not hardcoded numeric results.
+- For supported PubChem formulas, the existing CIAAW engine computes atom counts, molar masses and elemental mass percentages. Unsupported chemical grammar/unknown elements remain explicit, no fictitious mass.
+- Search can show up to 8 candidate identities; generic sugar names may be ambiguous and foods/mixtures are not represented as one formula by default.
+- UI integration, automated mocking tests, responsive views and docs/MATERIAL_LOOKUP.md added. CI and production deployment must pass separately before marking this feature live.

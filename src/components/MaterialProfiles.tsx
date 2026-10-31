@@ -54,7 +54,7 @@ export function GradeProfileCard({grade}:{grade:GradeProfile}){
    <label>Property category <select aria-label="Property category" value={category} onChange={e=>setCategory(e.target.value)}><option value="all">All properties</option><option value="density">Density</option><option value="mechanical">Mechanical</option><option value="thermal">Thermal</option><option value="melting">Melting</option></select></label>
    <label className="metric-toggle"><input type="checkbox" checked={metric} onChange={e=>setMetric(e.target.checked)}/> Density in kg/m³ (unchecked: g/cm³)</label>
    {visible.length?visible.map((p:BoundedProperty)=><div className="profile-property" key={p.id}>
-    <strong>{p.label}: {p.limit===\'minimum\'?\'≥ \':p.limit===\'maximum\'?\'≤ \':\'\'}{p.value} {p.unit}</strong>
+    <strong>{p.label}: {p.limit==='minimum'?'≥ ':p.limit==='maximum'?'≤ ':''}{p.value} {p.unit}</strong>
     <p className="hint">{p.referenceCondition}. {p.limit} published grade reference; not a measured specimen.</p>
     <p className="hint"><a href={p.sourceUrl} target="_blank" rel="noreferrer">Source: {p.sourceName}</a></p>
    </div>):<p className="hint">No reviewed properties of this category are available for this exact grade. No values are estimated.</p>}

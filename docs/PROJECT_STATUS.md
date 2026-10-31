@@ -74,3 +74,8 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - For supported PubChem formulas, the existing CIAAW engine computes atom counts, molar masses and elemental mass percentages. Unsupported chemical grammar/unknown elements remain explicit, no fictitious mass.
 - Search can show up to 8 candidate identities; generic sugar names may be ambiguous and foods/mixtures are not represented as one formula by default.
 - UI integration, automated mocking tests, responsive views and docs/MATERIAL_LOOKUP.md added. CI and production deployment must pass separately before marking this feature live.
+
+## 2026-10-31 — Formula name ambiguity and input case handling
+- Added browser-side PubChem fastformula search for source-linked compound candidates (max eight). C2H6O is not uniquely identifiable: ethanol (CID 702) and dimethyl ether (CID 8254) are distinct structures with the same elemental composition and molar mass.
+- Added case-aware formula correction so typed lowercased formulas can be normalized to recognized symbols, while ambiguous Co vs CO prompts explicit choice. Unverified formulas remain unverified, with no guessed names.
+- Added Vitest tests, UI and docs/FORMULA_ISOMERS_AND_CASE.md. CI and deploy verification pending at initial commit.

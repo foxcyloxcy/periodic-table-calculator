@@ -1,0 +1,319 @@
+{
+  "sourceName": "Royal Society of Chemistry Periodic Table individual element records",
+  "sourceScope": "Phase at 20°C; pressure not specified. Pauling electronegativity where the source supplies a number. Source-specific reference comparisons, not measurement certification.",
+  "retrievedOn": "2026-10-31",
+  "records": [
+    {
+      "atomicNumber": 1,
+      "symbol": "H",
+      "phase": "Gas",
+      "paulingElectronegativity": 2.2,
+      "sourceUrl": "https://periodic-table.rsc.org/element/1/hydrogen",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 2,
+      "symbol": "He",
+      "phase": "Gas",
+      "paulingElectronegativity": null,
+      "sourceUrl": "https://periodic-table.rsc.org/element/2/helium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 3,
+      "symbol": "Li",
+      "phase": "Solid",
+      "paulingElectronegativity": 0.98,
+      "sourceUrl": "https://periodic-table.rsc.org/element/3/lithium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 4,
+      "symbol": "Be",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.57,
+      "sourceUrl": "https://periodic-table.rsc.org/element/4/beryllium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 5,
+      "symbol": "B",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.04,
+      "sourceUrl": "https://periodic-table.rsc.org/element/5/boron",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 6,
+      "symbol": "C",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.55,
+      "sourceUrl": "https://periodic-table.rsc.org/element/6/carbon",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 7,
+      "symbol": "N",
+      "phase": "Gas",
+      "paulingElectronegativity": 3.04,
+      "sourceUrl": "https://periodic-table.rsc.org/element/7/nitrogen",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 8,
+      "symbol": "O",
+      "phase": "Gas",
+      "paulingElectronegativity": 3.44,
+      "sourceUrl": "https://periodic-table.rsc.org/element/8/oxygen",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 9,
+      "symbol": "F",
+      "phase": "Gas",
+      "paulingElectronegativity": 3.98,
+      "sourceUrl": "https://periodic-table.rsc.org/element/9/fluorine",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 10,
+      "symbol": "Ne",
+      "phase": "Gas",
+      "paulingElectronegativity": null,
+      "sourceUrl": "https://periodic-table.rsc.org/element/10/neon",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 11,
+      "symbol": "Na",
+      "phase": "Solid",
+      "paulingElectronegativity": 0.93,
+      "sourceUrl": "https://periodic-table.rsc.org/element/11/sodium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 12,
+      "symbol": "Mg",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.31,
+      "sourceUrl": "https://periodic-table.rsc.org/element/12/magnesium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 13,
+      "symbol": "Al",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.61,
+      "sourceUrl": "https://periodic-table.rsc.org/element/13/aluminium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 14,
+      "symbol": "Si",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.9,
+      "sourceUrl": "https://periodic-table.rsc.org/element/14/silicon",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 15,
+      "symbol": "P",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.19,
+      "sourceUrl": "https://periodic-table.rsc.org/element/15/phosphorus",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 16,
+      "symbol": "S",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.58,
+      "sourceUrl": "https://periodic-table.rsc.org/element/16/sulfur",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 17,
+      "symbol": "Cl",
+      "phase": "Gas",
+      "paulingElectronegativity": 3.16,
+      "sourceUrl": "https://periodic-table.rsc.org/element/17/chlorine",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 18,
+      "symbol": "Ar",
+      "phase": "Gas",
+      "paulingElectronegativity": null,
+      "sourceUrl": "https://periodic-table.rsc.org/element/18/argon",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 19,
+      "symbol": "K",
+      "phase": "Solid",
+      "paulingElectronegativity": 0.82,
+      "sourceUrl": "https://periodic-table.rsc.org/element/19/potassium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 20,
+      "symbol": "Ca",
+      "phase": "Solid",
+      "paulingElectronegativity": 1,
+      "sourceUrl": "https://periodic-table.rsc.org/element/20/calcium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 21,
+      "symbol": "Sc",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.36,
+      "sourceUrl": "https://periodic-table.rsc.org/element/21/scandium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 22,
+      "symbol": "Ti",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.54,
+      "sourceUrl": "https://periodic-table.rsc.org/element/22/titanium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 23,
+      "symbol": "V",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.63,
+      "sourceUrl": "https://periodic-table.rsc.org/element/23/vanadium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 24,
+      "symbol": "Cr",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.66,
+      "sourceUrl": "https://periodic-table.rsc.org/element/24/chromium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 25,
+      "symbol": "Mn",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.55,
+      "sourceUrl": "https://periodic-table.rsc.org/element/25/manganese",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 26,
+      "symbol": "Fe",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.83,
+      "sourceUrl": "https://periodic-table.rsc.org/element/26/iron",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 27,
+      "symbol": "Co",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.88,
+      "sourceUrl": "https://periodic-table.rsc.org/element/27/cobalt",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 28,
+      "symbol": "Ni",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.91,
+      "sourceUrl": "https://periodic-table.rsc.org/element/28/nickel",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 29,
+      "symbol": "Cu",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.9,
+      "sourceUrl": "https://periodic-table.rsc.org/element/29/copper",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 30,
+      "symbol": "Zn",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.65,
+      "sourceUrl": "https://periodic-table.rsc.org/element/30/zinc",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 31,
+      "symbol": "Ga",
+      "phase": "Solid",
+      "paulingElectronegativity": 1.81,
+      "sourceUrl": "https://periodic-table.rsc.org/element/31/gallium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 32,
+      "symbol": "Ge",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.01,
+      "sourceUrl": "https://periodic-table.rsc.org/element/32/germanium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 33,
+      "symbol": "As",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.18,
+      "sourceUrl": "https://periodic-table.rsc.org/element/33/arsenic",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 34,
+      "symbol": "Se",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.55,
+      "sourceUrl": "https://periodic-table.rsc.org/element/34/selenium",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 35,
+      "symbol": "Br",
+      "phase": "Liquid",
+      "paulingElectronegativity": 2.96,
+      "sourceUrl": "https://periodic-table.rsc.org/element/35/bromine",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 36,
+      "symbol": "Kr",
+      "phase": "Gas",
+      "paulingElectronegativity": null,
+      "sourceUrl": "https://periodic-table.rsc.org/element/36/krypton",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 53,
+      "symbol": "I",
+      "phase": "Solid",
+      "paulingElectronegativity": 2.66,
+      "sourceUrl": "https://periodic-table.rsc.org/element/53/iodine",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 80,
+      "symbol": "Hg",
+      "phase": "Liquid",
+      "paulingElectronegativity": 1.9,
+      "sourceUrl": "https://periodic-table.rsc.org/element/80/mercury",
+      "reviewedOn": "2026-10-31"
+    },
+    {
+      "atomicNumber": 118,
+      "symbol": "Og",
+      "phase": "Solid",
+      "paulingElectronegativity": null,
+      "sourceUrl": "https://periodic-table.rsc.org/element/118/oganesson",
+      "reviewedOn": "2026-10-31"
+    }
+  ]
+}

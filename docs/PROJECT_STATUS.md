@@ -98,3 +98,10 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Dynamic PubChem CID descriptor lookup uses PUG REST and labels values as **computed molecular descriptors**, not physical measurements. Wikidata P2054 density extraction preserves unit plus source-provided temperature, pressure and phase qualifiers; missing conditions are explicitly marked.
 - Source-specific 304 stainless steel UNS S30400 long-products composition limits reference thyssenkrupp Materials NA; no universal formula or calculated iron remainder is claimed for generic steel.
 - Added regression tests, UI and docs/MATERIAL_PROFILES.md. Awaiting CI and Pages deployment verification before release claim.
+
+### Material profiles release evidence — 2026-10-31
+- PR #11 merged to `main`: `dc25890675391e913c44efa7dc94b7cd7f3795c0`.
+- Feature CI passed: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41207326128 (typecheck, ESLint, Vitest and static build).
+- GitHub Pages deployment completed successfully: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41207402241.
+- Public HTML at https://foxcyloxcy.github.io/periodic-table-calculator/ showed the updated 304 stainless steel search hint. Browser click-through and live source fetch behavior were not independently exercised with automated E2E; live providers can be temporarily unavailable.
+- Current data limits remain: only curated 304 UNS S30400 long-product composition ranges, selected PubChem computed descriptors, and supported Wikidata density statements where present. No exhaustive material-property registry or batch-specific calculated composition.

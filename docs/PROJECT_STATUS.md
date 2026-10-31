@@ -125,3 +125,9 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Introduced an **additive**, source-linked 118-element scientific audit registry: identity, CIAAW standard atomic weight, phase, electron configuration, electronegativity and classification each have independent confidence/review flags.
 - Existing 118 element entries, labels, calculator and materials search remain intact. Superheavy phase properties are flagged predicted/uncertain rather than silently rewritten; 34 elements with unavailable standard atomic weights remain explicitly unavailable.
 - Added periodic read-only IUPAC and CIAAW official-source fingerprint monitoring (no silent data updates), tests and docs/ELEMENT_PROPERTY_AUDIT.md. Independent field-by-field source review and metadata reuse licensing remain open.
+
+## 2026-10-31 — Independent secondary element-property cross-check, representative batch
+- Compared H, C, O, Fe, Au and Og across RSC's published element-level phase, configuration and Pauling electronegativity references. Kept source conditions and separate per-field statuses; no broad certification of all 118 elements.
+- Recorded gold's electronegativity discrepancy (project/PubChem 2.54; RSC 2.4), not an automatic overwrite. Oganesson phase/config remain theoretical, not laboratory-confirmed.
+- Source and scientific limitations documented in docs/INDEPENDENT_ELEMENT_PROPERTY_REVIEW.md, including need for future NIST ASD neutral ground-state review.
+- Calculator, CIAAW weights and original periodic metadata unchanged. CI and deployment evidence to be recorded separately.

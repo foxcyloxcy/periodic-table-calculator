@@ -21,7 +21,8 @@ describe('source-scoped material grade profiles',()=>{
   expect(b.find(p=>p.id==='tensile')?.value).toBe(485);
   expect(a.find(p=>p.id==='conductivity100')).toMatchObject({value:16.3,unit:'W/(m·K)'});
   expect(a.find(p=>p.id==='conductivity500')?.referenceCondition).toContain('500 °C');
-  expect(a.find(p=>p.category==='melting')).toBeUndefined();
+  expect(a.find(p=>p.category==='melting')).toMatchObject({value:1375,upper:1400,unit:'°C',limit:'range'});
+  expect(gradeReferenceProperties(additionalGradeProfile('304L stainless steel')!).find(p=>p.category==='melting')).toMatchObject({value:1400,upper:1450});
  });
  it('converts only supported dimensions without mutating provenance',()=>{
   const item=gradeReferenceProperties(additionalGradeProfile('304L stainless steel')!).find(p=>p.id==='density')!;

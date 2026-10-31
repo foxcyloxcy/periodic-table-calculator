@@ -120,3 +120,8 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Public site https://foxcyloxcy.github.io/periodic-table-calculator/ responds. Dynamic property sections require user search/interaction and do not appear in server-rendered static initial HTML.
 - Reviewed sources: thyssenkrupp Materials North America long-product composition for 304/304L/316/316L; AZoM grade-specific typical physical and mechanical tables, and thyssenkrupp Materials UK grade melting intervals (304/304L 1400–1450 °C; 316/316L 1375–1400 °C).
 - No universal formula for steel, no batch-specific chemistry, no undocumented measurement temperature or arbitrary interpolation. Grade property source licensing/attribution and expanded material coverage remain future reviews.
+
+## 2026-10-31 — source provenance and element-property audit
+- Introduced an **additive**, source-linked 118-element scientific audit registry: identity, CIAAW standard atomic weight, phase, electron configuration, electronegativity and classification each have independent confidence/review flags.
+- Existing 118 element entries, labels, calculator and materials search remain intact. Superheavy phase properties are flagged predicted/uncertain rather than silently rewritten; 34 elements with unavailable standard atomic weights remain explicitly unavailable.
+- Added periodic read-only IUPAC and CIAAW official-source fingerprint monitoring (no silent data updates), tests and docs/ELEMENT_PROPERTY_AUDIT.md. Independent field-by-field source review and metadata reuse licensing remain open.

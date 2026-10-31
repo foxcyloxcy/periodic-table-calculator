@@ -1,0 +1,41 @@
+name: Browser end-to-end verification
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: Install pinned Playwright and browser
+        run: |
+          npm install --no-save --package-lock=false @playwright/test@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Prepare static route preview
+        run: |
+          mkdir -p preview/periodic-table-calculator
+          cp -a out/. preview/periodic-table-calculator/
+          python3 -m http.server 4173 --directory preview &
+      - name: Run deterministic browser tests
+        run: npx playwright test --project=chromium --grep-invert @live
+      - name: Run live provider browser smoke
+        continue-on-error: true
+        run: npx playwright test --project=chromium --grep @live
+      - name: Preserve browser reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore

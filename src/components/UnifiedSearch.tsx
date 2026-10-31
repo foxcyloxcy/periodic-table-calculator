@@ -3,6 +3,7 @@ import {useRef,useState} from 'react';
 import {unifiedSearch,type UnifiedSearchResult,type MaterialKind} from '@/lib/chemistry/unified-search';
 import type {PubChemCandidate} from '@/lib/chemistry/material-lookup';
 import {atomicWeightBySymbol} from '@/lib/chemistry/elements';
+import {PropertiesList,CompoundProperties,GradeProfileCard} from '@/components/MaterialProfiles';
 const kindLabel:Record<MaterialKind,string>={
  element:'Element',compound:'Pure compound candidate',alloy:'Alloy',mixture:'Mixture',
  material_class:'Material / broad class',unclassified:'Classification not verified',
@@ -24,7 +25,7 @@ export default function UnifiedSearch({onSelect}:{onSelect:(c:PubChemCandidate)=
  return <section className="unified-search" aria-label="Unified chemistry and materials search">
   <p className="eyebrow">CHEMICALS AND MATERIALS</p>
   <h2>Search an element, compound or material</h2>
-  <p>Try water, sodium chloride, sugar, gold, steel or milk. Chemical compounds are sourced from PubChem; material categories from Wikidata. We calculate numeric composition only for validated formulas.</p>
+  <p>Try water, caffeine, 304 stainless steel, gold, steel or milk. Chemical compounds are sourced from PubChem; material categories from Wikidata. We calculate numeric composition only for validated formulas.</p>
   <form onSubmit={submit}>
    <label htmlFor="unified-query">Name or material</label>
    <div className="field"><input id="unified-query" value={term} maxLength={80}
@@ -52,16 +53,20 @@ export default function UnifiedSearch({onSelect}:{onSelect:(c:PubChemCandidate)=
         <table className="composition-table"><caption>Calculated elemental composition</caption><thead><tr><th>Element</th><th>Atoms</th><th>Mass %</th></tr></thead>
         <tbody>{Object.entries(c.counts).map(([symbol,count])=><tr key={symbol}><td>{symbol}</td><td>{count}</td><td>{c.massPercent![symbol].toFixed(2)}%</td></tr>)}</tbody></table>
         <button type="button" onClick={()=>onSelect(c)}>Use this compound</button>
+        <CompoundProperties cid={c.cid}/>
        </>:<p className="hint">Composition calculation not supported: {c.limitation}</p>}
+       {!c.supported&&<CompoundProperties cid={c.cid}/>}
        <p className="hint"><a href={c.sourceUrl} target="_blank" rel="noreferrer">PubChem CID {c.cid}</a></p>
       </article>)}</div>
     </section>}
+    {outcome.grade&&<GradeProfileCard grade={outcome.grade}/>}
     {outcome.materials.length>0&&<section aria-label="Materials and classifications">
       <h3>Material and classification records</h3>
       <div className="unified-grid">{outcome.materials.map(material=><article key={material.id} className="unified-record">
         <p className="eyebrow">{kindLabel[material.kind]}</p><h4>{material.name}</h4>
         <p>{material.description}</p>
         <p className="hint">{material.compositionNote}</p>
+        <PropertiesList properties={material.properties}/>
         <p className="hint"><strong>Classification evidence:</strong> {material.classificationBasis}</p>
         <p className="hint"><a href={material.sourceUrl} target="_blank" rel="noreferrer">Wikidata {material.sourceId}</a> (structured data, CC0)</p>
       </article>)}</div>

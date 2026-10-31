@@ -47,16 +47,16 @@ export function compactRepeatedSymbols(input: string): string | null {
 export function appendElementToFormula(value:string,symbol:string):string {
   if(!atomicWeightBySymbol.has(symbol)) return value;
   const text=value.trim();
-  const terminal = /([A-Z][a-z]?)(\d*)$/.exec(text);
-  if(terminal?.[1]===symbol) {
-    const n=terminal[2]?Number(terminal[2]):1;
-    if(Number.isSafeInteger(n)&&n>=1&&n<100000) return text.slice(0,-terminal[0].length)+symbol+(n+1);
-  }
-  // Recover a terminal run of identical clicked symbols from the old UI.
-  const pattern=new RegExp('(?:'+symbol+')'+'{2,}$');
+  // Recover an old sequence of repeated clicks before handling a single token.
+  const pattern=new RegExp('(?:'+symbol+'){2,}$');
   const run=pattern.exec(text);
   if(run && /^(?:[A-Z][a-z]?)+$/.test(text)) {
     return text.slice(0,run.index)+symbol+(run[0].length/symbol.length+1);
+  }
+  const terminal = /([A-Z][a-z]?)(\\d*)$/.exec(text);
+  if(terminal?.[1]===symbol) {
+    const n=terminal[2]?Number(terminal[2]):1;
+    if(Number.isSafeInteger(n)&&n>=1&&n<100000) return text.slice(0,-terminal[0].length)+symbol+(n+1);
   }
   return text+symbol;
 }

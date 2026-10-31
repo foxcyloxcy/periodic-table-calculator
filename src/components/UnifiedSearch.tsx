@@ -43,7 +43,7 @@ export default function UnifiedSearch({onSelect}:{onSelect:(c:PubChemCandidate)=
     </article>}
     {outcome.compounds.length>0&&<section aria-label="Compound candidates">
       <h3>Possible chemical compounds ({outcome.compounds.length})</h3>
-      <p className="hint">PubChem name matches, not proof of a sample's identity or purity. Elemental percentages below are calculated using CIAAW weights.</p>
+      <p className="hint">PubChem name matches, not proof of a sample&apos;s identity or purity. Elemental percentages below are calculated using CIAAW weights.</p>
       <div className="unified-grid">{outcome.compounds.map(c=><article key={c.cid} className="unified-record">
        <p className="eyebrow">{kindLabel.compound}</p><h4>{c.name}</h4>
        <p><strong>Molecular formula:</strong> {c.formula}</p>

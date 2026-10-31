@@ -54,7 +54,7 @@ npm run start
 
 ### Expanded grade and condition-aware properties
 
-Search **304L stainless steel**, **316 stainless steel** or **316L stainless steel** for exact supplier-sourced elemental mass-percent ranges. The grade cards also show sourced density, minimum strengths, elastic modulus and temperature-qualified thermal conductivity, with narrow audited unit conversion. Unverified melting ranges are explicitly unavailable, not invented. A Chromium browser suite exercises real UI behavior and separately attempts live PubChem/Wikidata access. See [expanded grade-property methodology](docs/EXPANDED_GRADE_PROPERTIES.md).
+Search **304L stainless steel**, **316 stainless steel** or **316L stainless steel** for exact supplier-sourced elemental mass-percent ranges. The grade cards also show sourced density, minimum strengths, elastic modulus and temperature-qualified thermal conductivity, with narrow audited unit conversion. Manufacturer-published grade-specific melting ranges are shown as intervals, never single invented melting points. A Chromium browser suite exercises real UI behavior and separately attempts live PubChem/Wikidata access. See [expanded grade-property methodology](docs/EXPANDED_GRADE_PROPERTIES.md).
 
 ### Detailed source-backed material profiles
 

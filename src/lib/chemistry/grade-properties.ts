@@ -2,6 +2,7 @@ import type {GradeProfile,CompositionBound,ProfileProperty} from './material-pro
 const TK='https://www.thyssenkrupp-materials-na.com/materials/stainless-steel/chemical-composition-1.html';
 const AZ304='https://www.azom.com/article.aspx?ArticleID=965';
 const AZ316='https://www.azom.com/article.aspx?ArticleID=863';
+const MELT='https://www.thyssenkrupp-materials.co.uk/stainless-steel-melting-points.html';
 const b=(symbol:string,min:number|null,max:number|null):CompositionBound=>({symbol,min,max,unit:'mass %',qualifier:min!==null&&max!==null?'range':min===null?'maximum':'minimum'});
 const make=(name:string,uns:string,c:number,cr1:number,cr2:number,ni1:number,ni2:number,mo:boolean):GradeProfile=>({
  id:'tkmna-'+uns.toLowerCase()+'-long-products',label:name,grade:name.split(' ')[0]+' / UNS '+uns,category:'alloy_grade',
@@ -45,7 +46,8 @@ export function gradeReferenceProperties(grade:GradeProfile):readonly BoundedPro
   record('elongation','Minimum elongation',40,'%','mechanical','minimum','50 mm gauge length, per published mechanical property table',src),
   record('conductivity100','Thermal conductivity at 100 °C',is304?16.2:16.3,'W/(m·K)','thermal','typical','Annealed, 100 °C',src),
   record('conductivity500','Thermal conductivity at 500 °C',21.5,'W/(m·K)','thermal','typical','Annealed, 500 °C',src),
-  record('specificheat','Specific heat over 0–100 °C',500,'J/(kg·K)','thermal','typical','Published 0–100 °C interval, not an arbitrary temperature',src)
+  record('specificheat','Specific heat over 0–100 °C',500,'J/(kg·K)','thermal','typical','Published 0–100 °C interval, not an arbitrary temperature',src),
+  {id:'melting',label:'Melting range (solidus–liquidus)',value:is304?1400:1375,upper:is304?1450:1400,unit:'°C',method:'reported_quantity',category:'melting',limit:'range',referenceCondition:'Published grade melting interval; depends on actual alloy composition; not a measured specimen',context:'Grade melting range, not a single melting point or a safe operating-temperature limit.',sourceUrl:MELT,sourceName:'thyssenkrupp Materials UK — Stainless steel melting points'}
  ];
 }
 export function convertPropertyUnit(p:BoundedProperty,target:string):BoundedProperty{

@@ -24,3 +24,6 @@ Use `docs/reference-sources.json` as the machine-readable index and `docs/SCIENT
 
 ## Compound names
 Read `docs/COMPOUND_NAMING.md` before changing compound identity or formula-to-name resolution. A formula does not uniquely determine chemical identity. Names must be sourced and return a verified/unresolved status; never guess names using atomic composition alone. Compound identification is independent of mass calculation and must not affect numeric results. Do not infer aqueous acid naming from an anhydrous formula or treat hydrates as their anhydrous counterparts.
+
+## Material identification searches
+Before modifying external material-name lookup, read docs/MATERIAL_LOOKUP.md. PubChem returns candidate identity, name and formula only; calculations must remain pure and use CIAAW values. Never assume a food/mixture has one molecular formula, silently select a search candidate, fabricate a remote record or rely on PubChem's stored molecular weight for the authoritative result. Respect query limits, failures and provenance.

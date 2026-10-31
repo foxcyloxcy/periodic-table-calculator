@@ -52,6 +52,10 @@ Production mode (after a successful build):
 npm run start
 ```
 
+### Expanded grade and condition-aware properties
+
+Search **304L stainless steel**, **316 stainless steel** or **316L stainless steel** for exact supplier-sourced elemental mass-percent ranges. The grade cards also show sourced density, minimum strengths, elastic modulus and temperature-qualified thermal conductivity, with narrow audited unit conversion. Manufacturer-published grade-specific melting ranges are shown as intervals, never single invented melting points. A Chromium browser suite exercises real UI behavior and separately attempts live PubChem/Wikidata access. See [expanded grade-property methodology](docs/EXPANDED_GRADE_PROPERTIES.md).
+
 ### Detailed source-backed material profiles
 
 Compound search results can load PubChem structural descriptors (e.g. XLogP, topological polar surface area and hydrogen-bond counts), clearly labeled **computed, not measured**. Wikidata material density statements display supported quantities and any reference temperature, pressure and phase qualifiers (missing conditions are explicitly identified). A curated **304 stainless steel (UNS S30400, long-products)** profile shows supplier-published chromium/nickel percentage ranges and maximum impurity levels, with the specific source row linked. Generic steel and mixtures never inherit grade-specific mass percentages. See [Material Profiles](docs/MATERIAL_PROFILES.md).

@@ -105,3 +105,9 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - GitHub Pages deployment completed successfully: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41207402241.
 - Public HTML at https://foxcyloxcy.github.io/periodic-table-calculator/ showed the updated 304 stainless steel search hint. Browser click-through and live source fetch behavior were not independently exercised with automated E2E; live providers can be temporarily unavailable.
 - Current data limits remain: only curated 304 UNS S30400 long-product composition ranges, selected PubChem computed descriptors, and supported Wikidata density statements where present. No exhaustive material-property registry or batch-specific calculated composition.
+
+## 2026-10-31 — Expanded 304L / 316 / 316L grade-property and browser milestone
+- Added source-specific chemistry limits for 304L UNS S30403, 316 UNS S31600, and 316L UNS S31603 using the thyssenkrupp long-products composition rows; existing 304 profile retained.
+- Added explicitly sourced reference density, elastic modulus, minimum strength and elongation, and thermal conductivity at documented 100 °C and 500 °C points. Missing test temperatures remain unknown; no melting value is invented without a scoped source.
+- Added typed limited dimensional conversion, grade property category filter and UI context, regression tests, Chromium Playwright static-export browser tests with mocked providers and a separate non-blocking real-provider smoke test.
+- See docs/EXPANDED_GRADE_PROPERTIES.md. Pending CI/Pages execution evidence at first commit.

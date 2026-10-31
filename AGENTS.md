@@ -36,3 +36,6 @@ Read docs/UNIFIED_MATERIAL_SEARCH.md before changing unified search. Differentia
 
 ## Verified material profiles and conditions
 Read docs/MATERIAL_PROFILES.md. Properties MUST identify whether computed or measured/reported, units, source and original reference conditions (phase, temperature, pressure). Unknown conditions stay unknown. Supplier grade chemistry limits are ranges/maximum percentages, never a unique formula, sample composition or molar mass. Do not inherit 304 steel composition for ungraded steel. Independent external review and licensing remain necessary.
+
+## Expanded grade-property verification
+Read docs/EXPANDED_GRADE_PROPERTIES.md. Source values must retain grade/product scope, units, reference temperature/phase, and reported/typical/minimum semantics. Do not interpolate between 100 and 500 °C or claim a generic melting range. Run deterministic Playwright browser tests and report live-provider smoke separately.

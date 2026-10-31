@@ -1,6 +1,7 @@
 import { lookupMaterial, type PubChemCandidate } from './material-lookup';
 import { findElement, type PeriodicElement } from './periodic-table';
 import {gradeProfile,wikidataDensity,type ProfileProperty,type GradeProfile} from './material-profiles';
+import {additionalGradeProfile} from './grade-properties';
 
 export type MaterialKind = 'element' | 'compound' | 'alloy' | 'mixture' | 'material_class' | 'unclassified';
 export interface MaterialRecord {
@@ -127,7 +128,7 @@ export async function unifiedSearch(query:string,request:Requester=fetch,signal?
   const term=query.trim();
   if(term.length<2 || term.length>80)throw new Error('Enter a search term of 2–80 characters.');
   const element=findElement(term)??null;
-  const grade=gradeProfile(term);
+  const grade=gradeProfile(term)??additionalGradeProfile(term);
   const [chemical,materials]=await Promise.allSettled([
     lookupMaterial(term,request,signal),
     lookupMaterialClasses(term,request,signal),

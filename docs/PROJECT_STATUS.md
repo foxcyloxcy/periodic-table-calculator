@@ -79,3 +79,9 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Added browser-side PubChem fastformula search for source-linked compound candidates (max eight). C2H6O is not uniquely identifiable: ethanol (CID 702) and dimethyl ether (CID 8254) are distinct structures with the same elemental composition and molar mass.
 - Added case-aware formula correction so typed lowercased formulas can be normalized to recognized symbols, while ambiguous Co vs CO prompts explicit choice. Unverified formulas remain unverified, with no guessed names.
 - Added Vitest tests, UI and docs/FORMULA_ISOMERS_AND_CASE.md. CI and deploy verification pending at initial commit.
+
+## 2026-10-31 — Unified materials discovery milestone
+- Added a single search covering exact element matches from local dataset, PubChem compound identity/formula records, and Wikidata material taxonomy through P31/P279 statements.
+- Results distinguish source-backed compounds from alloy/mixture/broad-material categories. Steel via Q11427 → Q907347 → Q37756 is an alloy, with **no universal chemical formula or fixed elemental proportions**. Milk is treated as a variable food/material class.
+- Added bounded requests, explicit unclassified/partial-source results, independently calculated CIAAW molar mass and elemental percentages for eligible pure compounds, and source links.
+- Tests and docs/UNIFIED_MATERIAL_SEARCH.md added. CI and GitHub Pages publish must be verified before claiming the release is live.

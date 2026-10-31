@@ -60,6 +60,10 @@ Search **304L stainless steel**, **316 stainless steel** or **316L stainless ste
 
 Compound search results can load PubChem structural descriptors (e.g. XLogP, topological polar surface area and hydrogen-bond counts), clearly labeled **computed, not measured**. Wikidata material density statements display supported quantities and any reference temperature, pressure and phase qualifiers (missing conditions are explicitly identified). A curated **304 stainless steel (UNS S30400, long-products)** profile shows supplier-published chromium/nickel percentage ranges and maximum impurity levels, with the specific source row linked. Generic steel and mixtures never inherit grade-specific mass percentages. See [Material Profiles](docs/MATERIAL_PROFILES.md).
 
+### Systematic NIST neutral-atom review and reference-conditioned phases
+
+A source-linked NIST compiled neutral ground-configuration comparison now covers **all 92 elements H–U** in that table, alongside **39 RSC phase/Pauling records at the stated 20 °C condition** (pressure not specified). No original periodic-table data or calculator values are overwritten. The UI explicitly flags Hg and previously known Au source disagreements, and marks Z 93–118 as outside the NIST source table. See [NIST neutral and phase review](docs/NIST_NEUTRAL_AND_PHASE_REVIEW.md).
+
 ### Independent secondary-property cross-check
 
 The element evidence panel now shows six published-source cross-checks for **H, C, O, Fe, Au and Og**, explicitly including phase at the source's 20 °C reference condition and electron configurations. Gold's Pauling electronegativity differs across sources (2.54 in our snapshot and PubChem versus 2.4 in RSC), so it is flagged rather than overwritten. All other elements remain pending independent field review. See [independent-property review](docs/INDEPENDENT_ELEMENT_PROPERTY_REVIEW.md).

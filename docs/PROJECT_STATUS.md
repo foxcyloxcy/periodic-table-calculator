@@ -111,3 +111,12 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Added explicitly sourced reference density, elastic modulus, minimum strength and elongation, and thermal conductivity at documented 100 °C and 500 °C points. Missing test temperatures remain unknown; no melting value is invented without a scoped source.
 - Added typed limited dimensional conversion, grade property category filter and UI context, regression tests, Chromium Playwright static-export browser tests with mocked providers and a separate non-blocking real-provider smoke test.
 - See docs/EXPANDED_GRADE_PROPERTIES.md. Pending CI/Pages execution evidence at first commit.
+
+### Expanded grade-property release evidence — 2026-10-31
+- PR #12 merged to `main`: `27ca72c1ec8bad9d34e786471d18eb3d13fa54d0`.
+- Standard validation passed (npm ci, TypeScript, ESLint, Vitest, static Next.js build): https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41209018995
+- Chromium Playwright workflow passed: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41209018989 (deterministic grade/filter/unit conversion UI, PubChem descriptor UI, plus live PubChem/Wikidata provider smoke). Live smoke is non-blocking in workflow and happened to pass in this run; repeat when investigating external outages.
+- GitHub Pages production deployment passed: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41209151446
+- Public site https://foxcyloxcy.github.io/periodic-table-calculator/ responds. Dynamic property sections require user search/interaction and do not appear in server-rendered static initial HTML.
+- Reviewed sources: thyssenkrupp Materials North America long-product composition for 304/304L/316/316L; AZoM grade-specific typical physical and mechanical tables, and thyssenkrupp Materials UK grade melting intervals (304/304L 1400–1450 °C; 316/316L 1375–1400 °C).
+- No universal formula for steel, no batch-specific chemistry, no undocumented measurement temperature or arbitrary interpolation. Grade property source licensing/attribution and expanded material coverage remain future reviews.

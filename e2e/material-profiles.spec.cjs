@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const {test,expect}=require('@playwright/test');
 const ROOT='http://127.0.0.1:4173/periodic-table-calculator/';
 async function mockProviders(page){

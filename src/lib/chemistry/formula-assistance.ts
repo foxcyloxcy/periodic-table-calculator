@@ -1,10 +1,10 @@
-import { atomicWeightBySymbol } from './elements';
+import { atomicWeightBySymbol, atomicWeights } from './elements';
 import { reviewedCompoundFormulas, resolveCompoundName, normalizeKnownCompoundFormula } from './compound-names';
 
 export interface FormulaSuggestion {
   formula: string;
   label: string;
-  reason: 'repeated_symbol' | 'case_normalization' | 'closest_reviewed';
+  reason: 'repeated_symbol' | 'case_normalization' | 'closest_reviewed' | 'possible_element_symbol';
   note: string;
   changesComposition: boolean;
 }
@@ -84,5 +84,30 @@ export function suggestFormulaAlternatives(raw:string,limit=5):FormulaSuggestion
     .filter(item=>item.distance>0 && item.distance <= (input.length<=4?1:2))
     .sort((a,b)=>a.distance-b.distance || a.formula.localeCompare(b.formula));
   for(const {formula} of ranked) add(formula,'closest_reviewed','Similar to a documented compound, but changing the formula may change its composition and identity. Confirm before calculating.',true);
+  // Suggest one-token spelling alternatives only when an unrecognized
+  // element token is present. Validate the *entire* proposed formula before
+  // showing it. A near symbol is not evidence that the user intended it.
+  const tokens=[...input.matchAll(/[A-Z][a-z]?/g)];
+  if(tokens.length>0 && tokens.length<=16){
+    const unknown=tokens.filter(match=>!atomicWeightBySymbol.has(match[0]));
+    if(unknown.length===1){
+      const token=unknown[0];
+      const before=input.slice(0,token.index);
+      const after=input.slice(token.index!+token[0].length);
+      const possibilities=Object.keys(atomicWeights)
+        .map(symbol=>({symbol,distance:editDistance(symbol.toLowerCase(),token[0].toLowerCase())}))
+        .filter(entry=>entry.distance===1)
+        .sort((a,b)=>a.symbol.localeCompare(b.symbol));
+      for(const {symbol} of possibilities){
+        const candidate=before+symbol+after;
+        // Preserve only valid formula grammar; unsupported charge/isotope
+        // syntax and other errors should not become plausible suggestions.
+        if(!/^(?:[A-Z][a-z]?\d*|\(|\))+$/u.test(candidate))continue;
+        add(candidate,'possible_element_symbol',
+          'Possible element-symbol spelling. This may be a different composition; verify the formula before calculating.',true);
+        if(out.length>=limit)break;
+      }
+    }
+  }
   return out.slice(0,limit);
 }

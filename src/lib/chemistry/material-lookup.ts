@@ -83,3 +83,29 @@ export async function lookupMaterial(query:string, request:Requester=fetch, sign
     return {status:'unavailable',query:term,message:error instanceof Error?error.message:'Unable to contact PubChem. Check connectivity and try again.'};
   }
 }
+
+/**
+ * Resolve possible compound identities from a molecular formula (isomers).
+ * Exact formula search is intentionally limited to eight CIDs; this is a
+ * candidate subset, never a guarantee that all structures are returned.
+ */
+export async function lookupFormulaIdentities(formula:string, request:Requester=fetch, signal?:AbortSignal):Promise<LookupOutcome>{
+ const input=formula.trim();
+ if(!/^(?:[A-Z][a-z]?[0-9]*)+$/.test(input)||input.length>80){
+  return {status:'no_match',query:input,message:'Formula identity search currently supports simple molecular formulas only.'};
+ }
+ try{
+  const url=`${API}/compound/fastformula/${encodeURIComponent(input)}/cids/JSON?MaxRecords=${LIMIT}`;
+  const ids=cidsFrom(await getJson(url,request,signal));
+  if(!ids.length)return {status:'no_match',query:input,message:'PubChem found no matching compound identities for this formula. Its molar mass can still be calculated.'};
+  const propUrl=`${API}/compound/cid/${ids.join(',')}/property/MolecularFormula,Title/JSON`;
+  const properties=propertiesFrom(await getJson(propUrl,request,signal));
+  const candidates=properties.filter(row=>row.MolecularFormula===input).slice(0,LIMIT)
+    .map(row=>createCandidate(row.CID,row.Title??`Compound CID ${row.CID}`,row.MolecularFormula));
+  if(!candidates.length)return {status:'no_match',query:input,message:'No exact neutral-formula identity was returned by PubChem.'};
+  return {status:'found',query:input,candidates,note:'Possible structures sharing this molecular formula (up to eight PubChem records). A formula alone does not distinguish isomers; select a specific identity only with additional evidence.'};
+ }catch(error){
+  if(signal?.aborted)throw error;
+  return {status:'unavailable',query:input,message:error instanceof Error?error.message:'PubChem is temporarily unavailable.'};
+ }
+}

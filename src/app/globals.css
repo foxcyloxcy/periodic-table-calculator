@@ -40,3 +40,11 @@
 .composition-table caption{caption-side:top;text-align:left;color:#b6c5dd;padding-bottom:8px}
 .composition-table th,.composition-table td{padding:7px 10px;text-align:left;border-bottom:1px solid #415170}
 .composition-table th{color:#cee2ee}
+
+.formula-identities{margin:20px 0;padding:16px;background:#172940;border:1px solid #426881;border-radius:12px}
+.formula-identities ul{padding:0;list-style:none;display:grid;gap:10px;margin:12px 0}
+.formula-identities li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px;background:#223650;border-radius:8px;border:1px solid #4b5f7c}
+.formula-identities a{color:#82ddeb;text-decoration:underline}
+.formula-identities li .hint{margin:4px 0}
+.formula-identities button[aria-pressed="true"]{background:#c8f3d4}
+@media(max-width:540px){.formula-identities li{flex-direction:column;align-items:stretch}.formula-identities li button{width:100%}}

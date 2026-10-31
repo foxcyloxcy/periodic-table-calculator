@@ -52,6 +52,10 @@ Production mode (after a successful build):
 npm run start
 ```
 
+### Search by everyday material name
+
+A separate **Search material** field accepts names such as `sugar` and queries the live [PubChem PUG REST service](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest) for candidate identities and molecular formulas. Select a PubChem record to populate the calculator. For **table sugar (sucrose)**, PubChem documents `C12H22O11` ([CID 5988](https://pubchem.ncbi.nlm.nih.gov/compound/5988)). The app calculates atom counts, molar mass and elemental mass-percent composition **from its CIAAW dataset**—not stored result lookup. A generic term may refer to multiple substances or mixtures. Browsers must be able to reach PubChem; failures are shown, not silently replaced by fabricated records. See [material search documentation](docs/MATERIAL_LOOKUP.md).
+
 ### Formula suggestions and element-click editor
 
 Repeating an element click now increments the atom count, such as FeSO → FeSO2 → FeSO3 → FeSO4. Entering FeSOOOO offers FeSO4 as a suggestion for confirmation. Nearby reviewed formulas may also be suggested, with warnings if they change composition. Unknown symbols cannot be assigned invented atomic weights; plausible nearby recognized element spellings may be suggested for explicit confirmation. **The example formulas are not hardcoded numerical results.** See [Formula Assistance](docs/FORMULA_ASSISTANCE.md).

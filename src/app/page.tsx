@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import PeriodicTable from '@/components/PeriodicTable';
-import MaterialSearch from '@/components/MaterialSearch';
+import UnifiedSearch from '@/components/UnifiedSearch';
 import FormulaIdentities from '@/components/FormulaIdentities';
 import {caseFormulaCandidates} from '@/lib/chemistry/formula-case';
 import type { PubChemCandidate } from '@/lib/chemistry/material-lookup';
@@ -37,7 +37,7 @@ export default function Home() {
  }
  return <main className="container">
   <header><p className="eyebrow">DETERMINISTIC CHEMISTRY ENGINE · MVP</p><h1>Element Calculator</h1><p>Explore all 118 elements, select one to inspect its properties, or enter a supported chemical formula to calculate molar mass. Selecting elements alone does not predict a reaction.</p></header>
-  <MaterialSearch onSelect={selectMaterial} />
+  <UnifiedSearch onSelect={selectMaterial} />
   <PeriodicTable onAppendSymbol={appendSymbol} />
   <form onSubmit={calculate}><label htmlFor="formula">Chemical formula</label><div className="field"><input id="formula" value={formula} onChange={e=>{setCaseChoices([]);setChosenMaterial(null);setFormula(e.target.value);setNeedsConfirmation(false);setResult(null);setError('');}} maxLength={128} spellCheck={false} placeholder="e.g. Ca(OH)2" required/><button disabled={pending}>{pending?'Calculating…':'Calculate'}</button></div></form>
   <p className="hint">Examples, not precomputed answers: FeSO4, Fe2(SO4)3, H2O, CaCO3, CO2, ZrO2 or UO2. Repeated element clicks now increase the atom count (O → O2 → O3), without predicting a compound. Molar mass calculations use the official CIAAW 2024 abridged atomic weights for 84 eligible elements. Hydrates, isotopes, ions and reaction prediction are not yet supported.</p>

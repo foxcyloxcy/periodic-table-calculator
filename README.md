@@ -52,6 +52,10 @@ Production mode (after a successful build):
 npm run start
 ```
 
+### Unified chemistry and materials search
+
+The search now checks three evidence sources: the local periodic table for element identity, **PubChem** for compound names/formulas, and **Wikidata** for material classes and verified mixture/alloy categories. For example, `steel` is identified as an alloy from its Wikidata P279 classification, but does **not** receive a fabricated fixed chemical formula. Search `caffeine` to retrieve a PubChem formula and compute elemental mass percentages using CIAAW values. `milk` is treated as a variable material/food, not a pure compound. The browser may return partial results when one source is unavailable. See [Unified Material Search](docs/UNIFIED_MATERIAL_SEARCH.md).
+
 ### Search by everyday material name
 
 A separate **Search material** field accepts names such as `sugar` and queries the live [PubChem PUG REST service](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest) for candidate identities and molecular formulas. Select a PubChem record to populate the calculator. For **table sugar (sucrose)**, PubChem documents `C12H22O11` ([CID 5988](https://pubchem.ncbi.nlm.nih.gov/compound/5988)). The app calculates atom counts, molar mass and elemental mass-percent composition **from its CIAAW dataset**—not stored result lookup. A generic term may refer to multiple substances or mixtures. Browsers must be able to reach PubChem; failures are shown, not silently replaced by fabricated records. See [material search documentation](docs/MATERIAL_LOOKUP.md).

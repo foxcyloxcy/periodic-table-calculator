@@ -88,3 +88,6 @@ export function resolveCompoundName(formula: string): CompoundNameResult {
     note: record.note ?? 'The displayed name is a documented compound associated with this formula; it does not establish sample identity or purity.',
   };
 }
+
+/** Public reviewed formula keys for input assistance; these are not precomputed answers. */
+export const reviewedCompoundFormulas: readonly string[] = Object.freeze(Object.keys(NAMES));

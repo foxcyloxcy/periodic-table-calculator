@@ -17,3 +17,11 @@
 .periodic-section a{color:#7de4ef}@media(max-width:600px){.element-detail{flex-direction:column}.selected-element{height:110px}.element-info dl{grid-template-columns:1fr}}
 
 .compound-identification{margin:18px 0;padding:16px;border:1px solid #376777;background:#112737;border-radius:12px}.compound-identification h3{font-size:1.4rem;margin:2px 0 8px;color:#e9fbff}.compound-identification p{margin:8px 0}.compound-identification a{color:#75deee;text-decoration:underline}.compound-identification.unresolved{background:#20263a;border-color:#54617e}.compound-identification.unresolved .eyebrow{color:#bfcbdf}
+
+.formula-suggestions{border:1px solid #406c7b;background:#121f31;border-radius:14px;padding:20px;margin:18px 0}
+.formula-suggestions ul{list-style:none;margin:12px 0;padding:0;display:grid;gap:10px}
+.formula-suggestions li{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px;background:#202c43;border:1px solid #40506d;border-radius:9px}
+.formula-suggestions li>span{min-width:0;overflow-wrap:anywhere}.formula-suggestions li button{flex-shrink:0}
+.formula-suggestions .suggestion-note{display:block;color:#b9c6dd;font-size:.8rem;line-height:1.4;margin-top:4px}
+.formula-suggestions .secondary-action{background:#303c55;color:#ecf4ff;border:1px solid #788ca9}
+@media(max-width:540px){.formula-suggestions li{align-items:stretch;flex-direction:column}.formula-suggestions li button{width:100%}}

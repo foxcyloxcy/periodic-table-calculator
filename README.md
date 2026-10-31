@@ -54,7 +54,7 @@ npm run start
 
 ### Formula suggestions and element-click editor
 
-Repeating an element click now increments the atom count, such as FeSO → FeSO2 → FeSO3 → FeSO4. Entering FeSOOOO offers FeSO4 as a suggestion for confirmation. Nearby reviewed formulas may also be suggested, with warnings if they change composition. Unknown symbols cannot be assigned invented atomic weights. **The example formulas are not hardcoded numerical results.** See [Formula Assistance](docs/FORMULA_ASSISTANCE.md).
+Repeating an element click now increments the atom count, such as FeSO → FeSO2 → FeSO3 → FeSO4. Entering FeSOOOO offers FeSO4 as a suggestion for confirmation. Nearby reviewed formulas may also be suggested, with warnings if they change composition. Unknown symbols cannot be assigned invented atomic weights; plausible nearby recognized element spellings may be suggested for explicit confirmation. **The example formulas are not hardcoded numerical results.** See [Formula Assistance](docs/FORMULA_ASSISTANCE.md).
 
 ### Verified compound names
 

@@ -42,7 +42,7 @@ export default function MaterialSearch({onSelect}:{onSelect:(candidate:PubChemCa
               </table>
               <button type="button" onClick={()=>onSelect(candidate)}>Use this substance in calculator</button>
             </> : <p className="hint">Formula cannot be calculated yet: {candidate.limitation}</p>}
-          <p className="hint"><a href={candidate.sourceUrl} target="_blank" rel="noreferrer">PubChem CID {candidate.cid} — source record</a>. PubChem identifies the candidate, not the user's actual sample.</p>
+          <p className="hint"><a href={candidate.sourceUrl} target="_blank" rel="noreferrer">PubChem CID {candidate.cid} — source record</a>. PubChem identifies the candidate, not the user&apos;s actual sample.</p>
         </article>)}
         </div>
       </>}

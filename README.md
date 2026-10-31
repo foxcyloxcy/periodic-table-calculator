@@ -60,6 +60,10 @@ Search **304L stainless steel**, **316 stainless steel** or **316L stainless ste
 
 Compound search results can load PubChem structural descriptors (e.g. XLogP, topological polar surface area and hydrogen-bond counts), clearly labeled **computed, not measured**. Wikidata material density statements display supported quantities and any reference temperature, pressure and phase qualifiers (missing conditions are explicitly identified). A curated **304 stainless steel (UNS S30400, long-products)** profile shows supplier-published chromium/nickel percentage ranges and maximum impurity levels, with the specific source row linked. Generic steel and mixtures never inherit grade-specific mass percentages. See [Material Profiles](docs/MATERIAL_PROFILES.md).
 
+### Scientific evidence for every element
+
+Each of our 118 periodic-table entries now displays field-specific source, confidence and scientific review status for element identity, CIAAW atomic weight, phase, electron configuration, electronegativity and category. Superheavy phase labels are flagged as theoretical/uncertain rather than presented as confirmed experimental measurements. The molar-mass engine and original data remain unchanged. A read-only monthly IUPAC/CIAAW source fingerprint monitor helps identify upstream changes requiring scientific review. See [Element Property Audit](docs/ELEMENT_PROPERTY_AUDIT.md).
+
 ### Unified chemistry and materials search
 
 The search now checks three evidence sources: the local periodic table for element identity, **PubChem** for compound names/formulas, and **Wikidata** for material classes and verified mixture/alloy categories. For example, `steel` is identified as an alloy from its Wikidata P279 classification, but does **not** receive a fabricated fixed chemical formula. Search `caffeine` to retrieve a PubChem formula and compute elemental mass percentages using CIAAW values. `milk` is treated as a variable material/food, not a pure compound. The browser may return partial results when one source is unavailable. See [Unified Material Search](docs/UNIFIED_MATERIAL_SEARCH.md).

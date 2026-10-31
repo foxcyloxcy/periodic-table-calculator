@@ -71,3 +71,8 @@
 .element-crosscheck h5{margin:0 0 8px}.review-list{display:grid;gap:10px;margin:10px 0}
 .review-row{padding:12px;border-radius:8px;border:1px solid rgba(112,155,181,.3)}
 .review-row p{margin:5px 0}.review-row a{color:#86ddef;text-decoration:underline}
+
+.systematic-review{margin:18px 0;padding:16px;border:1px solid rgba(123,169,185,.5);border-radius:12px;background:rgba(35,65,87,.24)}
+.systematic-review h4{margin:0 0 12px}.systematic-review-row{padding:12px 0;border-top:1px solid rgba(130,170,188,.25)}
+.systematic-review-row p{margin:6px 0;overflow-wrap:anywhere}.review-row-heading{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.systematic-review a{color:#8bdcef;text-decoration:underline}.review-tag{border:1px solid rgba(125,175,187,.5);border-radius:20px;padding:2px 9px;font-size:.8rem}

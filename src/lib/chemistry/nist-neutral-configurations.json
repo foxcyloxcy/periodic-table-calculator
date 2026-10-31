@@ -1,0 +1,469 @@
+{
+  "sourceId": "NIST-ATOMIC-ELECTRONIC-STRUCTURE-NEUTRAL-H-U",
+  "sourceUrl": "https://www.nist.gov/pml/atomic-reference-data-electronic-structure-calculations/atomic-reference-data-electronic-8",
+  "sourceScope": "NIST compiled neutral-atom ground configurations Z=1–92; not the full NIST ASD 5.12 ion energy result",
+  "retrievedAt": "2026-10-31",
+  "citationNote": "NIST electronic-structure reference page; critically compiled neutral atom ground configurations. Not direct verification of all NIST ASD version 5.12 spectra.",
+  "records": [
+    {
+      "atomicNumber": 1,
+      "symbol": "H",
+      "groundConfiguration": "1s1"
+    },
+    {
+      "atomicNumber": 2,
+      "symbol": "He",
+      "groundConfiguration": "1s2"
+    },
+    {
+      "atomicNumber": 3,
+      "symbol": "Li",
+      "groundConfiguration": "[He] 2s1"
+    },
+    {
+      "atomicNumber": 4,
+      "symbol": "Be",
+      "groundConfiguration": "[He] 2s2"
+    },
+    {
+      "atomicNumber": 5,
+      "symbol": "B",
+      "groundConfiguration": "[He] 2s2 2p1"
+    },
+    {
+      "atomicNumber": 6,
+      "symbol": "C",
+      "groundConfiguration": "[He] 2s2 2p2"
+    },
+    {
+      "atomicNumber": 7,
+      "symbol": "N",
+      "groundConfiguration": "[He] 2s2 2p3"
+    },
+    {
+      "atomicNumber": 8,
+      "symbol": "O",
+      "groundConfiguration": "[He] 2s2 2p4"
+    },
+    {
+      "atomicNumber": 9,
+      "symbol": "F",
+      "groundConfiguration": "[He] 2s2 2p5"
+    },
+    {
+      "atomicNumber": 10,
+      "symbol": "Ne",
+      "groundConfiguration": "[He] 2s2 2p6"
+    },
+    {
+      "atomicNumber": 11,
+      "symbol": "Na",
+      "groundConfiguration": "[Ne] 3s1"
+    },
+    {
+      "atomicNumber": 12,
+      "symbol": "Mg",
+      "groundConfiguration": "[Ne] 3s2"
+    },
+    {
+      "atomicNumber": 13,
+      "symbol": "Al",
+      "groundConfiguration": "[Ne] 3s2 3p1"
+    },
+    {
+      "atomicNumber": 14,
+      "symbol": "Si",
+      "groundConfiguration": "[Ne] 3s2 3p2"
+    },
+    {
+      "atomicNumber": 15,
+      "symbol": "P",
+      "groundConfiguration": "[Ne] 3s2 3p3"
+    },
+    {
+      "atomicNumber": 16,
+      "symbol": "S",
+      "groundConfiguration": "[Ne]3s2 3p4"
+    },
+    {
+      "atomicNumber": 17,
+      "symbol": "Cl",
+      "groundConfiguration": "[Ne] 3s2 3p5"
+    },
+    {
+      "atomicNumber": 18,
+      "symbol": "Ar",
+      "groundConfiguration": "[Ne] 3s2 3p6"
+    },
+    {
+      "atomicNumber": 19,
+      "symbol": "K",
+      "groundConfiguration": "[Ar] 4s1"
+    },
+    {
+      "atomicNumber": 20,
+      "symbol": "Ca",
+      "groundConfiguration": "[Ar] 4s2"
+    },
+    {
+      "atomicNumber": 21,
+      "symbol": "Sc",
+      "groundConfiguration": "[Ar] 3d1 4s2"
+    },
+    {
+      "atomicNumber": 22,
+      "symbol": "Ti",
+      "groundConfiguration": "[Ar] 3d2 4s2"
+    },
+    {
+      "atomicNumber": 23,
+      "symbol": "V",
+      "groundConfiguration": "[Ar] 3d3 4s2"
+    },
+    {
+      "atomicNumber": 24,
+      "symbol": "Cr",
+      "groundConfiguration": "[Ar] 3d5 4s1"
+    },
+    {
+      "atomicNumber": 25,
+      "symbol": "Mn",
+      "groundConfiguration": "[Ar] 3d5 4s2"
+    },
+    {
+      "atomicNumber": 26,
+      "symbol": "Fe",
+      "groundConfiguration": "[Ar] 3d6 4s2"
+    },
+    {
+      "atomicNumber": 27,
+      "symbol": "Co",
+      "groundConfiguration": "[Ar] 3d7 4s2"
+    },
+    {
+      "atomicNumber": 28,
+      "symbol": "Ni",
+      "groundConfiguration": "[Ar] 3d8 4s2"
+    },
+    {
+      "atomicNumber": 29,
+      "symbol": "Cu",
+      "groundConfiguration": "[Ar] 3d10 4s1"
+    },
+    {
+      "atomicNumber": 30,
+      "symbol": "Zn",
+      "groundConfiguration": "[Ar] 3d10 4s2"
+    },
+    {
+      "atomicNumber": 31,
+      "symbol": "Ga",
+      "groundConfiguration": "[Ar] 3d10 4s2 4p1"
+    },
+    {
+      "atomicNumber": 32,
+      "symbol": "Ge",
+      "groundConfiguration": "[Ar] 3d10 4s2 4p2"
+    },
+    {
+      "atomicNumber": 33,
+      "symbol": "As",
+      "groundConfiguration": "[Ar] 3d10 4s2 4p3"
+    },
+    {
+      "atomicNumber": 34,
+      "symbol": "Se",
+      "groundConfiguration": "[Ar] 3d10 4s2 4p4"
+    },
+    {
+      "atomicNumber": 35,
+      "symbol": "Br",
+      "groundConfiguration": "[Ar] 3d10 4s2 4p5"
+    },
+    {
+      "atomicNumber": 36,
+      "symbol": "Kr",
+      "groundConfiguration": "[Ar] 3d10 4s2 4p6"
+    },
+    {
+      "atomicNumber": 37,
+      "symbol": "Rb",
+      "groundConfiguration": "[Kr] 5s1"
+    },
+    {
+      "atomicNumber": 38,
+      "symbol": "Sr",
+      "groundConfiguration": "[Kr] 5s2"
+    },
+    {
+      "atomicNumber": 39,
+      "symbol": "Y",
+      "groundConfiguration": "[Kr] 4d1 5s2"
+    },
+    {
+      "atomicNumber": 40,
+      "symbol": "Zr",
+      "groundConfiguration": "[Kr] 4d2 5s2"
+    },
+    {
+      "atomicNumber": 41,
+      "symbol": "Nb",
+      "groundConfiguration": "[Kr] 4d4 5s1"
+    },
+    {
+      "atomicNumber": 42,
+      "symbol": "Mo",
+      "groundConfiguration": "[Kr] 4d5 5s1"
+    },
+    {
+      "atomicNumber": 43,
+      "symbol": "Tc",
+      "groundConfiguration": "[Kr] 4d5 5s2"
+    },
+    {
+      "atomicNumber": 44,
+      "symbol": "Ru",
+      "groundConfiguration": "[Kr] 4d7 5s1"
+    },
+    {
+      "atomicNumber": 45,
+      "symbol": "Rh",
+      "groundConfiguration": "[Kr] 4d8 5s1"
+    },
+    {
+      "atomicNumber": 46,
+      "symbol": "Pd",
+      "groundConfiguration": "[Kr] 4d10"
+    },
+    {
+      "atomicNumber": 47,
+      "symbol": "Ag",
+      "groundConfiguration": "[Kr] 4d10 5s1"
+    },
+    {
+      "atomicNumber": 48,
+      "symbol": "Cd",
+      "groundConfiguration": "[Kr] 4d10 5s2"
+    },
+    {
+      "atomicNumber": 49,
+      "symbol": "In",
+      "groundConfiguration": "[Kr] 4d10 5s2 5p1"
+    },
+    {
+      "atomicNumber": 50,
+      "symbol": "Sn",
+      "groundConfiguration": "[Kr] 4d10 5s2 5p2"
+    },
+    {
+      "atomicNumber": 51,
+      "symbol": "Sb",
+      "groundConfiguration": "[Kr] 4d10 5s2 5p3"
+    },
+    {
+      "atomicNumber": 52,
+      "symbol": "Te",
+      "groundConfiguration": "[Kr] 4d10 5s2 5p4"
+    },
+    {
+      "atomicNumber": 53,
+      "symbol": "I",
+      "groundConfiguration": "[Kr] 4d10 5s2 5p5"
+    },
+    {
+      "atomicNumber": 54,
+      "symbol": "Xe",
+      "groundConfiguration": "[Kr] 4d10 5s2 5p6"
+    },
+    {
+      "atomicNumber": 55,
+      "symbol": "Cs",
+      "groundConfiguration": "[Xe] 6s1"
+    },
+    {
+      "atomicNumber": 56,
+      "symbol": "Ba",
+      "groundConfiguration": "[Xe] 6s2"
+    },
+    {
+      "atomicNumber": 57,
+      "symbol": "La",
+      "groundConfiguration": "[Xe] 5d1 6s2"
+    },
+    {
+      "atomicNumber": 58,
+      "symbol": "Ce",
+      "groundConfiguration": "[Xe] 4f1 5d1 6s2"
+    },
+    {
+      "atomicNumber": 59,
+      "symbol": "Pr",
+      "groundConfiguration": "[Xe] 4f3 6s2"
+    },
+    {
+      "atomicNumber": 60,
+      "symbol": "Nd",
+      "groundConfiguration": "[Xe] 4f4 6s2"
+    },
+    {
+      "atomicNumber": 61,
+      "symbol": "Pm",
+      "groundConfiguration": "[Xe] 4f5 6s2"
+    },
+    {
+      "atomicNumber": 62,
+      "symbol": "Sm",
+      "groundConfiguration": "[Xe] 4f6 6s2"
+    },
+    {
+      "atomicNumber": 63,
+      "symbol": "Eu",
+      "groundConfiguration": "[Xe] 4f7 6s2"
+    },
+    {
+      "atomicNumber": 64,
+      "symbol": "Gd",
+      "groundConfiguration": "[Xe] 4f7 5d1 6s2"
+    },
+    {
+      "atomicNumber": 65,
+      "symbol": "Tb",
+      "groundConfiguration": "[Xe] 4f9 6s2"
+    },
+    {
+      "atomicNumber": 66,
+      "symbol": "Dy",
+      "groundConfiguration": "[Xe] 4f10 6s2"
+    },
+    {
+      "atomicNumber": 67,
+      "symbol": "Ho",
+      "groundConfiguration": "[Xe] 4f11 6s2"
+    },
+    {
+      "atomicNumber": 68,
+      "symbol": "Er",
+      "groundConfiguration": "[Xe] 4f12 6s2"
+    },
+    {
+      "atomicNumber": 69,
+      "symbol": "Tm",
+      "groundConfiguration": "[Xe] 4f13 6s2"
+    },
+    {
+      "atomicNumber": 70,
+      "symbol": "Yb",
+      "groundConfiguration": "[Xe] 4f14 6s2"
+    },
+    {
+      "atomicNumber": 71,
+      "symbol": "Lu",
+      "groundConfiguration": "[Xe] 4f14 5d1 6s2"
+    },
+    {
+      "atomicNumber": 72,
+      "symbol": "Hf",
+      "groundConfiguration": "[Xe] 4f14 5d2 6s2"
+    },
+    {
+      "atomicNumber": 73,
+      "symbol": "Ta",
+      "groundConfiguration": "[Xe] 4f14 5d3 6s2"
+    },
+    {
+      "atomicNumber": 74,
+      "symbol": "W",
+      "groundConfiguration": "[Xe] 4f14 5d4 6s2"
+    },
+    {
+      "atomicNumber": 75,
+      "symbol": "Re",
+      "groundConfiguration": "[Xe] 4f14 5d5 6s2"
+    },
+    {
+      "atomicNumber": 76,
+      "symbol": "Os",
+      "groundConfiguration": "[Xe] 4f14 5d6 6s2"
+    },
+    {
+      "atomicNumber": 77,
+      "symbol": "Ir",
+      "groundConfiguration": "[Xe] 4f14 5d7 6s2"
+    },
+    {
+      "atomicNumber": 78,
+      "symbol": "Pt",
+      "groundConfiguration": "[Xe] 4f14 5d9 6s1"
+    },
+    {
+      "atomicNumber": 79,
+      "symbol": "Au",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s1"
+    },
+    {
+      "atomicNumber": 80,
+      "symbol": "Hg",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2"
+    },
+    {
+      "atomicNumber": 81,
+      "symbol": "Tl",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2 6p1"
+    },
+    {
+      "atomicNumber": 82,
+      "symbol": "Pb",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2 6p2"
+    },
+    {
+      "atomicNumber": 83,
+      "symbol": "Bi",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2 6p3"
+    },
+    {
+      "atomicNumber": 84,
+      "symbol": "Po",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2 6p4"
+    },
+    {
+      "atomicNumber": 85,
+      "symbol": "At",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2 6p5"
+    },
+    {
+      "atomicNumber": 86,
+      "symbol": "Rn",
+      "groundConfiguration": "[Xe] 4f14 5d10 6s2 6p6"
+    },
+    {
+      "atomicNumber": 87,
+      "symbol": "Fr",
+      "groundConfiguration": "[Rn] 7s1"
+    },
+    {
+      "atomicNumber": 88,
+      "symbol": "Ra",
+      "groundConfiguration": "[Rn] 7s2"
+    },
+    {
+      "atomicNumber": 89,
+      "symbol": "Ac",
+      "groundConfiguration": "[Rn] 6d1 7s2"
+    },
+    {
+      "atomicNumber": 90,
+      "symbol": "Th",
+      "groundConfiguration": "[Rn] 6d2 7s2"
+    },
+    {
+      "atomicNumber": 91,
+      "symbol": "Pa",
+      "groundConfiguration": "[Rn] 5f2 6d1 7s2"
+    },
+    {
+      "atomicNumber": 92,
+      "symbol": "U",
+      "groundConfiguration": "[Rn] 5f3 6d1 7s2"
+    }
+  ]
+}

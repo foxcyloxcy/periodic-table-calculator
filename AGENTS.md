@@ -45,3 +45,6 @@ Read docs/ELEMENT_PROPERTY_AUDIT.md. Do not present secondary metadata, especial
 
 ## Independent element property comparisons
 Read docs/INDEPENDENT_ELEMENT_PROPERTY_REVIEW.md. Only six RSC-based source comparisons currently exist, not full 118-element scientific certification. Do not suppress Au Pauling-scale source disagreement, do not treat an RSC agreement as primary laboratory verification, and never assert Og phase experimentally measured. Keep comparisons additive until cited scientific validation approves a source change.
+
+## Systematic NIST neutral/phase source comparisons
+Read docs/NIST_NEUTRAL_AND_PHASE_REVIEW.md. NIST compiled H–U configurations cover exactly Z1–92 and must never certify Z93–118. They are not direct ASD 5.12 spectrum extracts. RSC 39-element phase data is specified at 20 °C, pressure not stated; never treat superheavy Og phase as experimentally confirmed. Keep published Hg/Au Pauling differences as source-specific disagreements rather than overwriting values. All upgrades are additive.

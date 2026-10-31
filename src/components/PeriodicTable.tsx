@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { atomicWeightBySymbol } from '@/lib/chemistry/elements';
+import SystematicElementReview from '@/components/SystematicElementReview';
 import {auditElement,auditOverview,type PropertyEvidence} from '@/lib/chemistry/element-audit';
 import {independentReview,reviewProgress} from '@/lib/chemistry/independent-property-review';
 import { elementCategories, periodicElements, searchElements, type PeriodicElement, PERIODIC_TABLE_SOURCE, STANDARD_WEIGHT_REFERENCE } from '@/lib/chemistry/periodic-table';
@@ -56,6 +57,7 @@ export default function PeriodicTable({ onAppendSymbol }: {onAppendSymbol: (symb
           <div><dt>Atomic weight</dt><dd>{atomicWeightBySymbol.get(selected.symbol)?.abridged ? `${atomicWeightBySymbol.get(selected.symbol)!.abridged!.value} ± ${atomicWeightBySymbol.get(selected.symbol)!.abridged!.uncertainty} (CIAAW 2024 abridged)` : 'No standard atomic weight (CIAAW 2024)'}</dd></div>
         </dl>
         <p className="hint">Atomic weights are sourced from CIAAW 2024 and display the abridged central value and reported uncertainty. Other element properties remain secondary educational metadata pending field-by-field review. Isotope mass numbers are not substituted for missing standard atomic weights.</p>
+        <SystematicElementReview symbol={selected.symbol}/>
         <section className="element-evidence" aria-label="Scientific property evidence">
           <h4>Scientific evidence and data quality</h4>
           <p className="hint">Last official-source review: {overview.checkedDate}. Scientific identity is recognized; individual display properties retain separate verification status.</p>

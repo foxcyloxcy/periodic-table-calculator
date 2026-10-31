@@ -131,3 +131,11 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - Recorded gold's electronegativity discrepancy (project/PubChem 2.54; RSC 2.4), not an automatic overwrite. Oganesson phase/config remain theoretical, not laboratory-confirmed.
 - Source and scientific limitations documented in docs/INDEPENDENT_ELEMENT_PROPERTY_REVIEW.md, including need for future NIST ASD neutral ground-state review.
 - Calculator, CIAAW weights and original periodic metadata unchanged. CI and deployment evidence to be recorded separately.
+
+### Independent property review release evidence — 2026-10-31
+- PR #14 merged: commit `07ce78c8ecaf84926cd1b8165e0994bf388f7151`.
+- Standard CI successful: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41211770925
+- Chromium browser workflow successful: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41211770975
+- GitHub Pages deployment successful: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41211991840
+- Published site https://foxcyloxcy.github.io/periodic-table-calculator/ renders the independent comparison section and all 118 recognized elements. Full per-property browser clickthrough for this new section was not separately tested in the existing E2E suite.
+- Scientific limitation: six RSC published-source cross-checks, NOT full independent primary experiment validation. NIST ASD per-neutral-atom ground-state verification remains future work. Gold electronegativity disagreement is explicitly recorded.

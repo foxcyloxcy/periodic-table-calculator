@@ -92,3 +92,9 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - GitHub Pages deployment succeeded: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41196813490
 - Published HTML inspected at https://foxcyloxcy.github.io/periodic-table-calculator/ and unified search UI was present. Live mobile/browser-to-PubChem/Wikidata form interactions were not separately automated; client CORS and provider availability remain operational risks.
 - Not yet implemented: exhaustive materials coverage, grade-specific percentage composition for mixtures/alloys, full material properties and validated experimental conditions.
+
+## 2026-10-31 — detailed material profiles milestone (feature branch)
+- Added data model for source-linked physical/computed property values, contextual conditions and grade-specific mass-percent ranges.
+- Dynamic PubChem CID descriptor lookup uses PUG REST and labels values as **computed molecular descriptors**, not physical measurements. Wikidata P2054 density extraction preserves unit plus source-provided temperature, pressure and phase qualifiers; missing conditions are explicitly marked.
+- Source-specific 304 stainless steel UNS S30400 long-products composition limits reference thyssenkrupp Materials NA; no universal formula or calculated iron remainder is claimed for generic steel.
+- Added regression tests, UI and docs/MATERIAL_PROFILES.md. Awaiting CI and Pages deployment verification before release claim.

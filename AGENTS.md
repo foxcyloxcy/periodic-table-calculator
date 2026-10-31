@@ -33,3 +33,6 @@ Read docs/FORMULA_ISOMERS_AND_CASE.md. Molecular formulas do not uniquely determ
 
 ## Material discovery and taxonomy
 Read docs/UNIFIED_MATERIAL_SEARCH.md before changing unified search. Differentiate element, compound candidate, verified mixture, alloy and broad material class. Wikidata taxonomy requires a traceable P31/P279 class path. A material description or a compound match does not establish a sample's actual formulation or a universal formula; never invent elemental fractions for mixtures or alloys. Keep independently sourced partial results when a provider fails.
+
+## Verified material profiles and conditions
+Read docs/MATERIAL_PROFILES.md. Properties MUST identify whether computed or measured/reported, units, source and original reference conditions (phase, temperature, pressure). Unknown conditions stay unknown. Supplier grade chemistry limits are ranges/maximum percentages, never a unique formula, sample composition or molar mass. Do not inherit 304 steel composition for ungraded steel. Independent external review and licensing remain necessary.

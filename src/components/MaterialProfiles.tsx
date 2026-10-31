@@ -8,7 +8,7 @@ export function PropertiesList({properties}:{properties:readonly ProfileProperty
  return <section className="material-properties" aria-label="Reference properties">
    <h5>Source-linked properties</h5>
    {properties.map((p,i)=><div key={p.id+':'+i} className="profile-property">
-      <strong>{p.label}: {p.value}{p.upper!==undefined?'–'+p.upper:''} {p.unit}</strong>
+      <strong>{p.label}: {p.value} {p.unit}</strong>
       <p className="hint">{p.method==='computed_descriptor'?'Computed descriptor — not measured':'Reported quantity — source statement'}. {p.context}</p>
       <p className="hint"><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceName}</a></p>
    </div>)}

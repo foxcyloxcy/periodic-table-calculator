@@ -52,6 +52,10 @@ Production mode (after a successful build):
 npm run start
 ```
 
+### Formula suggestions and element-click editor
+
+Repeating an element click now increments the atom count, such as FeSO → FeSO2 → FeSO3 → FeSO4. Entering FeSOOOO offers FeSO4 as a suggestion for confirmation. Nearby reviewed formulas may also be suggested, with warnings if they change composition. Unknown symbols cannot be assigned invented atomic weights. **The example formulas are not hardcoded numerical results.** See [Formula Assistance](docs/FORMULA_ASSISTANCE.md).
+
 ### Verified compound names
 
 Enter `FeSO4`: the calculator dynamically computes its molar mass and displays **iron(II) sulfate** (commonly **ferrous sulfate**), linked to [PubChem CID 24393](https://pubchem.ncbi.nlm.nih.gov/compound/24393). `Fe2(SO4)3` shows **iron(III) sulfate**, also called **ferric sulfate**. Other curated records include `H2O`, `CaCO3`, and `Na2CO3`.

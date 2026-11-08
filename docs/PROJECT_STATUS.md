@@ -154,3 +154,24 @@ GitHub Actions run https://github.com/foxcyloxcy/periodic-table-calculator/actio
 - GitHub Pages deployment passed: https://github.com/foxcyloxcy/periodic-table-calculator/actions/runs/41213249631.
 - Public HTML at https://foxcyloxcy.github.io/periodic-table-calculator/ contains new systematic review and all 118 element tiles.
 - **Scientific coverage**: NIST compiled neutral configurations Z1–92 (92/92 agreeing with existing stored notation), not a direct ASD 5.12 per-spectrum export; RSC reference-state comparisons for 39 elements at 20 °C (pressure not documented). The remaining 26 configurations and 79 phase records are NOT independently validated by these sources. RSC Hg Pauling 1.9 vs existing 2.0 disagreement flagged; previously documented Au disagreement retained. No original source datasets or numeric calculations altered.
+
+
+## 2026-11-08 — Formula identity ordering bug and one-click clearing
+
+- Branch: `fix/formula-identity-clear-controls`, based on `263072b`.
+- Root cause reproduced before the fix: `NaCl` and `Na1Cl1` were rejected against PubChem `ClNa` by string equality; all new tests pass after exact atom-count comparison. The live PubChem API independently returned CID 5234, `ClNa`, Sodium Chloride, Charge 0 and IsotopeAtomCount 0.
+- `src/lib/chemistry/material-lookup.ts` now validates formula input before requesting and matches exact counts, retaining only explicitly neutral, non-isotopic supported candidates. It preserves multiple candidates and user choice. Numerical calculation, data sources and curated names are unchanged.
+- `src/app/page.tsx`, `src/components/UnifiedSearch.tsx`, `src/app/globals.css`: added accessible Clear controls for formula and material search, resetting related results/errors/selections with input focus. Search cancellation ignores late errors. Removed the contradictory unresolved local-name banner above successful live candidates.
+- `src/components/FormulaIdentities.tsx`: a 12-second provider timeout now ends loading with a visible message and preserves computed mass.
+- Tests: 101 Vitest tests passed across 13 files; `npm run typecheck` passed; `npm run lint` passed with one existing eslint.config.mjs default-export warning; `npm run build` completed static export; `git diff --check` passed.
+- Added `e2e/formula-identity.spec.cjs` for desktop/mobile identity and clearing, ambiguous-case reset, in-flight search clearing, lookup timeout and a separately tagged live NaCl smoke test. Browser CI evidence will be recorded when available.
+- Browser verification against the production static export: live NaCl resolves Sodium Chloride (CID 5234), mass 58.4400 g/mol; Clear removes the formula/result and restores focus. Ambiguous `co` offers Co/CO; material Clear cancels search and empties the field. The managed preview's default flags were incompatible with Next.js, so the completed static export was served through the supported static preview in a separate scratch directory; application scripts were unchanged.
+- Release authorized by the owner on 2026-11-08: push, merge and deploy Element Calculator in `foxcyloxcy/periodic-table-calculator` only. CI, merge and deployment evidence remain pending until the respective operations finish. Remaining scientific scope and property-review limitations are unchanged.
+- Next task: run PR checks and browser CI, merge the approved fix after checks pass, then confirm GitHub Pages deployment. Rollback is a revert of this focused change; no migration or dataset update is involved.
+
+
+### Local verification and publication boundary
+- Implementation commit: `00dc722` (formula-order fix, clear controls, timeout handling and regression coverage).
+- Live static-export browser verification additionally confirmed there were no visible error alerts or stale material results after clearing. Screenshot: [NaCl result and Clear control](evidence/nacl-clear.png).
+- Lint passes before build with the existing configuration. A repeat after build scanned generated `.next`/`out` JavaScript and failed on generated code; rerunning with explicit `.next/**` and `out/**` ignore patterns verifies the source without altering the project's lint configuration.
+- Desktop live behavior was verified separately through the browser. Automated desktop/mobile browser tests are ready for the authorized PR CI run; results will be recorded when available.

@@ -23,7 +23,7 @@
 .formula-suggestions li{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px;background:#202c43;border:1px solid #40506d;border-radius:9px}
 .formula-suggestions li>span{min-width:0;overflow-wrap:anywhere}.formula-suggestions li button{flex-shrink:0}
 .formula-suggestions .suggestion-note{display:block;color:#b9c6dd;font-size:.8rem;line-height:1.4;margin-top:4px}
-.formula-suggestions .secondary-action{background:#303c55;color:#ecf4ff;border:1px solid #788ca9}
+.secondary-action{background:#303c55;color:#ecf4ff;border:1px solid #788ca9}
 @media(max-width:540px){.formula-suggestions li{align-items:stretch;flex-direction:column}.formula-suggestions li button{width:100%}}
 
 .material-lookup{margin:28px 0;padding:22px;background:#14223a;border:1px solid #38526c;border-radius:16px}
@@ -76,3 +76,5 @@
 .systematic-review h4{margin:0 0 12px}.systematic-review-row{padding:12px 0;border-top:1px solid rgba(130,170,188,.25)}
 .systematic-review-row p{margin:6px 0;overflow-wrap:anywhere}.review-row-heading{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
 .systematic-review a{color:#8bdcef;text-decoration:underline}.review-tag{border:1px solid rgba(125,175,187,.5);border-radius:20px;padding:2px 9px;font-size:.8rem}
+
+button:focus-visible{outline:3px solid #e8edf9;outline-offset:3px}

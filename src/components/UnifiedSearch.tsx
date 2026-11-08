@@ -1,5 +1,5 @@
 'use client';
-import {useRef,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {unifiedSearch,type UnifiedSearchResult,type MaterialKind} from '@/lib/chemistry/unified-search';
 import type {PubChemCandidate} from '@/lib/chemistry/material-lookup';
 import {atomicWeightBySymbol} from '@/lib/chemistry/elements';
@@ -14,12 +14,18 @@ export default function UnifiedSearch({onSelect}:{onSelect:(c:PubChemCandidate)=
  const [error,setError]=useState('');
  const [busy,setBusy]=useState(false);
  const controller=useRef<AbortController|null>(null);
+ useEffect(()=>()=>controller.current?.abort(),[]);
+ function clearSearch(){
+  const previous=controller.current;controller.current=null;previous?.abort();
+  setTerm('');setOutcome(null);setError('');setBusy(false);
+  document.getElementById('unified-query')?.focus();
+ }
  async function submit(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();controller.current?.abort();
   const next=new AbortController();controller.current=next;setBusy(true);setError('');setOutcome(null);
   const timeout=setTimeout(()=>next.abort(),15000);
   try{const result=await unifiedSearch(term,fetch,next.signal);if(!next.signal.aborted)setOutcome(result);}
-  catch(err){setError(next.signal.aborted?'Search timed out; try again.':err instanceof Error?err.message:'Search failed.');}
+  catch(err){if(controller.current===next)setError(next.signal.aborted?'Search timed out; try again.':err instanceof Error?err.message:'Search failed.');}
   finally{clearTimeout(timeout);if(controller.current===next)setBusy(false);}
  }
  return <section className="unified-search" aria-label="Unified chemistry and materials search">
@@ -29,9 +35,9 @@ export default function UnifiedSearch({onSelect}:{onSelect:(c:PubChemCandidate)=
   <form onSubmit={submit}>
    <label htmlFor="unified-query">Name or material</label>
    <div className="field"><input id="unified-query" value={term} maxLength={80}
-     onChange={e=>{controller.current?.abort();setBusy(false);setOutcome(null);setError('');setTerm(e.target.value);}}
+     onChange={e=>{const previous=controller.current;controller.current=null;previous?.abort();setBusy(false);setOutcome(null);setError('');setTerm(e.target.value);}}
      placeholder="e.g. steel, caffeine, copper…" autoComplete="off"/>
-     <button disabled={busy||term.trim().length<2}>{busy?'Searching…':'Search'}</button></div>
+     <button disabled={busy||term.trim().length<2}>{busy?'Searching…':'Search'}</button><button type="button" className="secondary-action" aria-label="Clear search" onClick={clearSearch}>Clear</button></div>
   </form>
   {error&&<p role="alert" className="error">{error}</p>}
   {outcome&&<div className="unified-results" aria-live="polite">

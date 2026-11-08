@@ -37,4 +37,4 @@ The result is part of `calculateMolarMass` so later operation modules can consis
 - PubChem: https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest
 - PubChem formula searching alone does not distinguish molecular structure, stereochemistry, charge, or isotope status: https://pubchem.ncbi.nlm.nih.gov/docs/structure-search
 - The registry entries were manually chosen from published PubChem names/compounds; they are **not** a proof of chemical identity for a user sample.
-- No live API call is needed: GitHub Pages uses a statically bundled reviewed name registry. Update records only after source review.
+- The five local reviewed naming annotations need no live API call. Separate candidate discovery uses live PubChem requests and its own status/provenance. Update local annotations only after source review.

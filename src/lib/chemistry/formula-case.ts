@@ -1,5 +1,6 @@
 import { parseFormula } from './calculator';
 import { atomicWeights } from './elements';
+import {normalizeFormulaNotation} from './formula-notation';
 
 /**
  * Case-insensitive formula typing, but preserving chemical identity.
@@ -7,7 +8,7 @@ import { atomicWeights } from './elements';
  * both rather than blindly uppercasing. Existing valid exact spellings win.
  */
 export function caseFormulaCandidates(value:string, max=8):string[]{
- const input=value.trim();
+ const input=normalizeFormulaNotation(value);
  if(input.length===0||input.length>80||!/^[A-Za-z0-9()]+$/.test(input))return [];
  try{parseFormula(input);return [input];}catch{/* explore spellings */}
  const results=new Set<string>();

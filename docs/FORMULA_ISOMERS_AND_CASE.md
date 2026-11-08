@@ -62,3 +62,6 @@ results or errors. Clearing either field does not reset the periodic table.
 Regression coverage includes NaCl/ClNa/Na1Cl1, exact-count and metadata exclusions,
 invalid input, multiple isomers, desktop/mobile formula clearing, ambiguous-case
 clearing, search cancellation, lookup timeout, and a separate live NaCl smoke test.
+
+## 2026-11-08 — Shared notation and grouped-formula compatibility
+The shared parser now accepts copied subscript digits, preserves the original entry, and provides specific unsupported-notation errors. Formula identity search accepts supported nested parentheses and serializes their exact expanded counts in Hill order before querying PubChem. Invalid, unsupported, no-match and unavailable outcomes are distinct. Both name and formula lookup inspect charge/isotope metadata before exposing standard-composition numbers. See [the full compatibility audit](FORMULA_COMPATIBILITY_AUDIT.md), including source-backed fixtures and remaining capability limits.

@@ -68,14 +68,14 @@ describe('dynamic PubChem isomer lookup',()=>{
  it('validates symbols and atom counts before sending a request',async()=>{
   const fetcher=vi.fn();
   for(const formula of ['Xx2','Na0Cl','Na100001Cl']){
-   expect((await lookupFormulaIdentities(formula,fetcher)).status).toBe('no_match');
+   expect((await lookupFormulaIdentities(formula,fetcher)).status).toBe('invalid');
   }
   expect(fetcher).not.toHaveBeenCalled();
  });
  it('rejects formula grammar unsupported by formula-identity search',async()=>{
   const requester=vi.fn();
   const result=await lookupFormulaIdentities('NH4+',requester);
-  expect(result.status).toBe('no_match');
+  expect(result.status).toBe('unsupported');
   expect(requester).not.toHaveBeenCalled();
  });
  it('returns an explicit unavailable state on PubChem rate limit',async()=>{

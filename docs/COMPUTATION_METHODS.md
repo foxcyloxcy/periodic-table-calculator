@@ -68,3 +68,6 @@ Return `methodId`, `methodVersion`, normalized units/inputs, equation, evaluated
 - Conservation of atoms/charge and dimensional consistency as **invariants**, not merely example outputs.
 - Unsupported chemistry and insufficient conditions must have explicit negative tests.
 - CI runs validation against pinned immutable data; changes to weights, precision or solver methods require intentional golden-fixture review, never automatic silent approvals.
+
+## CHEM-001 additive input compatibility — 2026-11-08
+`FORMULA-NOTATION-1` converts Unicode subscript atom-count digits only and retains original input. Existing grouping, integer bounds, masses and data versions are unchanged. `FORMULA-IDENTITY-COMPOSITION-2` serializes exact counts for source-backed identity discovery without asserting a unique structure. Hydrates, charges, isotopes, square brackets and reaction models retain their existing unsupported status. Full scope, source snapshot and independent benchmarks: [formula compatibility audit](FORMULA_COMPATIBILITY_AUDIT.md).

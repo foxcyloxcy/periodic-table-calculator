@@ -6,7 +6,7 @@ async function mockProviders(page){
   const url=route.request().url();
   let body={};
   if(url.includes('/caffeine/cids/JSON'))body={IdentifierList:{CID:[2519]}};
-  if(url.includes('/cid/2519/property/MolecularFormula,Title/JSON'))body={PropertyTable:{Properties:[{CID:2519,Title:'Caffeine',MolecularFormula:'C8H10N4O2'}]}};
+  if(url.includes('/cid/2519/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON'))body={PropertyTable:{Properties:[{CID:2519,Title:'Caffeine',MolecularFormula:'C8H10N4O2',Charge:0,IsotopeAtomCount:0}]}};
   if(url.includes('/cid/2519/property/XLogP,TPSA'))body={PropertyTable:{Properties:[{CID:2519,TPSA:61.8,XLogP:-0.1,HBondDonorCount:0,HBondAcceptorCount:6,RotatableBondCount:0}]}};
   return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
  });

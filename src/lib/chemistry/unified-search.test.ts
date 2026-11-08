@@ -25,7 +25,7 @@ function mockFetch(url:string):Promise<Response>{
  }
  if(u.hostname==='pubchem.ncbi.nlm.nih.gov'){
   if(url.includes('/compound/name/caffeine/cids/JSON'))return Promise.resolve(response({IdentifierList:{CID:[2519]}}));
-  if(url.includes('/compound/cid/2519/property/'))return Promise.resolve(response({PropertyTable:{Properties:[{CID:2519,Title:'Caffeine',MolecularFormula:'C8H10N4O2'}]}}));
+  if(url.includes('/compound/cid/2519/property/'))return Promise.resolve(response({PropertyTable:{Properties:[{CID:2519,Title:'Caffeine',MolecularFormula:'C8H10N4O2',Charge:0,IsotopeAtomCount:0}]}}));
   return Promise.resolve(response(null,404));
  }
  throw new Error('Unexpected URL '+url);

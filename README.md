@@ -84,6 +84,8 @@ A separate **Search material** field accepts names such as `sugar` and queries t
 
 For a formula such as `C2H6O`, PubChem's live formula search identifies possible compounds including **ethanol** (CID 702) and **dimethyl ether** (CID 8254). These are structural isomers, so the formula alone does not identify one compound. Their molar mass is dynamically calculated from the same formula and CIAAW weights, while identity is sourced independently. The app displays candidate names and links instead of guessing.
 
+Formula lookup matches exact atom counts across element order: `NaCl` can retrieve PubChem’s `ClNa` sodium chloride record. Names still come from the live source; this is not a fixed formula-to-answer list. Use **Clear** beside the formula or material search to reset that field and its results in one click.
+
 The chemical formula input also accepts lowercased entries like `c2h6o` and `feso4` through chemically valid capitalization. It does not blindly uppercase letters: `Co` and `CO` mean different things; ambiguous `co` prompts the user to choose. See [formula identity and case policy](docs/FORMULA_ISOMERS_AND_CASE.md).
 
 ### Formula suggestions and element-click editor

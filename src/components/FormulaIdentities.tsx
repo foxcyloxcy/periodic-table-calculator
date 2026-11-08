@@ -8,7 +8,10 @@ export default function FormulaIdentities({formula}:{formula:string}){
  useEffect(()=>{
   const controller=new AbortController();
   setOutcome(null);setSelected(null);
-  const timeout=setTimeout(()=>controller.abort(),12000);
+  const timeout=setTimeout(()=>{
+    controller.abort();
+    setOutcome({status:'unavailable',query:formula,message:'Compound identity search timed out. Your molar mass is still calculated; calculate again to retry the name lookup.'});
+  },12000);
   lookupFormulaIdentities(formula,fetch,controller.signal)
     .then(x=>{if(!controller.signal.aborted)setOutcome(x);})
     .catch(()=>{if(!controller.signal.aborted)setOutcome({status:'unavailable',query:formula,message:'Compound identity search is unavailable.'});})

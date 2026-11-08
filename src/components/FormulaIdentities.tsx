@@ -18,7 +18,7 @@ export default function FormulaIdentities({formula}:{formula:string}){
     .finally(()=>clearTimeout(timeout));
   return ()=>{clearTimeout(timeout);controller.abort();};
  },[formula]);
- return <section className="formula-identities" aria-live="polite">
+ return <section className="formula-identities" aria-live="polite" data-status={outcome?.status??'loading'}>
   <p className="eyebrow">POSSIBLE COMPOUND IDENTITIES</p>
   {!outcome?<p className="hint">Looking up names from PubChem (requires internet)…</p>:
    outcome.status!=='found'?<p className="hint">{outcome.message}</p>:

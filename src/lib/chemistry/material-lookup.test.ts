@@ -6,7 +6,7 @@ const response=(body:unknown,status=200)=>({ok:status>=200&&status<300,status,js
 describe('source-backed material name lookup',()=>{
  it('looks up sugar via PubChem CID then derives molar mass/composition independently',async()=>{
    const requester=vi.fn().mockResolvedValueOnce(response({IdentifierList:{CID:[5988]}}))
-     .mockResolvedValueOnce(response({PropertyTable:{Properties:[{CID:5988,Title:'Sucrose',MolecularFormula:'C12H22O11'}]}}));
+     .mockResolvedValueOnce(response({PropertyTable:{Properties:[{CID:5988,Title:'Sucrose',MolecularFormula:'C12H22O11',Charge:0,IsotopeAtomCount:0}]}}));
    const data=await lookupMaterial('sugar',requester);
    expect(requester).toHaveBeenCalledTimes(2);
    expect(requester.mock.calls[0][0]).toContain('/compound/name/sugar/cids/JSON');
@@ -25,7 +25,7 @@ describe('source-backed material name lookup',()=>{
  });
  it('returns multiple record candidates rather than arbitrarily choosing one',async()=>{
    const requester=vi.fn().mockResolvedValueOnce(response({IdentifierList:{CID:[1,2]}}))
-     .mockResolvedValueOnce(response({PropertyTable:{Properties:[{CID:1,Title:'Candidate A',MolecularFormula:'C2H6O'},{CID:2,Title:'Candidate B',MolecularFormula:'C2H6O'}]}}));
+     .mockResolvedValueOnce(response({PropertyTable:{Properties:[{CID:1,Title:'Candidate A',MolecularFormula:'C2H6O',Charge:0,IsotopeAtomCount:0},{CID:2,Title:'Candidate B',MolecularFormula:'C2H6O',Charge:0,IsotopeAtomCount:0}]}}));
    const data=await lookupMaterial('ethyl alcohol',requester);
    expect(data.status).toBe('found');
    if(data.status==='found')expect(data.candidates).toHaveLength(2);

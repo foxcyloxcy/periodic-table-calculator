@@ -78,3 +78,5 @@
 .systematic-review a{color:#8bdcef;text-decoration:underline}.review-tag{border:1px solid rgba(125,175,187,.5);border-radius:20px;padding:2px 9px;font-size:.8rem}
 
 button:focus-visible{outline:3px solid #e8edf9;outline-offset:3px}
+
+.formula-support{margin:18px 0;padding:16px;border:1px solid #40506d;border-radius:10px;background:#151e33}.formula-support summary{cursor:pointer;color:#e8edf9;font-weight:700}.formula-support a{color:#83ddea}.formula-support p{font-size:.9rem}

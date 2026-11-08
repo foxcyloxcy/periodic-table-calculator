@@ -80,6 +80,10 @@ The search now checks three evidence sources: the local periodic table for eleme
 
 A separate **Search material** field accepts names such as `sugar` and queries the live [PubChem PUG REST service](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest) for candidate identities and molecular formulas. Select a PubChem record to populate the calculator. For **table sugar (sucrose)**, PubChem documents `C12H22O11` ([CID 5988](https://pubchem.ncbi.nlm.nih.gov/compound/5988)). The app calculates atom counts, molar mass and elemental mass-percent composition **from its CIAAW dataset**—not stored result lookup. A generic term may refer to multiple substances or mixtures. Browsers must be able to reach PubChem; failures are shown, not silently replaced by fabricated records. See [material search documentation](docs/MATERIAL_LOOKUP.md).
 
+### Formula compatibility and source-backed regression coverage
+
+Copied formulas such as **H₂O**, **Ca(OH)₂** and **Al₂(SO₄)₃** now calculate and use the same atom counts for live compound discovery. The result shows formatting normalization; case-sensitive chemistry and explicit isomer choices remain intact. Hydrates, charges and isotope notation receive specific unsupported explanations. A test-only corpus of **20 published PubChem compounds / 43 input variants**, plus generated composition invariants and desktop/mobile browser checks, protects the whole formula/name-to-result flow. See the [compatibility audit and limits](docs/FORMULA_COMPATIBILITY_AUDIT.md).
+
 ### Search possible compound names from a formula
 
 For a formula such as `C2H6O`, PubChem's live formula search identifies possible compounds including **ethanol** (CID 702) and **dimethyl ether** (CID 8254). These are structural isomers, so the formula alone does not identify one compound. Their molar mass is dynamically calculated from the same formula and CIAAW weights, while identity is sourced independently. The app displays candidate names and links instead of guessing.

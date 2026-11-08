@@ -1,0 +1,332 @@
+{
+  "purpose": "Test-only published compound identity/formula snapshot; not a runtime naming catalog or numerical result table.",
+  "source": "NIH PubChem PUG REST",
+  "documentationUrl": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest",
+  "retrievedAt": "2026-11-08T12:23:31.738789+00:00",
+  "records": [
+    {
+      "query": "water",
+      "family": "simple",
+      "inputs": [
+        "H2O",
+        "H\u2082O",
+        "OH2"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 962,
+        "MolecularFormula": "H2O",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Water"
+      }
+    },
+    {
+      "query": "sodium chloride",
+      "family": "salt",
+      "inputs": [
+        "NaCl",
+        "ClNa",
+        "Na\u2081Cl\u2081"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/sodium%20chloride/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 5234,
+        "MolecularFormula": "ClNa",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Sodium Chloride"
+      }
+    },
+    {
+      "query": "potassium chloride",
+      "family": "salt",
+      "inputs": [
+        "KCl",
+        "ClK"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/potassium%20chloride/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 4873,
+        "MolecularFormula": "ClK",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Potassium Chloride"
+      }
+    },
+    {
+      "query": "sodium bicarbonate",
+      "family": "salt",
+      "inputs": [
+        "NaHCO3",
+        "CHNaO3"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/sodium%20bicarbonate/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 516892,
+        "MolecularFormula": "CHNaO3",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Sodium Bicarbonate"
+      }
+    },
+    {
+      "query": "calcium hydroxide",
+      "family": "base",
+      "inputs": [
+        "Ca(OH)2",
+        "(OH)2Ca",
+        "Ca(OH)\u2082"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20hydroxide/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 6093208,
+        "MolecularFormula": "CaH2O2",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Calcium Hydroxide"
+      }
+    },
+    {
+      "query": "magnesium hydroxide",
+      "family": "base",
+      "inputs": [
+        "Mg(OH)2",
+        "Mg(OH)\u2082"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/magnesium%20hydroxide/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 73981,
+        "MolecularFormula": "H2MgO2",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Magnesium Hydroxide"
+      }
+    },
+    {
+      "query": "aluminum sulfate",
+      "family": "salt",
+      "inputs": [
+        "Al2(SO4)3",
+        "Al\u2082(SO\u2084)\u2083"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/aluminum%20sulfate/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 24850,
+        "MolecularFormula": "Al2O12S3",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Aluminum Sulfate"
+      }
+    },
+    {
+      "query": "ammonium sulfate",
+      "family": "salt",
+      "inputs": [
+        "(NH4)2SO4",
+        "H8N2SO4"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ammonium%20sulfate/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 6097028,
+        "MolecularFormula": "H8N2O4S",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Ammonium Sulfate"
+      }
+    },
+    {
+      "query": "calcium carbonate",
+      "family": "salt",
+      "inputs": [
+        "CaCO3",
+        "CCaO3"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20carbonate/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 10112,
+        "MolecularFormula": "CCaO3",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Calcium Carbonate"
+      }
+    },
+    {
+      "query": "sulfuric acid",
+      "family": "acid",
+      "inputs": [
+        "H2SO4",
+        "SO4H2"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/sulfuric%20acid/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 1118,
+        "MolecularFormula": "H2O4S",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Sulfuric Acid"
+      }
+    },
+    {
+      "query": "hydrogen chloride",
+      "family": "hydrogen halide",
+      "inputs": [
+        "HCl",
+        "ClH"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/hydrogen%20chloride/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 313,
+        "MolecularFormula": "ClH",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Hydrochloric Acid"
+      }
+    },
+    {
+      "query": "sodium hydroxide",
+      "family": "base",
+      "inputs": [
+        "NaOH",
+        "HNaO"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/sodium%20hydroxide/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 14798,
+        "MolecularFormula": "HNaO",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Sodium Hydroxide"
+      }
+    },
+    {
+      "query": "ethanol",
+      "family": "organic isomer",
+      "inputs": [
+        "C2H6O",
+        "H6C2O"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ethanol/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 702,
+        "MolecularFormula": "C2H6O",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Ethanol"
+      }
+    },
+    {
+      "query": "dimethyl ether",
+      "family": "organic isomer",
+      "inputs": [
+        "C2H6O",
+        "C\u2082H\u2086O"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/dimethyl%20ether/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 8254,
+        "MolecularFormula": "C2H6O",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Dimethyl Ether"
+      }
+    },
+    {
+      "query": "acetic acid",
+      "family": "organic acid",
+      "inputs": [
+        "CH3COOH",
+        "C2H4O2"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/acetic%20acid/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 176,
+        "MolecularFormula": "C2H4O2",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Acetic Acid"
+      }
+    },
+    {
+      "query": "glucose",
+      "family": "carbohydrate",
+      "inputs": [
+        "C6H12O6",
+        "C\u2086H\u2081\u2082O\u2086"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/glucose/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 5793,
+        "MolecularFormula": "C6H12O6",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "D-Glucose"
+      }
+    },
+    {
+      "query": "sucrose",
+      "family": "carbohydrate",
+      "inputs": [
+        "C12H22O11",
+        "C\u2081\u2082H\u2082\u2082O\u2081\u2081"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/sucrose/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 5988,
+        "MolecularFormula": "C12H22O11",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Sucrose"
+      }
+    },
+    {
+      "query": "caffeine",
+      "family": "organic",
+      "inputs": [
+        "C8H10N4O2",
+        "C\u2088H\u2081\u2080N\u2084O\u2082"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/caffeine/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 2519,
+        "MolecularFormula": "C8H10N4O2",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Caffeine"
+      }
+    },
+    {
+      "query": "iron(II) sulfate",
+      "family": "salt",
+      "inputs": [
+        "FeSO4",
+        "FeO4S"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/iron%28II%29%20sulfate/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 24393,
+        "MolecularFormula": "FeO4S",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Ferrous Sulfate"
+      }
+    },
+    {
+      "query": "copper sulfate",
+      "family": "salt",
+      "inputs": [
+        "CuSO4",
+        "CuO4S"
+      ],
+      "sourceUrl": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/copper%20sulfate/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON",
+      "record": {
+        "CID": 24462,
+        "MolecularFormula": "CuO4S",
+        "Charge": 0,
+        "IsotopeAtomCount": 0,
+        "Title": "Copper Sulfate"
+      }
+    }
+  ],
+  "retrievalErrors": []
+}

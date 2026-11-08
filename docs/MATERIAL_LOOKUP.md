@@ -12,7 +12,7 @@ Users may enter familiar material or chemical names such as **sugar**, **sucrose
 ## Architecture and provenance
 1. User searches a **material name**. This is separate from the existing periodic-table *element* search and from the formula input.
 2. Browser queries `/rest/pug/compound/name/{encoded}/cids/JSON` to resolve the supplied name or synonym into CIDs (max 8 accepted).
-3. Browser queries `/rest/pug/compound/cid/{ids}/property/MolecularFormula,Title/JSON`; each candidate preserves PubChem CID and a direct reference URL. The API determines candidate formulas; no per-material formula/result map is bundled.
+3. Browser queries `/rest/pug/compound/cid/{ids}/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON`; each candidate preserves PubChem CID and a direct reference URL. The API determines candidate formulas; no per-material formula/result map is bundled.
 4. Our deterministic `calculateMolarMass` parses each returned formula, derives its composition, and sums the versioned **CIAAW 2024** element weights; mass fraction per element is `100 * (atomCount * atomicWeight) / molarMass`. These results are **computed**, never copied from PubChem's molecular-weight field.
 5. Show **all returned candidates up to eight**, not an assumed unique chemical identity. Clicking a candidate transfers its formula to the existing calculator and preserves the source identity annotation.
 6. If no match, unsupported formula grammar (ions, hydrates, isotope specifiers), lacking CIAAW weight or failed network/CORS/rate limit, show an explicit error/unsupported state. No invented values.
@@ -29,3 +29,6 @@ GitHub Pages is static and has no server-side proxy. The client calls PubChem di
 - Unknown terms, invalid input, 429 and unsupported formulas are handled without unsupported numerical claims.
 - Unit tests, TypeScript, lint and static build pass. Live-browser cross-origin checks are a separate integration requirement.
 - Full compound-database coverage, language synonyms and distinguishing all isomers or mixtures remain out of scope.
+
+## 2026-11-08 compatibility and numerical safety
+Remote compound masses now require explicit Charge 0 and IsotopeAtomCount 0. Missing metadata, charged or isotopically labelled records retain their identity and source with null numeric fields and a limitation. Requested-CID matching and duplicate removal apply. Unreadable identifier responses are reported as unavailable. See [compatibility audit](FORMULA_COMPATIBILITY_AUDIT.md) for 20 published reference records and the full test matrix.

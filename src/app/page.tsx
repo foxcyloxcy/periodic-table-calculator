@@ -4,6 +4,7 @@ import PeriodicTable from '@/components/PeriodicTable';
 import UnifiedSearch from '@/components/UnifiedSearch';
 import FormulaIdentities from '@/components/FormulaIdentities';
 import {caseFormulaCandidates} from '@/lib/chemistry/formula-case';
+import {normalizeFormulaNotation} from '@/lib/chemistry/formula-notation';
 import type { PubChemCandidate } from '@/lib/chemistry/material-lookup';
 import { appendElementToFormula, compactRepeatedSymbols, suggestFormulaAlternatives } from '@/lib/chemistry/formula-assistance';
 import { calculateMolarMass, FormulaError, type MolarMassResult } from '@/lib/chemistry/calculator';
@@ -25,7 +26,7 @@ export default function Home() {
   event.preventDefault(); setPending(true); setError(''); setResult(null);
   const choices=caseFormulaCandidates(formula);
   if(choices.length>1){setCaseChoices(choices);setError('This capitalization can mean more than one formula. Choose the intended element symbols.');setPending(false);return;}
-  if(choices.length===1 && choices[0]!==formula.trim()){setFormula(choices[0]);setCaseChoices([]);setError('');setResult(calculateMolarMass(choices[0]));setPending(false);return;}
+  if(choices.length===1 && choices[0]!==normalizeFormulaNotation(formula)){setFormula(choices[0]);setCaseChoices([]);setError('');setResult(calculateMolarMass(choices[0]));setPending(false);return;}
   const compact=compactRepeatedSymbols(formula);
   if(compact && !needsConfirmation){setNeedsConfirmation(true);setError('This contains repeated symbols. Did you mean a formula with atom-count subscripts? Select a suggestion, or calculate exactly as entered.');setPending(false);return;}
   try { setResult(calculateMolarMass(formula)); }
@@ -35,7 +36,7 @@ export default function Home() {
  function appendSymbol(symbol: string) { setChosenMaterial(null);setCaseChoices([]);setFormula(previous => appendElementToFormula(previous,symbol)); setNeedsConfirmation(false); setResult(null); setError(''); document.getElementById('formula')?.focus(); }
  function chooseSuggestion(value:string){setCaseChoices([]);setChosenMaterial(null);setFormula(value);setNeedsConfirmation(false);setResult(null);setError('');document.getElementById('formula')?.focus();}
  function selectMaterial(candidate:PubChemCandidate){
-  setChosenMaterial(candidate);setFormula(candidate.formula);setNeedsConfirmation(false);setError('');
+  setChosenMaterial(candidate);setFormula(candidate.formula);setNeedsConfirmation(false);setCaseChoices([]);setError('');
   try {setResult(calculateMolarMass(candidate.formula));}
   catch(err){setResult(null);setError(err instanceof FormulaError?err.message:'Formula calculation is unavailable.');}
   document.getElementById('formula')?.focus();
@@ -45,7 +46,12 @@ export default function Home() {
   <UnifiedSearch onSelect={selectMaterial} />
   <PeriodicTable onAppendSymbol={appendSymbol} />
   <form onSubmit={calculate}><label htmlFor="formula">Chemical formula</label><div className="field"><input id="formula" value={formula} onChange={e=>{setCaseChoices([]);setChosenMaterial(null);setFormula(e.target.value);setNeedsConfirmation(false);setResult(null);setError('');}} maxLength={128} spellCheck={false} placeholder="e.g. Ca(OH)2" required/><button disabled={pending}>{pending?'Calculating…':'Calculate'}</button><button type="button" className="secondary-action" aria-label="Clear formula" onClick={clearFormula}>Clear</button></div></form>
-  <p className="hint">Examples, not precomputed answers: FeSO4, Fe2(SO4)3, H2O, CaCO3, CO2, ZrO2 or UO2. Repeated element clicks now increase the atom count (O → O2 → O3), without predicting a compound. Molar mass calculations use the official CIAAW 2024 abridged atomic weights for 84 eligible elements. Hydrates, isotopes, ions and reaction prediction are not yet supported.</p>
+  <p className="hint">Supports neutral formulas, nested parentheses and copied subscript digits: H₂O, Ca(OH)₂ or Al₂(SO₄)₃. Mass is calculated from CIAAW 2024 abridged atomic weights for 84 eligible elements; compound names are looked up separately from PubChem. Hydrates, charged ions, isotopes, square brackets and reaction equations are not yet supported.</p>
+  <details className="formula-support"><summary>Supported inputs and reference sources</summary>
+   <p>Use ordinary digits or copied subscripts for atom counts. Parentheses may be nested. Capitalization matters: Co is cobalt, while CO contains carbon and oxygen.</p>
+   <p>For hydrates, charged ions or isotope labels, the calculator explains the unsupported notation without deleting parts of your formula. Some recognized elements have no standard atomic weight and need a separately supported isotope calculation.</p>
+   <p>Atomic weights: <a href="https://www.ciaaw.org/abridged-atomic-weights.htm" target="_blank" rel="noreferrer">CIAAW 2024</a>. Compound candidates: <a href="https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest" target="_blank" rel="noreferrer">NIH PubChem</a> (internet required, up to eight records). A matching formula does not establish structure, phase or sample purity.</p>
+  </details>
   {error&&<p role="alert" className="error">{error}</p>}
   {caseChoices.length>0&&<section className="formula-suggestions" aria-label="Capitalization alternatives"><p className="eyebrow">WHICH FORMULA DID YOU MEAN?</p><p className="hint">Chemical symbols are case-sensitive: Co and CO are different. Choose the intended formula.</p><ul>{caseChoices.map(choice=><li key={choice}><strong>{choice}</strong><button type="button" onClick={()=>chooseSuggestion(choice)}>Use this formula</button></li>)}</ul></section>}
   {suggestions.length>0 && <section className="formula-suggestions" aria-label="Possible intended formulas">
@@ -58,6 +64,7 @@ export default function Home() {
     {needsConfirmation && <button type="button" className="secondary-action" onClick={()=>{setNeedsConfirmation(true);setError('');try{setResult(calculateMolarMass(formula));}catch(err){setError(err instanceof FormulaError?err.message:'Calculation failed.');}}}>Calculate exactly as entered</button>}
   </section>}
   {result&&<section aria-live="polite" className="result"><p className="eyebrow">COMPUTED RESULT</p><h2>{result.value.toFixed(4)} <small>{result.unit}</small></h2>
+   {result.inputFormula!==result.formula&&<p className="hint">Input formatting: {result.inputFormula} → {result.formula}. Atom-count subscripts are converted to ordinary digits; element capitalization is preserved.</p>}
    {chosenMaterial && chosenMaterial.formula===result.formula && <div className="compound-identification">
      <p className="eyebrow">NAME SEARCH RESULT — PUBCHEM</p><h3>{chosenMaterial.name}</h3>
      <p className="hint">This is the PubChem record selected by the user; it is not proof of sample identity or purity. <a href={chosenMaterial.sourceUrl} target="_blank" rel="noreferrer">Source: PubChem CID {chosenMaterial.cid}</a></p>

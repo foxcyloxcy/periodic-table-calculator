@@ -1,6 +1,7 @@
 import { atomicWeightBySymbol, atomicWeights } from './elements';
 import { parseFormula } from './calculator';
 import { reviewedCompoundFormulas, resolveCompoundName, normalizeKnownCompoundFormula } from './compound-names';
+import {normalizeFormulaNotation,unsupportedFormulaNotation} from './formula-notation';
 
 export interface FormulaSuggestion {
   formula: string;
@@ -47,7 +48,7 @@ export function compactRepeatedSymbols(input: string): string | null {
 /** Dedicated user-input editor: only extend an existing terminal atom count, never infer a reaction. */
 export function appendElementToFormula(value:string,symbol:string):string {
   if(!atomicWeightBySymbol.has(symbol)) return value;
-  const text=value.trim();
+  const text=normalizeFormulaNotation(value);
   // Recover an old sequence of repeated clicks before handling a single token.
   const pattern=new RegExp('(?:'+symbol+'){2,}$');
   const run=pattern.exec(text);
@@ -64,8 +65,8 @@ export function appendElementToFormula(value:string,symbol:string):string {
 
 /** Suggestions are explicit options; never silently replace a formula or calculate alternatives. */
 export function suggestFormulaAlternatives(raw:string,limit=5):FormulaSuggestion[]{
-  const input=raw.trim();
-  if(!input || input.length>128)return [];
+  const input=normalizeFormulaNotation(raw);
+  if(!input || input.length>128 || unsupportedFormulaNotation(input))return [];
   const out:FormulaSuggestion[]=[];
   const seen=new Set<string>([input]);
   const add=(formula:string,reason:FormulaSuggestion['reason'],note:string,changesComposition:boolean)=>{

@@ -1,4 +1,5 @@
 import { calculateMolarMass, parseFormula, FormulaError, type Composition } from './calculator';
+import {formulaFromComposition} from './formula-composition';
 
 export interface PubChemCandidate {
   cid: number;
@@ -14,7 +15,7 @@ export interface PubChemCandidate {
 }
 export type LookupOutcome =
   | {status:'found'; query:string; candidates:PubChemCandidate[]; note:string}
-  | {status:'no_match'|'unavailable'; query:string; message:string};
+  | {status:'no_match'|'unavailable'|'unsupported'|'invalid'; query:string; message:string};
 
 export const PUBCHEM_API_SOURCE = 'https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest';
 const API = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug';
@@ -24,9 +25,12 @@ export function isMaterialQueryValid(input:string):boolean {
   return input.length>=2 && input.length<=80 && /^[\p{L}\p{N} ,()\-]+$/u.test(input);
 }
 
-export function createCandidate(cid:number, name:string, formula:string):PubChemCandidate {
+export function createCandidate(cid:number, name:string, formula:string,identity?:{Charge?:number;IsotopeAtomCount?:number}):PubChemCandidate {
   const sourceUrl = `https://pubchem.ncbi.nlm.nih.gov/compound/${cid}`;
   try {
+    if(identity?.Charge===undefined||identity.IsotopeAtomCount===undefined)throw new FormulaError('PubChem charge/isotope metadata is missing; standard-composition mass cannot be verified for this record.');
+    if(identity.Charge!==0)throw new FormulaError('This PubChem record is charged. Charged-ion mass calculations are not supported yet.');
+    if(identity.IsotopeAtomCount!==0)throw new FormulaError('This PubChem record has isotope labels. Isotope-specific mass calculations are not supported yet.');
     const result = calculateMolarMass(formula);
     const massPercent = Object.fromEntries(result.steps.map(step=>[step.element, 100*step.contribution/result.value]));
     return {cid,name,formula,source:'PubChem PUG REST',sourceUrl,counts:result.composition,molarMass:result.value,massPercent,supported:true,limitation:null};
@@ -46,13 +50,16 @@ async function getJson(url:string, request:Requester, signal?:AbortSignal):Promi
 }
 function isObject(x:unknown):x is Record<string,unknown>{return typeof x==='object'&&x!==null&&!Array.isArray(x);}
 function cidsFrom(x:unknown):number[]{
-  if(!isObject(x)||!isObject(x.IdentifierList)||!Array.isArray(x.IdentifierList.CID))return [];
-  return x.IdentifierList.CID.filter((v):v is number=>Number.isSafeInteger(v)&&v>0).slice(0,LIMIT);
+  if(x===null)return [];
+  if(!isObject(x)||!isObject(x.IdentifierList)||!Array.isArray(x.IdentifierList.CID))throw Error('PubChem returned an unreadable identifier response. Try again later.');
+  const ids=[...new Set(x.IdentifierList.CID.filter((v):v is number=>Number.isSafeInteger(v)&&v>0))].slice(0,LIMIT);
+  if(x.IdentifierList.CID.length&&!ids.length)throw Error('PubChem returned invalid compound identifiers. Try again later.');
+  return ids;
 }
 function propertiesFrom(x:unknown):Array<{CID:number;Title?:string;MolecularFormula:string;Charge?:number;IsotopeAtomCount?:number}> {
   if(!isObject(x)||!isObject(x.PropertyTable)||!Array.isArray(x.PropertyTable.Properties))return [];
   return x.PropertyTable.Properties.flatMap((v:unknown)=>{
-    if(!isObject(v)||!Number.isSafeInteger(v.CID)||typeof v.MolecularFormula!=='string')return [];
+    if(!isObject(v)||!Number.isSafeInteger(v.CID)||(v.CID as number)<1||typeof v.MolecularFormula!=='string')return [];
     return [{CID:v.CID as number, Title:typeof v.Title==='string'?v.Title:undefined,MolecularFormula:v.MolecularFormula,
       Charge:typeof v.Charge==='number'?v.Charge:undefined,
       IsotopeAtomCount:typeof v.IsotopeAtomCount==='number'?v.IsotopeAtomCount:undefined}];
@@ -72,9 +79,9 @@ export async function lookupMaterial(query:string, request:Requester=fetch, sign
     const idUrl=`${API}/compound/name/${encodeURIComponent(term)}/cids/JSON`;
     const ids=cidsFrom(await getJson(idUrl,request,signal));
     if(ids.length===0)return {status:'no_match',query:term,message:'No exact PubChem compound-name match was found. Try a specific chemical name; foods and mixtures may not have a single formula.'};
-    const propUrl=`${API}/compound/cid/${ids.join(',')}/property/MolecularFormula,Title/JSON`;
-    const data=propertiesFrom(await getJson(propUrl,request,signal));
-    const candidates=data.slice(0,LIMIT).map(v=>createCandidate(v.CID,v.Title??`Compound CID ${v.CID}`,v.MolecularFormula));
+    const propUrl=`${API}/compound/cid/${ids.join(',')}/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON`;
+    const data=propertiesFrom(await getJson(propUrl,request,signal)).filter(row=>ids.includes(row.CID));
+    const candidates=data.filter((row,index)=>data.findIndex(other=>other.CID===row.CID)===index).slice(0,LIMIT).map(v=>createCandidate(v.CID,v.Title??`Compound CID ${v.CID}`,v.MolecularFormula,v));
     if(!candidates.length)return {status:'unavailable',query:term,message:'PubChem returned identifiers but no usable molecular formulas.'};
     const note = term.toLowerCase()==='sugar'
       ? '“Sugar” commonly means table sugar (sucrose), but can also describe other sugars or mixtures. Confirm the intended substance before using a formula.'
@@ -93,18 +100,21 @@ export async function lookupMaterial(query:string, request:Requester=fetch, sign
  */
 export async function lookupFormulaIdentities(formula:string, request:Requester=fetch, signal?:AbortSignal):Promise<LookupOutcome>{
  const input=formula.trim();
- if(!/^(?:[A-Z][a-z]?[0-9]*)+$/.test(input)||input.length>80){
-  return {status:'no_match',query:input,message:'Formula identity search currently supports simple molecular formulas only.'};
- }
  let composition:Composition;
  try{composition=parseFormula(input);}
- catch{return {status:'no_match',query:input,message:'Enter a valid formula supported by the calculator before searching for identities.'};}
+ catch(error){return {status:error instanceof FormulaError&&error.code!=='invalid_formula'?'unsupported':'invalid',query:input,
+  message:error instanceof FormulaError?error.message:'Enter a valid supported formula before searching for identities.'};}
+ const queryFormula=formulaFromComposition(composition);
+ if(queryFormula.length>128)return {status:'unsupported',query:input,message:'The expanded formula is too long for live identity lookup. Its molar mass can still be calculated.'};
  try{
-  const url=`${API}/compound/fastformula/${encodeURIComponent(input)}/cids/JSON?MaxRecords=${LIMIT}`;
-  const ids=cidsFrom(await getJson(url,request,signal));
+  const url=`${API}/compound/fastformula/${encodeURIComponent(queryFormula)}/cids/JSON?MaxRecords=${LIMIT}`;
+  const idData=await getJson(url,request,signal);
+  const ids=cidsFrom(idData);
   if(!ids.length)return {status:'no_match',query:input,message:'PubChem found no matching compound identities for this formula. Its molar mass can still be calculated.'};
   const propUrl=`${API}/compound/cid/${ids.join(',')}/property/MolecularFormula,Title,Charge,IsotopeAtomCount/JSON`;
-  const properties=propertiesFrom(await getJson(propUrl,request,signal));
+  const properties=propertiesFrom(await getJson(propUrl,request,signal)).filter(row=>ids.includes(row.CID));
+  if(!properties.length)throw Error('PubChem returned identifiers but no usable matching compound records. Your calculated mass is unaffected.');
+  if(properties.every(row=>!Number.isInteger(row.Charge)||!Number.isInteger(row.IsotopeAtomCount)))throw Error('PubChem returned incomplete charge or isotope data, so compound candidates could not be verified.');
   // PubChem's element order can differ (NaCl -> ClNa). Exact atom counts
   // establish candidate compatibility, never a unique structural identity.
   const candidates=properties.filter(row=>{
@@ -114,10 +124,10 @@ export async function lookupFormulaIdentities(formula:string, request:Requester=
       return Object.keys(counts).length===Object.keys(composition).length &&
         Object.entries(composition).every(([symbol,count])=>counts[symbol]===count);
     }catch{return false;}
-  }).slice(0,LIMIT)
-    .map(row=>createCandidate(row.CID,row.Title??`Compound CID ${row.CID}`,row.MolecularFormula));
-  if(!candidates.length)return {status:'no_match',query:input,message:'No supported, non-isotopic, neutral compound candidate with matching atom counts was returned by PubChem.'};
-  return {status:'found',query:input,candidates,note:'Possible structures sharing this molecular formula (up to eight PubChem records). A formula alone does not distinguish isomers; select a specific identity only with additional evidence.'};
+  }).filter((row,index,rows)=>rows.findIndex(other=>other.CID===row.CID)===index).slice(0,LIMIT)
+    .map(row=>createCandidate(row.CID,row.Title??`Compound CID ${row.CID}`,row.MolecularFormula,row));
+  if(!candidates.length)return {status:'no_match',query:input,message:'No supported neutral, non-isotopic match was found within the first eight PubChem records. This limited search does not establish that no matching compound exists. Your calculated mass is unaffected.'};
+  return {status:'found',query:input,candidates,note:'Possible compounds with matching atom counts (up to eight returned PubChem records; this is a limited subset). A formula alone does not identify structure, phase or sample purity. Select an identity only with additional evidence.'};
  }catch(error){
   if(signal?.aborted)throw error;
   return {status:'unavailable',query:input,message:error instanceof Error?error.message:'PubChem is temporarily unavailable.'};

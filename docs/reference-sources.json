@@ -144,5 +144,19 @@
     "CHEM-008": [
       "NIST-WEBBOOK-SRD69"
     ]
-  }
+  },
+  "testFixtures": [
+    {
+      "id": "PUBCHEM-FORMULA-COMPAT-2026-11-08",
+      "sourceId": "PUBCHEM-PUG-REST",
+      "path": "src/lib/chemistry/__fixtures__/pubchem-formula-compatibility.json",
+      "sha256": "bcbdc7f29c630c19acb7c8fa64b915a262bda8228ed2ded48d11eec6d5ae5aea",
+      "retrievedAt": "2026-11-08T12:23:31.738789+00:00",
+      "records": 20,
+      "inputVariants": 43,
+      "approvedForRuntime": false,
+      "usage": "Test-only published formula and identity metadata; no numerical result lookup or runtime naming catalog",
+      "licenseStatus": "Attributed bounded API reference metadata; bulk redistribution and production dataset licensing are not approved by this test fixture"
+    }
+  ]
 }
